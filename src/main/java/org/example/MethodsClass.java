@@ -13,12 +13,12 @@ public class MethodsClass<T>{
 //    }
 
     //Get one item by id
-//    public <T> T getItemById(int id){
+//    public <T> T getItemById(Object id){
 //        return;
 //    }
 
     //Get one/many item by any property (get user(s) by name)
-//    public <T> T getItemByName(String property){
+//    public <T> T getItemsByProperty(Object name){
 //        return;
 //    }
 
@@ -28,12 +28,12 @@ public class MethodsClass<T>{
     //ADD
 
     //Add a single item to a table
-//    public void addSingleItem(Class<T> item){
+//    public <T> T addSingleItem(Class<T> item){
 //
 //    }
 
     //Add multiple items
-//    public void addMultipleItems(List<T> item){
+//    public List<T> T addMultipleItems(List<T> item){
 //
 //    }
 
@@ -44,27 +44,43 @@ public class MethodsClass<T>{
     //UPDATE
 
     //Update a single property of a single item (update email for user with id x)
-//    public void updateSinglePropertyOfSingleItem(Class<T> property, Class<T> item){
+//    public <T> T updateSinglePropertyOfSingleItem(Object property, Object id){
 //
 //    }
 
 
+
+
+    //DELETE
+
+    //Single item deletion by any property (delete user with email x)
+//    public void deleteItemByAnyProperty(Object property){
+//
+//    }
+
+
+    //Multiple item deletion by any property (delete all users called x)
+//    public void deleteManyItemsByAnyProperty(Object property){
+//
+//    }
+
+
+    //Delete entire table (truncate)
+//    public void deleteTable(){
+//
+//    }
+
+
+    //Table creation
+//    public void tableCreation(String table, Map<String,Object> fields){
+//
+//    }
+
+
+    //Create a table based on an entity
+//    public void createTableByEntity(Class<T> entity){
+//
+//    }
 }
 
 
-//Update a single property of a single item (update email for user with id x)
-//Update an entire item
-//Delete
-//Single item deletion by any property (delete user with email x)
-//Multiple item deletion by any property (delete all users called x)
-//Delete entire table (truncate)
-//Table creation
-//Create a table based on an entity
-//Error handling
-//Return relevant errors to the client (no SQLExceptions)
-//Extra features
-//Auto incrementation on fields
-//Mark fields as primary key
-//Mark fields as unique
-//Fields that are not of primitive types should be saved in the db as json string.
-//** Settings of specific fields should be done with annotations.
