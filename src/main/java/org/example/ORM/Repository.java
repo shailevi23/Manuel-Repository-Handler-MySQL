@@ -2,6 +2,7 @@ package org.example.ORM;
 
 import java.lang.reflect.Field;
 import java.sql.*;
+import java.util.List;
 
 public class Repository<T> {
 
@@ -41,16 +42,15 @@ public class Repository<T> {
     public void connect(String user, String password) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection =  DriverManager.getConnection(DB_URL + "summery_project", user, password);
+            connection = DriverManager.getConnection(DB_URL + "summery_project", user, password);
 
         } catch(ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void execute(String query) {
-        try{
+        try {
             Statement statement = this.connection.createStatement();
             statement.execute(query);
 
@@ -93,6 +93,48 @@ public class Repository<T> {
             default:
                 return "varchar(255)";
         }
+    }
+
+
+    private String createAddQuery(T object) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("INSERT INTO ");
+        sb.append(clz.getSimpleName());
+        sb.append(" VALUES (");
+
+        for(Field field : object.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                if(field.get(object) instanceof Integer) {
+                    sb.append(field.get(object));
+                    sb.append(",");
+                }
+                else {
+                    sb.append("'");
+                    sb.append(field.get(object));
+                    sb.append("',");
+                }
+            } catch(IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(");");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    public void addAll(List<T> objects) {
+        for(T obj : objects) {
+            add(obj);
+        }
+    }
+
+
+    public void add(T obj) {
+        String query = createAddQuery(obj);
+        execute(query);
     }
 
     //Delete entire table (truncate)
