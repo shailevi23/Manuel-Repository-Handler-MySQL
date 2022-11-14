@@ -1,6 +1,7 @@
 package org.example.SQLconnection;
 
 import org.example.MethodsClass;
+import org.example.ORM.Repository;
 import org.example.exampleClasses.Product;
 import org.example.exampleClasses.Shop;
 import org.example.exampleClasses.User;
@@ -11,15 +12,15 @@ public class MysqlCon<T> {
 
     public static void main(String arg[]) throws SQLException {
 
-        MethodsClass<User> userORM = new MethodsClass<>();
+        Repository<User> userORM = new Repository<>(User.class);
         Connection connection = userORM.connect();
-//        userORM.execute(userORM.createTableByEntity(User.class).toString(), connection);
-//
-//
-//        MethodsClass<Product> productORM = new MethodsClass<>();
-//        productORM.execute(productORM.createTableByEntity(Product.class).toString(), connection);
+        userORM.execute(userORM.createTableByEntity(User.class).toString(), connection);
 
-        MethodsClass<Shop> shopORM = new MethodsClass<>();
+
+        Repository<Product> productORM = new Repository<>(Product.class);
+        productORM.execute(productORM.createTableByEntity(Product.class).toString(), connection);
+
+        Repository<Shop> shopORM = new Repository<>(Shop.class);
         shopORM.execute(shopORM.createTableByEntity(Shop.class).toString(), connection);
 
         connection.close();
