@@ -118,7 +118,7 @@ public class MethodsClass<T>{
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/summery_project",
-                    "root", "omar135790864");
+                    "root", "root");
 
         }
         catch (Exception exception) {
