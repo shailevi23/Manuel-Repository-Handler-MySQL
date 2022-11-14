@@ -75,25 +75,48 @@ public class Repository<T> {
         return sb.toString();
     }
 
-
-    //Single item deletion by any property (delete user with email x)
-//    public void deleteItemByAnyProperty(Object property){
-//
-//    }
-
-
-    //Multiple item deletion by any property (delete all users called x)
-//    public void deleteManyItemsByAnyProperty(Object property){
-//
-//    }
-
-
     //Delete entire table (truncate)
     public String deleteTable(){
         StringBuilder sb = new StringBuilder();
-//        sb.append("SELECT * FROM ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         sb.append("TRUNCATE " + "`").append(summeryProjectScheme).append("`.`").append(clz.getSimpleName().toLowerCase()).append("`;\n");
         System.out.println(sb.toString());
         return sb.toString();
     }
+
+    //Single item deletion by any property (delete user with email x)
+    public String deleteItemByAnyProperty(Object property, Object value){
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ").append(property.toString()).append("=");
+        if(value.getClass().getSimpleName().equals("Integer")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("int")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("Double")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("double")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("float")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+
+        sb.append("'").append(value.toString()).append("'");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    //Multiple item deletion by any property (delete all users called x)
+    public void deleteManyItemsByAnyProperty(Object property){
+        
+    }
+
 }

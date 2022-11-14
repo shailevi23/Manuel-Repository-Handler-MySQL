@@ -25,7 +25,7 @@ public class MysqlCon<T> {
 //
 //        connection.close();
 
-        //Delete User Table (Truncate)
+//        //Delete User Table (Truncate)
 //        Repository<User> userORM = new Repository<>(User.class);
 //        Connection connection = userORM.connect();
 //        userORM.execute(userORM.deleteTable(), connection);
@@ -34,7 +34,9 @@ public class MysqlCon<T> {
 
 
         //Delete user by id
-
+//        Repository<User> userORM = new Repository<>(User.class);
+//        Connection connection = userORM.connect();
+//        userORM.execute(userORM.deleteItemByAnyProperty("id", 50), connection);
     }
 }
 
