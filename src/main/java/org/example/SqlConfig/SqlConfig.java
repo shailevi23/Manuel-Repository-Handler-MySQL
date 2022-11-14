@@ -8,15 +8,11 @@ public class SqlConfig {
 
     final String schemaName;
 
-    public SqlConfig(String dbName, String user, String password, String schemaName) {
+    public SqlConfig(String dbName, String user, String password) {
         this.dbName = dbName;
         this.user = user;
         this.password = password;
-        this.schemaName = createSchemaForUser(schemaName);
-    }
-
-    public void createSchemaForUser(String ){
-
+        this.schemaName = "summery_project";
     }
 
     public String getDbName() {
