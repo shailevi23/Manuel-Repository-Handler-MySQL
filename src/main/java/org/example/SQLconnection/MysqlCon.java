@@ -40,7 +40,7 @@ public class MysqlCon<T> {
         //Delete user by id
 //        Repository<User> userORM = new Repository<>(User.class);
 //        Connection connection = userORM.connect();
-//        userORM.execute(userORM.deleteItemByAnyProperty("id", 50), connection);
+//        userORM.execute(userORM.deleteManyItemsByAnyProperty("id", 50), connection);
 
         connection.close();
     }

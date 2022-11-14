@@ -104,7 +104,7 @@ public class Repository<T> {
     }
 
     //Single item deletion by any property (delete user with email x)
-    public String deleteItemByAnyProperty(Object property, Object value){
+    public String deleteManyItemsByAnyProperty(Object property, Object value){
         StringBuilder sb = new StringBuilder();
         sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
         sb.append(" WHERE ").append(property.toString()).append("=");
@@ -135,7 +135,7 @@ public class Repository<T> {
     }
 
     //Multiple item deletion by any property (delete all users called x)
-    public void deleteManyItemsByAnyProperty(Object property){
+    public void deleteItemByAnyProperty(Object property){
 
     }
 
