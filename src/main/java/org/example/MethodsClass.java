@@ -16,6 +16,47 @@ public class MethodsClass<T>{
 
     //READ
 
+public StringBuilder readAllItems(Class<T> entity) {
+
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("SELECT * FROM summery_project.");
+    stringBuilder.append(entity.getSimpleName().toLowerCase());
+    stringBuilder.append(";");
+    System.out.println(stringBuilder);
+    return stringBuilder;
+//    Connection connection = null;
+//    try {
+//        // below two lines are used for connectivity.
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        connection = DriverManager.getConnection(
+//                "jdbc:mysql://localhost:3306/summeryproject",
+//                "root", "root");
+//
+//
+//        Statement statement;
+//        statement = connection.createStatement();
+//        ResultSet resultSet;
+//        resultSet = statement.executeQuery(
+//                "SELECT * FROM summerproject.test_table;");
+//        int code;
+//        String title;
+//        while (resultSet.next()) {
+//            code = resultSet.getInt("id");
+//            title = resultSet.getString("name").trim();
+//            System.out.println("Id : " + code
+//                    + " name : " + title);
+//        }
+//        resultSet.close();
+//        statement.close();
+//        connection.close();
+//    } catch (Exception exception) {
+//        System.out.println(exception);
+//    }
+
+
+
+}
+
     //get all the items in a table
 //    public List<T> allItemsInTable(){
 //        return;

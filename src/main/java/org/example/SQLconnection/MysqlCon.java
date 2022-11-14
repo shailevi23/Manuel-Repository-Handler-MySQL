@@ -12,9 +12,12 @@ public class MysqlCon<T> {
 
     public static void main(String arg[]) throws SQLException {
 
+
+
         Repository<User> userORM = new Repository<>(User.class);
         Connection connection = userORM.connect();
         userORM.execute(userORM.createTableByEntity(User.class).toString(), connection);
+        userORM.execute(userORM.readAllItems(User.class).toString(),connection);
 
 
         Repository<Product> productORM = new Repository<>(Product.class);
@@ -22,6 +25,7 @@ public class MysqlCon<T> {
 
         Repository<Shop> shopORM = new Repository<>(Shop.class);
         shopORM.execute(shopORM.createTableByEntity(Shop.class).toString(), connection);
+
 
         connection.close();
     }

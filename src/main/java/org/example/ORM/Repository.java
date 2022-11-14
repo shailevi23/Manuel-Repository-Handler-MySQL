@@ -21,6 +21,7 @@ public class Repository<T> {
 
         for (Field field : entity.getDeclaredFields()) {
             stringBuilder.append(field.getName());
+            field.getAnnotatedType()
             stringBuilder.append(" ");
             if(field.getType().getSimpleName().equals("int")) {
                 stringBuilder.append("int(11)");
@@ -48,7 +49,7 @@ public class Repository<T> {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/summery_project",
-                    "root", "omar135790864");
+                    "root", "root");
 
         }
         catch (Exception exception) {
@@ -73,4 +74,15 @@ public class Repository<T> {
         sb.append(" WHERE " + field + "=?");
         return sb.toString();
     }
+
+    public StringBuilder readAllItems(Class<T> entity) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("SELECT * FROM summery_project.");
+        stringBuilder.append(entity.getSimpleName().toLowerCase());
+        stringBuilder.append(";");
+        System.out.println(stringBuilder);
+        return stringBuilder;
+        }
+
 }
