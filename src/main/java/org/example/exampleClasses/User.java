@@ -20,6 +20,9 @@ public class User {
 
 
     public void setId(int id) {
+        if(id < 0){
+            throw new IllegalArgumentException("Id cannot be negative");
+        }
         this.id = id;
     }
 
@@ -30,6 +33,14 @@ public class User {
 
 
     public void setFirstName(String firstName) {
+        if(firstName == null){
+            throw new NullPointerException("First name is null");
+        }
+
+        if(firstName.equals("")){
+            throw new IllegalArgumentException("First name cannot be empty, Please insert product name");
+        }
+
         this.firstName = firstName;
     }
 
@@ -40,6 +51,13 @@ public class User {
 
 
     public void setLastName(String lastName) {
+        if(lastName == null){
+            throw new NullPointerException("Last name is null");
+        }
+
+        if(lastName.equals("")){
+            throw new IllegalArgumentException("Lat name cannot be empty, Please insert product name");
+        }
         this.lastName = lastName;
     }
 }
