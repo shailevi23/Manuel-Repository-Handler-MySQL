@@ -1,4 +1,4 @@
-package org.example.SqlConfig;
+package org.example.SQLconnection;
 
 public class SqlConfig {
 
