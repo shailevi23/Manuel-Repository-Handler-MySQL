@@ -1,7 +1,10 @@
 package org.example.ORM;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Repository<T> {
@@ -25,19 +28,55 @@ public class Repository<T> {
 //        StringBuilder stringBuilder = createSelectQuery(entity);
 //        execute(stringBuilder.toString());
 //    }
-    public ResultSet select(Class<T> entity) throws SQLException {
-        Statement query = connection.createStatement();
-        ResultSet rs = query.executeQuery("SELECT * FROM " + entity);
-        return rs;
-    }
-    public StringBuilder createSelectQuery(Class<T> entity) {
+    public <T> T  selectAll() throws SQLException {
+        String query = createSelectAllQuery();
+        ResultSet resultSet = executeAndReturn(query);
 
+
+        return null;
+    }
+
+    public List<T> selectById(int id) throws SQLException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        String query = createSelectByFieldQuery("id", id);
+        ResultSet rs = executeAndReturn(query);
+        List<T> result = new ArrayList<>();
+
+        while(rs.next()){
+
+            int id1 = rs.getInt("id");
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
+
+
+            Constructor<T> constructor;
+            constructor= (Constructor<T>) clz.getDeclaredConstructors()[0];
+            constructor.setAccessible(true);
+            T item = constructor.newInstance(id1, firstName, lastName);
+
+            result.add(item);
+
+        }
+
+        return result;
+    }
+    public String createSelectAllQuery() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("SELECT * FROM summery_project.");
-        stringBuilder.append(entity.getSimpleName().toLowerCase());
+        stringBuilder.append(clz.getSimpleName().toLowerCase());
         stringBuilder.append(";");
         System.out.println(stringBuilder);
-        return stringBuilder;
+        return stringBuilder.toString();
+    }
+
+    public String createSelectByFieldQuery(String field, Integer value) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("SELECT * FROM summery_project.");
+        stringBuilder.append(clz.getSimpleName().toLowerCase());
+        stringBuilder.append(" WHERE ").append(field);
+        stringBuilder.append("= ").append(value.toString());
+        stringBuilder.append(";");
+        System.out.println(stringBuilder);
+        return stringBuilder.toString();
     }
 
     public String createTableQuery() {
@@ -77,14 +116,23 @@ public class Repository<T> {
         }
     }
 
+    public ResultSet executeAndReturn(String query) {
+        try {
+            Statement statement = this.connection.createStatement();
+            return statement.executeQuery(query);
 
-    private String createFindQuery(String field) {
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    private String createFindByPropertyQuery(String field) {
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT ");
         sb.append(" * ");
         sb.append(" FROM ");
         sb.append(clz.getSimpleName());
-        sb.append(" WHERE " + field + "=?");
         return sb.toString();
     }
 
