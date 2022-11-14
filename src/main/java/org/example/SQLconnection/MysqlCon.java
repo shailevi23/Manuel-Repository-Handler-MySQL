@@ -14,11 +14,13 @@ import java.util.List;
 public class MysqlCon<T> {
 
     public static void main(String arg[]) throws SQLException {
+        //user input for: dbName, user, password
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + "summery_project", "root", "omar135790864");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlConfig.getDbName(), sqlConfig.getUser(), sqlConfig.getPassword());
 
         } catch(ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
@@ -30,12 +32,16 @@ public class MysqlCon<T> {
 
         User user1 = new User(112,"omar", "a");
         User user2 = new User(113,"shay", "b");
+        userORM.connect(sqlConfig.getUser(), sqlConfig.getPassword());
+        userORM.createTable();
 
         List<User> userList = new ArrayList<>();
         userList.add(user1);
         userList.add(user2);
 
         userORM.addAll(userList);
+        Repository<Product> productORM = new Repository<>(Product.class, connection);
+        productORM.createTable();
 
 
 //        Repository<Product> productORM = new Repository<>(Product.class, connection);
@@ -43,6 +49,16 @@ public class MysqlCon<T> {
 //
 //        Repository<Shop> shopORM = new Repository<>(Shop.class, connection);
 //        shopORM.createTable();
+
+        //Delete User Table (Truncate)
+//        Repository<User> userORM = new Repository<>(User.class);
+//        Connection connection = userORM.connect();
+//        userORM.execute(userORM.deleteTable(), connection);\
+
+        //Delete user by id
+//        Repository<User> userORM = new Repository<>(User.class);
+//        Connection connection = userORM.connect();
+//        userORM.execute(userORM.deleteManyItemsByAnyProperty("id", 50), connection);
 
         connection.close();
     }
