@@ -13,7 +13,7 @@ class ShopTest {
     Shop shop;
 
     @BeforeEach
-    void createProduct(){
+    void createProduct() {
         shop = new Shop("name", List.of(new Product("name", 2.0)));
     }
 
@@ -37,8 +37,8 @@ class ShopTest {
     @Test
     void setProductList_productListAreValid_isEquals() {
         Product product = new Product("name name", 2.0);
-        shop.setProductList(List.of(product,product,product));
-        assertEquals(shop.getProductList(), List.of(product,product,product));
+        shop.setProductList(List.of(product, product, product));
+        assertEquals(shop.getProductList(), List.of(product, product, product));
     }
 
     @Test

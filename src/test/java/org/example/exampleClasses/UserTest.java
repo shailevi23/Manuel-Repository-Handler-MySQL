@@ -10,7 +10,7 @@ class UserTest {
     User user;
 
     @BeforeEach
-    void createProduct(){
+    void createProduct() {
         user = new User(1, "firstname", "lastname");
     }
 

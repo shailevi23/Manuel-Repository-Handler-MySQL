@@ -10,7 +10,7 @@ class ProductTest {
     Product product;
 
     @BeforeEach
-    void createProduct(){
+    void createProduct() {
         product = new Product("name", 2.0);
     }
 

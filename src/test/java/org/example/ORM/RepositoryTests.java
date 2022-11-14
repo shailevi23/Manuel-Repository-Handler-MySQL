@@ -1,4 +1,4 @@
 package org.example.ORM;
 
-public class RepositoryTests<T>{
+public class RepositoryTests<T> {
 }
