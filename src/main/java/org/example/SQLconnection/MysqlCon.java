@@ -1,6 +1,7 @@
 package org.example.SQLconnection;
 
 import org.example.ORM.Repository;
+import org.example.SqlConfig.SqlConfig;
 import org.example.exampleClasses.Product;
 import org.example.exampleClasses.Shop;
 import org.example.exampleClasses.User;
@@ -12,18 +13,20 @@ import java.sql.SQLException;
 public class MysqlCon<T> {
 
     public static void main(String arg[]) throws SQLException {
+        //user input for: dbName, user, password
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 
         Connection connection = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + "summery_project", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlConfig.getDbName(), sqlConfig.getUser(), sqlConfig.getPassword());
 
         } catch(ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
 
         Repository<User> userORM = new Repository<>(User.class, connection);
-        userORM.connect("root", "root");
+        userORM.connect(sqlConfig.getUser(), sqlConfig.getPassword());
         userORM.createTable();
 
         Repository<Product> productORM = new Repository<>(Product.class, connection);
