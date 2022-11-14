@@ -1,69 +1,64 @@
 package org.example.ORM;
 
 import java.lang.reflect.Field;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Repository<T> {
-        private  Class<T> clz;
-        static String summeryProjectScheme = "summery_project";
 
-        public Repository(Class<T> clz) {
-            this.clz = clz;
-        }
+    private final Class<T> clz;
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/";
+    private Connection connection;
+    static String summeryProjectScheme = "summery_project";
 
-    public StringBuilder createTableByEntity(Class<T> entity){
+    public Repository(Class<T> clz, Connection connection) {
+        this.clz = clz;
+        this.connection = connection;
+    }
+
+    public void createTable() {
+        String query = createTableQuery();
+        execute(query);
+    }
+
+
+    public String createTableQuery() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE TABLE ");
-        stringBuilder.append(entity.getSimpleName().toLowerCase());
+        stringBuilder.append(clz.getSimpleName().toLowerCase());
         stringBuilder.append(" (\n");
 
-        for (Field field : entity.getDeclaredFields()) {
+        for(Field field : clz.getDeclaredFields()) {
             stringBuilder.append(field.getName());
             stringBuilder.append(" ");
-            if(field.getType().getSimpleName().equals("int")) {
-                stringBuilder.append("int(11)");
-            }
-            if(field.getType().getSimpleName().equals("String")){
-                stringBuilder.append("varchar(255)");
-            }
-            if(field.getType().getSimpleName().equals("Double")){
-                stringBuilder.append("double(5,3)");
-            }
-            if(field.getType().getSimpleName().equals("List")){
-                stringBuilder.append("varchar(255)");
-            }
+            stringBuilder.append(getMySQLDataType(field.getType().getSimpleName()));
             stringBuilder.append(",\n");
         }
-        stringBuilder.replace(stringBuilder.toString().length() -2, stringBuilder.toString().length(), "\n);");
-        System.out.println(stringBuilder);
-        return stringBuilder;
+        stringBuilder.replace(stringBuilder.toString().length() - 2, stringBuilder.toString().length(), "\n);");
+        return stringBuilder.toString();
     }
 
-    public Connection connect(){
-        Connection connection = null;
+
+    public void connect(String user, String password) {
         try {
-            // below two lines are used for connectivity.
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/" + summeryProjectScheme,
-                    "root", "root");
+            connection =  DriverManager.getConnection(DB_URL + "summery_project", user, password);
 
+        } catch(ClassNotFoundException | SQLException e) {
+            throw new RuntimeException(e);
         }
-        catch (Exception exception) {
-            System.out.println(exception);
-        }
-        return connection;
-    } // function ends
-
-    public void execute(String quary, Connection connection) throws SQLException {
-        Statement statement;
-        statement = connection.createStatement();
-        statement.execute(quary);
 
     }
+
+    public void execute(String query) {
+        try{
+            Statement statement = this.connection.createStatement();
+            statement.execute(query);
+
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private String createFindQuery(String field) {
         StringBuilder sb = new StringBuilder();
@@ -73,6 +68,31 @@ public class Repository<T> {
         sb.append(clz.getSimpleName());
         sb.append(" WHERE " + field + "=?");
         return sb.toString();
+    }
+
+
+    public String getMySQLDataType(String javaType) {
+        switch(javaType) {
+            case "int":
+            case "Integer":
+                return "int(11)";
+            case "long":
+            case "Long":
+                return "BIGINT(50)";
+            case "float":
+            case "Float":
+                return "FLOAT(24)";
+            case "double":
+            case "Double":
+                return "FLOAT(53)";
+            case "boolean":
+            case "Boolean":
+                return "BOOLEAN";
+            case "Date":
+                return "DATE";
+            default:
+                return "varchar(255)";
+        }
     }
 
     //Delete entire table (truncate)
@@ -116,7 +136,7 @@ public class Repository<T> {
 
     //Multiple item deletion by any property (delete all users called x)
     public void deleteManyItemsByAnyProperty(Object property){
-        
+
     }
 
 }
