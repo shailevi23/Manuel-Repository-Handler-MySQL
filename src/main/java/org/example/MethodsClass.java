@@ -115,10 +115,6 @@ public StringBuilder readAllItems(Class<T> entity) {
 //    }
 
 
-    //Delete entire table (truncate)
-//    public void deleteTable(){
-//
-//    }
 
 
 //    Table creation
