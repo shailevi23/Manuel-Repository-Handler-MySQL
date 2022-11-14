@@ -28,6 +28,7 @@ public class MysqlCon<T> {
         Repository<User> userORM = new Repository<>(User.class, connection);
         userORM.connect(sqlConfig.getUser(), sqlConfig.getPassword());
         userORM.createTable();
+        System.out.println(userORM.select(User.class).toString());
 
         Repository<Product> productORM = new Repository<>(Product.class, connection);
         productORM.createTable();
