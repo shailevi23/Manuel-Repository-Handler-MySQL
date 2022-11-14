@@ -8,7 +8,7 @@ public class Repository<T> {
     private final Class<T> clz;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/";
     private Connection connection;
-
+    static String summeryProjectScheme = "summery_project";
 
     public Repository(Class<T> clz, Connection connection) {
         this.clz = clz;
@@ -16,12 +16,12 @@ public class Repository<T> {
     }
 
     public void createTable() {
-        StringBuilder stringBuilder = createTableQuery();
-        execute(stringBuilder.toString());
+        String query = createTableQuery();
+        execute(query);
     }
 
 
-    public StringBuilder createTableQuery() {
+    public String createTableQuery() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
@@ -34,7 +34,7 @@ public class Repository<T> {
             stringBuilder.append(",\n");
         }
         stringBuilder.replace(stringBuilder.toString().length() - 2, stringBuilder.toString().length(), "\n);");
-        return stringBuilder;
+        return stringBuilder.toString();
     }
 
 
@@ -94,4 +94,49 @@ public class Repository<T> {
                 return "varchar(255)";
         }
     }
+
+    //Delete entire table (truncate)
+    public String deleteTable(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("TRUNCATE " + "`").append(summeryProjectScheme).append("`.`").append(clz.getSimpleName().toLowerCase()).append("`;\n");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    //Single item deletion by any property (delete user with email x)
+    public String deleteManyItemsByAnyProperty(Object property, Object value){
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ").append(property.toString()).append("=");
+        if(value.getClass().getSimpleName().equals("Integer")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("int")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("Double")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("double")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("float")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+
+        sb.append("'").append(value.toString()).append("'");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    //Multiple item deletion by any property (delete all users called x)
+    public void deleteItemByAnyProperty(Object property){
+
+    }
+
 }
