@@ -20,7 +20,7 @@ public class User {
     private String email;
 
 
-    private User() {
+    public User() {
     }
 
     public static User createUser(String firstName, String lastName, String email, int id){

@@ -1,7 +1,5 @@
 package org.example.SQLconnection;
 
-import org.example.SqlConfig.SqlConfig;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

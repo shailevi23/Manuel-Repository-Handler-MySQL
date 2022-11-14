@@ -1,7 +1,7 @@
 package org.example.ORM;
 
 import org.example.SQLconnection.ConnectHandler;
-import org.example.SqlConfig.SqlConfig;
+import org.example.SQLconnection.SqlConfig;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -13,91 +13,71 @@ import java.util.List;
 public class Repository<T> {
 
     private final Class<T> clz;
+    private RepoLogic<T> repoLogic;
 
     public Repository(Class<T> clz) {
         this.clz = clz;
+        repoLogic = new RepoLogic<>(clz);
     }
 
     public void createTable(SqlConfig sqlConfig) {
-        execute(createTableQuery(), sqlConfig);
+        execute(repoLogic.createTableQueryLogic(), sqlConfig);
     }
 
     public void deleteTable(SqlConfig sqlConfig) {
-        execute(deleteTableQuery(), sqlConfig);
+        execute(repoLogic.deleteTableQueryLogic(), sqlConfig);
     }
 
     public void deleteItemsByProperty(Object property, Object value, SqlConfig sqlConfig) {
-        execute(deleteManyItemsByAnyPropertyQuery(property, value), sqlConfig);
+        execute(repoLogic.deleteManyItemsByAnyPropertyQueryLogic(property, value), sqlConfig);
     }
 
-//    public void select(Class<T> entity){
-//        StringBuilder stringBuilder = createSelectQuery(entity);
-//        execute(stringBuilder.toString());
+    //TODO
+//    public void deleteSingleItemByAnyProperty(Object property, SqlConfig sqlConfig){
+//        execute(repoLogic.deleteSingleItemByAnyPropertyLogic(property), sqlConfig);
 //    }
-    public <T> T  selectAll(SqlConfig sqlConfig) throws SQLException {
-        ResultSet resultSet = executeAndReturn(createSelectAllQuery(), sqlConfig);
-        return null;
+
+    public ResultSet selectAll(SqlConfig sqlConfig) {
+        return executeAndReturn(repoLogic.createSelectAllQueryLogic(), sqlConfig);
     }
 
-    public List<T> selectById(int id, SqlConfig sqlConfig) throws SQLException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        String query = createSelectByFieldQuery("id", id);
-        ResultSet rs = executeAndReturn(query, sqlConfig);
-        List<T> result = new ArrayList<>();
+    public void add(T obj, SqlConfig sqlConfig) {
+        execute(repoLogic.createAddQueryLogic(obj), sqlConfig);
+    }
 
-        while(rs.next()){
-
-            int currId = rs.getInt("id");
-            String firstName = rs.getString("firstName");
-            String lastName = rs.getString("lastName");
-
-            Constructor<T> constructor;
-            constructor= (Constructor<T>) clz.getDeclaredConstructors()[0];
-            constructor.setAccessible(true);
-            T item = constructor.newInstance(currId, firstName, lastName);
-
-            result.add(item);
+    public void addAll(List<T> objects, SqlConfig sqlConfig) {
+        for(T obj : objects) {
+            add(obj, sqlConfig);
         }
+    }
 
+
+    //TODO - not working
+    public List<T> selectById(int id, SqlConfig sqlConfig){
+        ResultSet rs = executeAndReturn(repoLogic.createSelectByFieldQuery("id", id), sqlConfig);
+        List<T> result = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                Constructor<T> constructor = clz.getConstructor(null);
+                T item = constructor.newInstance();
+                Field[]  declaredFields = clz.getDeclaredFields();
+                for(Field field : declaredFields){
+                    field.setAccessible(true);
+                    field.set(item, rs.getObject(field.getName()));
+                }
+                result.add(item);
+            }
+        }
+        catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException("Couldn't use reflection properly and create an instance", e);
+        }
+        catch (SQLException e) {
+            throw new RuntimeException("Database access error or closed result set", e);
+        }
         return result;
     }
-    public String createSelectAllQuery() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("SELECT * FROM summery_project.");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(";");
-        System.out.println(stringBuilder);
-        return stringBuilder.toString();
-    }
-
-    public String createSelectByFieldQuery(String field, Integer value) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("SELECT * FROM summery_project.");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(" WHERE ").append(field);
-        stringBuilder.append("= ").append(value.toString());
-        stringBuilder.append(";");
-        System.out.println(stringBuilder);
-        return stringBuilder.toString();
-    }
-
-    private String createTableQuery() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("CREATE TABLE ");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(" (\n");
-
-        for(Field field : clz.getDeclaredFields()) {
-            stringBuilder.append(field.getName());
-            stringBuilder.append(" ");
-            stringBuilder.append(getMySQLDataType(field.getType().getSimpleName()));
-            stringBuilder.append(",\n");
-        }
-        stringBuilder.replace(stringBuilder.toString().length() - 2, stringBuilder.toString().length(), "\n);");
-        return stringBuilder.toString();
-    }
 
 
-    //@SqlConfigAnnotation
     private void execute(String query, SqlConfig sqlConfig) {
         ConnectHandler c = new ConnectHandler(sqlConfig);
         try(Connection connect = c.connect()){
@@ -105,7 +85,7 @@ public class Repository<T> {
             statement.execute(query);
 
         } catch(SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Connection failed",e);
         }
     }
 
@@ -116,130 +96,11 @@ public class Repository<T> {
             return statement.executeQuery(query);
 
         } catch(SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Connection failed", e);
         }
     }
 
 
-    private String createFindByPropertyQuery(String field) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("SELECT ");
-        sb.append(" * ");
-        sb.append(" FROM ");
-        sb.append(clz.getSimpleName());
-        return sb.toString();
-    }
-
-
-    private String getMySQLDataType(String javaType) {
-        switch(javaType) {
-            case "int":
-            case "Integer":
-                return "int(11)";
-            case "long":
-            case "Long":
-                return "BIGINT(50)";
-            case "float":
-            case "Float":
-                return "FLOAT(24)";
-            case "double":
-            case "Double":
-                return "FLOAT(53)";
-            case "boolean":
-            case "Boolean":
-                return "BOOLEAN";
-            case "Date":
-                return "DATE";
-            default:
-                return "varchar(255)";
-        }
-    }
-
-
-    private String createAddQuery(T object) {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("INSERT INTO ");
-        sb.append(clz.getSimpleName());
-        sb.append(" VALUES (");
-
-        for(Field field : object.getClass().getDeclaredFields()) {
-            field.setAccessible(true);
-            try {
-                if(field.get(object) instanceof Integer) {
-                    sb.append(field.get(object));
-                    sb.append(",");
-                }
-                else {
-                    sb.append("'");
-                    sb.append(field.get(object));
-                    sb.append("',");
-                }
-            } catch(IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append(");");
-        System.out.println(sb.toString());
-        return sb.toString();
-    }
-
-    public void addAll(List<T> objects, SqlConfig sqlConfig) {
-        for(T obj : objects) {
-            add(obj, sqlConfig);
-        }
-    }
-
-
-    public void add(T obj, SqlConfig sqlConfig) {
-        String query = createAddQuery(obj);
-        execute(query, sqlConfig);
-    }
-
-    //Delete entire table (truncate)
-    private String deleteTableQuery(){
-        StringBuilder sb = new StringBuilder();
-        sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
-        System.out.println(sb.toString());
-        return sb.toString();
-    }
-
-    //Single item deletion by any property (delete user with email x)
-    private String deleteManyItemsByAnyPropertyQuery(Object property, Object value){
-        StringBuilder sb = new StringBuilder();
-        sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ").append(property.toString()).append("=");
-        if(value.getClass().getSimpleName().equals("Integer")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-        if(value.getClass().getSimpleName().equals("int")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-        if(value.getClass().getSimpleName().equals("Double")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-        if(value.getClass().getSimpleName().equals("double")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-        if(value.getClass().getSimpleName().equals("float")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-
-        sb.append("'").append(value.toString()).append("'");
-        System.out.println(sb.toString());
-        return sb.toString();
-    }
-
-    //Multiple item deletion by any property (delete all users called x)
-    public void deleteItemByAnyProperty(Object property){
-
-    }
 
 
     //use Annotations when reading from db

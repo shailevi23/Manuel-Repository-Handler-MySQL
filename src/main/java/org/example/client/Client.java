@@ -1,0 +1,88 @@
+package org.example.client;
+
+import org.example.ORM.Repository;
+import org.example.SQLconnection.SqlConfig;
+import org.example.exampleClasses.Product;
+import org.example.exampleClasses.Shop;
+import org.example.exampleClasses.User;
+
+import java.lang.reflect.InvocationTargetException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Client {
+
+    public static void main(String arg[]) {
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
+
+//`       <---------------1--------------->   //create 3 tables - user, shop, product
+//        Repository<User> userORM = new Repository<>(User.class);
+//        userORM.createTable(sqlConfig);
+//
+//        Repository<Product> productORM = new Repository<>(Product.class);
+//        productORM.createTable(sqlConfig);
+//
+//        Repository<Shop> shopORM = new Repository<>(Shop.class);
+//        shopORM.createTable(sqlConfig);
+//        <---------------1--------------->
+
+
+
+//        <---------------2--------------->   //Insert 3 users to user table
+//        Repository<User> userORM = new Repository<>(User.class);
+//        userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1) ,sqlConfig);
+//        userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2) ,sqlConfig);
+//        userORM.add(User.createUser("rany", "saliman", "rany@gmail.com", 3) ,sqlConfig);
+        //TODO - if the useremail ( UNIQUE ) already inside the DB -> throw exception
+        //TODO - if 'id' is AutoIncrement let DB handle it
+
+//        <---------------2--------------->
+
+
+
+//        <---------------3--------------->   //Delete users with deleteMany but use id
+//        Repository<User> userORM = new Repository<>(User.class);
+//        userORM.deleteItemsByProperty("id", 1, sqlConfig);
+//        userORM.deleteItemsByProperty("id", 2, sqlConfig);
+//        userORM.deleteItemsByProperty("id", 3, sqlConfig);
+//        <---------------3--------------->
+
+
+
+//        <---------------4--------------->   //Add all users
+//        Repository<User> userORM = new Repository<>(User.class);
+//        List<User> users = new ArrayList<>();
+//        users.add(User.createUser("shai", "levi", "shai@gmail.com", 1));
+//        users.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
+//        users.add(User.createUser("rany", "saliman", "rany@gmail.com", 3));
+//        userORM.addAll(users, sqlConfig);
+//        <---------------4--------------->
+
+
+
+//        <---------------5--------------->   //Select all users
+//        Repository<User> userORM = new Repository<>(User.class);
+//        ResultSet rs = userORM.selectAll(sqlConfig);
+//        System.out.println(rs);
+        //TODO - return list of items and not result set by using reflection
+//        <---------------5--------------->
+
+
+
+//        <---------------6--------------->   //select by Id
+        //TODO - not working
+//        Repository<User> userORM = new Repository<>(User.class);
+//        userORM.selectById(1, sqlConfig);
+//        <---------------6--------------->
+
+
+
+//        <---------------7--------------->   //Delete User Table (Truncate)
+//        Repository<User> userORM = new Repository<>(User.class);
+//        userORM.deleteTable(sqlConfig);
+//        <---------------7--------------->
+
+    }
+}
