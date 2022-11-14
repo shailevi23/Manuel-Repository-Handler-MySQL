@@ -1,27 +1,33 @@
 package org.example.ORM;
 
+import org.example.SQLconnection.ConnectHandler;
+import org.example.SqlConfig.SqlConfig;
+
 import java.lang.reflect.Field;
 import java.sql.*;
 
 public class Repository<T> {
 
     private final Class<T> clz;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/";
-    private Connection connection;
-    static String summeryProjectScheme = "summery_project";
 
-    public Repository(Class<T> clz, Connection connection) {
+    public Repository(Class<T> clz) {
         this.clz = clz;
-        this.connection = connection;
     }
 
-    public void createTable() {
-        String query = createTableQuery();
-        execute(query);
+    public void createTable(SqlConfig sqlConfig) {
+        execute(createTableQuery(), sqlConfig);
+    }
+
+    public void deleteTable(SqlConfig sqlConfig) {
+        execute(deleteTableQuery(), sqlConfig);
+    }
+
+    public void deleteItemsByProperty(Object property, Object value, SqlConfig sqlConfig) {
+        execute(deleteManyItemsByAnyPropertyQuery(property, value), sqlConfig);
     }
 
 
-    public String createTableQuery() {
+    private String createTableQuery() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
@@ -38,20 +44,11 @@ public class Repository<T> {
     }
 
 
-    public void connect(String user, String password) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection =  DriverManager.getConnection(DB_URL + "summery_project", user, password);
-
-        } catch(ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    public void execute(String query) {
-        try{
-            Statement statement = this.connection.createStatement();
+    //@SqlConfigAnnotation
+    private void execute(String query, SqlConfig sqlConfig) {
+        ConnectHandler c = new ConnectHandler(sqlConfig);
+        try(Connection connect = c.connect()){
+            Statement statement = connect.createStatement();
             statement.execute(query);
 
         } catch(SQLException e) {
@@ -71,7 +68,7 @@ public class Repository<T> {
     }
 
 
-    public String getMySQLDataType(String javaType) {
+    private String getMySQLDataType(String javaType) {
         switch(javaType) {
             case "int":
             case "Integer":
@@ -95,16 +92,17 @@ public class Repository<T> {
         }
     }
 
+
     //Delete entire table (truncate)
-    public String deleteTable(){
+    private String deleteTableQuery(){
         StringBuilder sb = new StringBuilder();
-        sb.append("TRUNCATE " + "`").append(summeryProjectScheme).append("`.`").append(clz.getSimpleName().toLowerCase()).append("`;\n");
+        sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         System.out.println(sb.toString());
         return sb.toString();
     }
 
     //Single item deletion by any property (delete user with email x)
-    public String deleteManyItemsByAnyProperty(Object property, Object value){
+    private String deleteManyItemsByAnyPropertyQuery(Object property, Object value){
         StringBuilder sb = new StringBuilder();
         sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
         sb.append(" WHERE ").append(property.toString()).append("=");
@@ -138,5 +136,20 @@ public class Repository<T> {
     public void deleteItemByAnyProperty(Object property){
 
     }
+
+
+    //use Annotations when reading from db
+
+//for (Field field : usr.getClass().getDeclaredFields()) {
+//        DBField dbField = field.getAnnotation(DBField.class);
+//        System.out.println("field name: " + dbField.name());
+//
+//        // changed the access to public
+//        field.setAccessible(true);
+//        Object value = field.get(usr);
+//        System.out.println("field value: " + value);
+//
+//        System.out.println("field type: " + dbField.type());
+//        System.out.println("is primary: " + dbField.isPrimaryKey());
 
 }

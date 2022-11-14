@@ -16,35 +16,22 @@ public class MysqlCon<T> {
         //user input for: dbName, user, password
         SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + sqlConfig.getDbName(), sqlConfig.getUser(), sqlConfig.getPassword());
-
-        } catch(ClassNotFoundException | SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        Repository<User> userORM = new Repository<>(User.class, connection);
-        userORM.connect(sqlConfig.getUser(), sqlConfig.getPassword());
-        userORM.createTable();
-
-        Repository<Product> productORM = new Repository<>(Product.class, connection);
-        productORM.createTable();
-
-        Repository<Shop> shopORM = new Repository<>(Shop.class, connection);
-        shopORM.createTable();
+//        Repository<User> userORM = new Repository<>(User.class);
+//        userORM.createTable(sqlConfig);
+//
+//        Repository<Product> productORM = new Repository<>(Product.class);
+//        productORM.createTable(sqlConfig);
+//
+//        Repository<Shop> shopORM = new Repository<>(Shop.class);
+//        shopORM.createTable(sqlConfig);
 
         //Delete User Table (Truncate)
-//        Repository<User> userORM = new Repository<>(User.class);
-//        Connection connection = userORM.connect();
-//        userORM.execute(userORM.deleteTable(), connection);\
+//        Repository<Shop> shopORM = new Repository<>(Shop.class);
+//        shopORM.deleteTable(sqlConfig);
 
         //Delete user by id
-//        Repository<User> userORM = new Repository<>(User.class);
-//        Connection connection = userORM.connect();
-//        userORM.execute(userORM.deleteManyItemsByAnyProperty("id", 50), connection);
+        Repository<User> userORM = new Repository<>(User.class);
+        userORM.deleteItemsByProperty("id", 50, sqlConfig);
 
-        connection.close();
     }
 }

@@ -1,7 +1,12 @@
 package org.example.exampleClasses;
 
+import org.example.ORM.DBField;
+
 public class Product {
+
+    @DBField(name = "name", isPrimaryKey = false, type = String.class)
     String name;
+    @DBField(name = "price", isPrimaryKey = false, type = Double.class)
     Double price;
 
     public Product(String name, Double price) {

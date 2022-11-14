@@ -1,9 +1,14 @@
 package org.example.exampleClasses;
 
+import org.example.ORM.DBField;
+
 public class User {
 
+    @DBField(name = "id", isPrimaryKey = true, type = int.class)
     private int id;
+    @DBField(name = "firstName", isPrimaryKey = false, type = String.class)
     private String firstName;
+    @DBField(name = "lastName", isPrimaryKey = false, type = String.class)
     private String lastName;
 
 
