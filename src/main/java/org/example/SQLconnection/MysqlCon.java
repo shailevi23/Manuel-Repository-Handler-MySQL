@@ -34,6 +34,7 @@ public class MysqlCon<T> {
         User user2 = new User(113,"shay", "b");
         userORM.connect(sqlConfig.getUser(), sqlConfig.getPassword());
         userORM.createTable();
+        System.out.println(userORM.select(User.class).toString());
 
         List<User> userList = new ArrayList<>();
         userList.add(user1);

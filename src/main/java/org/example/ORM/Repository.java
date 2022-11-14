@@ -21,6 +21,24 @@ public class Repository<T> {
         execute(query);
     }
 
+//    public void select(Class<T> entity){
+//        StringBuilder stringBuilder = createSelectQuery(entity);
+//        execute(stringBuilder.toString());
+//    }
+    public ResultSet select(Class<T> entity) throws SQLException {
+        Statement query = connection.createStatement();
+        ResultSet rs = query.executeQuery("SELECT * FROM " + entity);
+        return rs;
+    }
+    public StringBuilder createSelectQuery(Class<T> entity) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("SELECT * FROM summery_project.");
+        stringBuilder.append(entity.getSimpleName().toLowerCase());
+        stringBuilder.append(";");
+        System.out.println(stringBuilder);
+        return stringBuilder;
+    }
 
     public String createTableQuery() {
         StringBuilder stringBuilder = new StringBuilder();
