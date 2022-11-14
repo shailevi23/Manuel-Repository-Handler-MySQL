@@ -8,6 +8,8 @@ import org.example.exampleClasses.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MysqlCon<T> {
 
@@ -24,14 +26,23 @@ public class MysqlCon<T> {
 
         Repository<User> userORM = new Repository<>(User.class, connection);
         userORM.connect("root", "omar135790864");
-        userORM.createTable();
+//        userORM.createTable();
+
+        User user1 = new User(112,"omar", "a");
+        User user2 = new User(113,"shay", "b");
+
+        List<User> userList = new ArrayList<>();
+        userList.add(user1);
+        userList.add(user2);
+
+        userORM.addAll(userList);
 
 
-        Repository<Product> productORM = new Repository<>(Product.class, connection);
-        productORM.createTable();
-
-        Repository<Shop> shopORM = new Repository<>(Shop.class, connection);
-        shopORM.createTable();
+//        Repository<Product> productORM = new Repository<>(Product.class, connection);
+//        productORM.createTable();
+//
+//        Repository<Shop> shopORM = new Repository<>(Shop.class, connection);
+//        shopORM.createTable();
 
         connection.close();
     }
