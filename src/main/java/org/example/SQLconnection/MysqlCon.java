@@ -19,7 +19,7 @@ public class MysqlCon {
             statement = connection.createStatement();
             ResultSet resultSet;
             resultSet = statement.executeQuery(
-                    "SELECT * FROM summerproject.test_table;");
+                    "SELECT * FROM test_table;");
             int code;
             String title;
             while (resultSet.next()) {

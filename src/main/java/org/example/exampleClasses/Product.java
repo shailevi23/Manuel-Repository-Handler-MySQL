@@ -15,6 +15,14 @@ class Product {
 
 
     public void setName(String name) {
+        if(name == null){
+            throw new NullPointerException("Name is null");
+        }
+
+        if(name.equals("")){
+            throw new IllegalArgumentException("Name cannot be empty, Please insert product name");
+        }
+
         this.name = name;
     }
 
@@ -25,6 +33,10 @@ class Product {
 
 
     public void setPrice(Double price) {
+        if(price < 0){
+            throw new IllegalArgumentException("Price cannot be a negative number");
+        }
+
         this.price = price;
     }
 }
