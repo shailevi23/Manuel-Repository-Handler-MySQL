@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class MethodsClass<T>{
 
@@ -71,10 +72,10 @@ public class MethodsClass<T>{
 //    }
 
 
-    //Table creation
-//    public void tableCreation(String table, Map<String,Object> fields){
-//
-//    }
+//    Table creation
+    public void tableCreation(String table, Map<String,Object> fields){
+
+    }
 
 
     //Create a table based on an entity

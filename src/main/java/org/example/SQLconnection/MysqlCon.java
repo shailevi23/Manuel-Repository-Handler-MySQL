@@ -11,7 +11,7 @@ public class MysqlCon {
             // below two lines are used for connectivity.
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/summeryproject",
+                    "jdbc:mysql://localhost:3306/summerproject",
                     "root", "root");
 
 
@@ -19,7 +19,7 @@ public class MysqlCon {
             statement = connection.createStatement();
             ResultSet resultSet;
             resultSet = statement.executeQuery(
-                    "SELECT * FROM summerproject.test_table;");
+                    "SELECT * FROM test_table;");
             int code;
             String title;
             while (resultSet.next()) {
