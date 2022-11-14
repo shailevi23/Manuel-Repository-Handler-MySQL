@@ -1,23 +1,36 @@
 package org.example.exampleClasses;
 
-import org.example.ORM.DBField;
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
+import org.example.Anottations.PrimaryKey;
+import org.example.Anottations.Unique;
 
 public class User {
 
-    @DBField(name = "id", isPrimaryKey = true, type = int.class)
+    @AutoIncrement
+    @PrimaryKey
     private int id;
-    @DBField(name = "firstName", isPrimaryKey = false, type = String.class)
+    @NotNull
     private String firstName;
-    @DBField(name = "lastName", isPrimaryKey = false, type = String.class)
+    @NotNull
     private String lastName;
 
+    @Unique
+    @NotNull
+    private String email;
 
-    public User(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+
+    private User() {
     }
 
+    public static User createUser(String firstName, String lastName, String email, int id){
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setId(id);
+        return user;
+    }
 
     public int getId() {
         return id;
@@ -66,6 +79,13 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @Override
     public String toString() {

@@ -34,33 +34,28 @@ public class Repository<T> {
 //        StringBuilder stringBuilder = createSelectQuery(entity);
 //        execute(stringBuilder.toString());
 //    }
-    public <T> T  selectAll() throws SQLException {
-        String query = createSelectAllQuery();
-        ResultSet resultSet = executeAndReturn(query);
-
-
+    public <T> T  selectAll(SqlConfig sqlConfig) throws SQLException {
+        ResultSet resultSet = executeAndReturn(createSelectAllQuery(), sqlConfig);
         return null;
     }
 
-    public List<T> selectById(int id) throws SQLException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public List<T> selectById(int id, SqlConfig sqlConfig) throws SQLException, InvocationTargetException, InstantiationException, IllegalAccessException {
         String query = createSelectByFieldQuery("id", id);
-        ResultSet rs = executeAndReturn(query);
+        ResultSet rs = executeAndReturn(query, sqlConfig);
         List<T> result = new ArrayList<>();
 
         while(rs.next()){
 
-            int id1 = rs.getInt("id");
+            int currId = rs.getInt("id");
             String firstName = rs.getString("firstName");
             String lastName = rs.getString("lastName");
-
 
             Constructor<T> constructor;
             constructor= (Constructor<T>) clz.getDeclaredConstructors()[0];
             constructor.setAccessible(true);
-            T item = constructor.newInstance(id1, firstName, lastName);
+            T item = constructor.newInstance(currId, firstName, lastName);
 
             result.add(item);
-
         }
 
         return result;
@@ -114,7 +109,7 @@ public class Repository<T> {
         }
     }
 
-    public ResultSet executeAndReturn(String query, SqlConfig sqlConfig) {
+    private ResultSet executeAndReturn(String query, SqlConfig sqlConfig) {
         ConnectHandler c = new ConnectHandler(sqlConfig);
         try(Connection connect = c.connect()){
             Statement statement = connect.createStatement();
@@ -190,16 +185,16 @@ public class Repository<T> {
         return sb.toString();
     }
 
-    public void addAll(List<T> objects) {
+    public void addAll(List<T> objects, SqlConfig sqlConfig) {
         for(T obj : objects) {
-            add(obj);
+            add(obj, sqlConfig);
         }
     }
 
 
-    public void add(T obj) {
+    public void add(T obj, SqlConfig sqlConfig) {
         String query = createAddQuery(obj);
-        execute(query);
+        execute(query, sqlConfig);
     }
 
     //Delete entire table (truncate)

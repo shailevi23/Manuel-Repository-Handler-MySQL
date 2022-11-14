@@ -16,7 +16,7 @@ public class ConnectHandler {
     }
 
     public Connection connect() {
-        Connection connection = null;
+        Connection connection;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection =  DriverManager.getConnection(sqlConfig.getDBurlAndName(), sqlConfig.getUser(), sqlConfig.getPassword());
@@ -26,9 +26,5 @@ public class ConnectHandler {
         }
 
         return connection;
-    }
-
-    public void close(Connection connect) throws SQLException {
-        connect.close();
     }
 }

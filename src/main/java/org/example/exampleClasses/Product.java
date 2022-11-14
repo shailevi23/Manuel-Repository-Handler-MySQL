@@ -1,23 +1,42 @@
 package org.example.exampleClasses;
 
-import org.example.ORM.DBField;
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
+import org.example.Anottations.PrimaryKey;
 
 public class Product {
 
-    @DBField(name = "name", isPrimaryKey = false, type = String.class)
-    String name;
-    @DBField(name = "price", isPrimaryKey = false, type = Double.class)
-    Double price;
+    @AutoIncrement
+    @PrimaryKey
+    private int id;
+    @NotNull
+    private String name;
+    @NotNull
+    private Double price;
 
-    public Product(String name, Double price) {
-        this.name = name;
-        this.price = price;
+    private Product(){
+
+    }
+
+    public static Product createProduct(String name, Double price, int id) {
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        product.setId(id);
+        return product;
     }
 
     public String getName() {
         return name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         if(name == null){
