@@ -74,10 +74,6 @@ public class MethodsClass<T>{
 //    }
 
 
-    //Delete entire table (truncate)
-//    public void deleteTable(){
-//
-//    }
 
 
 //    Table creation

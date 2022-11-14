@@ -12,18 +12,29 @@ public class MysqlCon<T> {
 
     public static void main(String arg[]) throws SQLException {
 
-        Repository<User> userORM = new Repository<>(User.class);
-        Connection connection = userORM.connect();
-        userORM.execute(userORM.createTableByEntity(User.class).toString(), connection);
+//        Repository<User> userORM = new Repository<>(User.class);
+//        Connection connection = userORM.connect();
+//        userORM.execute(userORM.createTableByEntity(User.class).toString(), connection);
+//
+//
+//        Repository<Product> productORM = new Repository<>(Product.class);
+//        productORM.execute(productORM.createTableByEntity(Product.class).toString(), connection);
+//
+//        Repository<Shop> shopORM = new Repository<>(Shop.class);
+//        shopORM.execute(shopORM.createTableByEntity(Shop.class).toString(), connection);
+//
+//        connection.close();
+
+        //Delete User Table (Truncate)
+//        Repository<User> userORM = new Repository<>(User.class);
+//        Connection connection = userORM.connect();
+//        userORM.execute(userORM.deleteTable(), connection);
+//
+//        connection.close();
 
 
-        Repository<Product> productORM = new Repository<>(Product.class);
-        productORM.execute(productORM.createTableByEntity(Product.class).toString(), connection);
+        //Delete user by id
 
-        Repository<Shop> shopORM = new Repository<>(Shop.class);
-        shopORM.execute(shopORM.createTableByEntity(Shop.class).toString(), connection);
-
-        connection.close();
     }
 }
 

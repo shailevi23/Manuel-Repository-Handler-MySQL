@@ -8,6 +8,7 @@ import java.sql.Statement;
 
 public class Repository<T> {
         private  Class<T> clz;
+        static String summeryProjectScheme = "summery_project";
 
         public Repository(Class<T> clz) {
             this.clz = clz;
@@ -47,8 +48,8 @@ public class Repository<T> {
             // below two lines are used for connectivity.
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/summery_project",
-                    "root", "omar135790864");
+                    "jdbc:mysql://localhost:3306/" + summeryProjectScheme,
+                    "root", "root");
 
         }
         catch (Exception exception) {
@@ -71,6 +72,28 @@ public class Repository<T> {
         sb.append(" FROM ");
         sb.append(clz.getSimpleName());
         sb.append(" WHERE " + field + "=?");
+        return sb.toString();
+    }
+
+
+    //Single item deletion by any property (delete user with email x)
+//    public void deleteItemByAnyProperty(Object property){
+//
+//    }
+
+
+    //Multiple item deletion by any property (delete all users called x)
+//    public void deleteManyItemsByAnyProperty(Object property){
+//
+//    }
+
+
+    //Delete entire table (truncate)
+    public String deleteTable(){
+        StringBuilder sb = new StringBuilder();
+//        sb.append("SELECT * FROM ").append(clz.getSimpleName().toLowerCase()).append(";\n");
+        sb.append("TRUNCATE " + "`").append(summeryProjectScheme).append("`.`").append(clz.getSimpleName().toLowerCase()).append("`;\n");
+        System.out.println(sb.toString());
         return sb.toString();
     }
 }
