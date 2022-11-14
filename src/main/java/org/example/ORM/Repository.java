@@ -8,7 +8,7 @@ public class Repository<T> {
     private final Class<T> clz;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/";
     private Connection connection;
-
+    static String summeryProjectScheme = "summery_project";
 
     public Repository(Class<T> clz, Connection connection) {
         this.clz = clz;
@@ -16,8 +16,8 @@ public class Repository<T> {
     }
 
     public void createTable() {
-        StringBuilder stringBuilder = createTableQuery();
-        execute(stringBuilder.toString());
+        String query = createTableQuery();
+        execute(query);
     }
 
 //    public void select(Class<T> entity){
@@ -59,16 +59,15 @@ public class Repository<T> {
     public void connect(String user, String password) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection =  DriverManager.getConnection(DB_URL + "summery_project", user, password);
+            connection = DriverManager.getConnection(DB_URL + "summery_project", user, password);
 
         } catch(ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void execute(String query) {
-        try{
+        try {
             Statement statement = this.connection.createStatement();
             statement.execute(query);
 
@@ -112,4 +111,91 @@ public class Repository<T> {
                 return "varchar(255)";
         }
     }
+
+
+    private String createAddQuery(T object) {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("INSERT INTO ");
+        sb.append(clz.getSimpleName());
+        sb.append(" VALUES (");
+
+        for(Field field : object.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                if(field.get(object) instanceof Integer) {
+                    sb.append(field.get(object));
+                    sb.append(",");
+                }
+                else {
+                    sb.append("'");
+                    sb.append(field.get(object));
+                    sb.append("',");
+                }
+            } catch(IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(");");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    public void addAll(List<T> objects) {
+        for(T obj : objects) {
+            add(obj);
+        }
+    }
+
+
+    public void add(T obj) {
+        String query = createAddQuery(obj);
+        execute(query);
+    }
+
+    //Delete entire table (truncate)
+    public String deleteTable(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("TRUNCATE " + "`").append(summeryProjectScheme).append("`.`").append(clz.getSimpleName().toLowerCase()).append("`;\n");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    //Single item deletion by any property (delete user with email x)
+    public String deleteManyItemsByAnyProperty(Object property, Object value){
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ").append(property.toString()).append("=");
+        if(value.getClass().getSimpleName().equals("Integer")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("int")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("Double")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("double")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+        if(value.getClass().getSimpleName().equals("float")){
+            sb.append(value.toString());
+            return sb.toString();
+        }
+
+        sb.append("'").append(value.toString()).append("'");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    //Multiple item deletion by any property (delete all users called x)
+    public void deleteItemByAnyProperty(Object property){
+
+    }
+
 }
