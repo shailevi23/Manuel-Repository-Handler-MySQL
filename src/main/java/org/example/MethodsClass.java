@@ -7,8 +7,8 @@ import java.util.Map;
 public class MethodsClass<T>{
 
 //    private final Class<T> clz;
-//
-//
+
+
 //    public MethodsClass(Class<T> clz) {
 //        this.clz = clz;
 //    }
@@ -122,7 +122,7 @@ public class MethodsClass<T>{
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/summery_project",
-                    "root", "root");
+                    "root", "omar135790864");
 
         }
         catch (Exception exception) {
