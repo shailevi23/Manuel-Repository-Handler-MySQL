@@ -6,13 +6,16 @@ import org.example.exampleClasses.Product;
 import org.example.exampleClasses.Shop;
 import org.example.exampleClasses.User;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MysqlCon<T> {
 
-    public static void main(String arg[]) throws SQLException {
+    public static void main(String arg[]) throws SQLException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         //user input for: dbName, user, password
         SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 

@@ -16,6 +16,47 @@ public class MethodsClass<T>{
 
     //READ
 
+public StringBuilder readAllItems(Class<T> entity) {
+
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("SELECT * FROM summery_project.");
+    stringBuilder.append(entity.getSimpleName().toLowerCase());
+    stringBuilder.append(";");
+    System.out.println(stringBuilder);
+    return stringBuilder;
+//    Connection connection = null;
+//    try {
+//        // below two lines are used for connectivity.
+//        Class.forName("com.mysql.cj.jdbc.Driver");
+//        connection = DriverManager.getConnection(
+//                "jdbc:mysql://localhost:3306/summeryproject",
+//                "root", "root");
+//
+//
+//        Statement statement;
+//        statement = connection.createStatement();
+//        ResultSet resultSet;
+//        resultSet = statement.executeQuery(
+//                "SELECT * FROM summerproject.test_table;");
+//        int code;
+//        String title;
+//        while (resultSet.next()) {
+//            code = resultSet.getInt("id");
+//            title = resultSet.getString("name").trim();
+//            System.out.println("Id : " + code
+//                    + " name : " + title);
+//        }
+//        resultSet.close();
+//        statement.close();
+//        connection.close();
+//    } catch (Exception exception) {
+//        System.out.println(exception);
+//    }
+
+
+
+}
+
     //get all the items in a table
 //    public List<T> allItemsInTable(){
 //        return;
@@ -30,23 +71,6 @@ public class MethodsClass<T>{
 //    public <T> T getItemsByProperty(Object name){
 //        return;
 //    }
-
-
-
-
-    //ADD
-
-    //Add a single item to a table
-//    public <T> T addSingleItem(Class<T> item){
-//
-//    }
-
-    //Add multiple items
-//    public List<T> T addMultipleItems(List<T> item){
-//
-//    }
-
-
 
 
 
@@ -67,82 +91,6 @@ public class MethodsClass<T>{
 //
 //    }
 
-
-    //Multiple item deletion by any property (delete all users called x)
-//    public void deleteManyItemsByAnyProperty(Object property){
-//
-//    }
-
-
-
-
-//    Table creation
-    public void tableCreation(String table, Map<String,Object> fields){
-
-    }
-
-
-//    Create a table based on an entity
-    public StringBuilder createTableByEntity(Class<T> entity){
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("CREATE TABLE ");
-        stringBuilder.append(entity.getSimpleName().toLowerCase());
-        stringBuilder.append(" (\n");
-
-        for (Field field : entity.getDeclaredFields()) {
-            stringBuilder.append(field.getName());
-            stringBuilder.append(" ");
-            if(field.getType().getSimpleName().equals("int")) {
-                stringBuilder.append("int(11)");
-            }
-            if(field.getType().getSimpleName().equals("String")){
-                stringBuilder.append("varchar(255)");
-            }
-            if(field.getType().getSimpleName().equals("Double")){
-                stringBuilder.append("double(5,3)");
-            }
-            if(field.getType().getSimpleName().equals("List")){
-                stringBuilder.append("varchar(255)");
-            }
-            stringBuilder.append(",\n");
-        }
-        stringBuilder.replace(stringBuilder.toString().length() -2, stringBuilder.toString().length(), "\n);");
-        System.out.println(stringBuilder);
-        return stringBuilder;
-    }
-
-    public Connection connect(){
-        Connection connection = null;
-        try {
-            // below two lines are used for connectivity.
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/summery_project",
-                    "root", "root");
-
-        }
-        catch (Exception exception) {
-            System.out.println(exception);
-        }
-        return connection;
-    } // function ends
-
-    public void execute(String quary, Connection connection) throws SQLException {
-        Statement statement;
-        statement = connection.createStatement();
-        statement.execute(quary);
-
-    }
-
-    private String createFindQuery(String field, Class<Object> type) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("SELECT ");
-        sb.append(" * ");
-        sb.append(" FROM ");
-        sb.append(type.getSimpleName());
-        sb.append(" WHERE " + field + "=?");
-        return sb.toString();
-    }
 }
 
 
