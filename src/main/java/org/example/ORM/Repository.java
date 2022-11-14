@@ -2,6 +2,7 @@ package org.example.ORM;
 
 import java.lang.reflect.Field;
 import java.sql.*;
+import java.util.List;
 
 public class Repository<T> {
 
@@ -39,7 +40,7 @@ public class Repository<T> {
         return stringBuilder;
     }
 
-    public StringBuilder createTableQuery() {
+    public String createTableQuery() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
@@ -52,7 +53,7 @@ public class Repository<T> {
             stringBuilder.append(",\n");
         }
         stringBuilder.replace(stringBuilder.toString().length() - 2, stringBuilder.toString().length(), "\n);");
-        return stringBuilder;
+        return stringBuilder.toString();
     }
 
 
