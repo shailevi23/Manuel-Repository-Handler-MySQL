@@ -1,6 +1,6 @@
 package org.example.exampleClasses;
 
-class Product {
+public class Product {
     String name;
     Double price;
 

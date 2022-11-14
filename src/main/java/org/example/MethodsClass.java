@@ -2,11 +2,17 @@ package org.example;
 
 import java.lang.reflect.Field;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class MethodsClass<T>{
+
+//    private final Class<T> clz;
+//
+//
+//    public MethodsClass(Class<T> clz) {
+//        this.clz = clz;
+//    }
+
 
     //READ
 
@@ -83,9 +89,10 @@ public class MethodsClass<T>{
 //    Create a table based on an entity
     public StringBuilder createTableByEntity(Class<T> entity){
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("*CREATE TABLE ");
+        stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(entity.getSimpleName().toLowerCase());
-        stringBuilder.append(" (");
+        stringBuilder.append(" (\n");
+
         for (Field field : entity.getDeclaredFields()) {
             stringBuilder.append(field.getName());
             stringBuilder.append(" ");
@@ -95,9 +102,16 @@ public class MethodsClass<T>{
             if(field.getType().getSimpleName().equals("String")){
                 stringBuilder.append("varchar(255)");
             }
-            stringBuilder.append(",");
+            if(field.getType().getSimpleName().equals("Double")){
+                stringBuilder.append("double(5,3)");
+            }
+            if(field.getType().getSimpleName().equals("List")){
+                stringBuilder.append("varchar(255)");
+            }
+            stringBuilder.append(",\n");
         }
-        System.out.println(stringBuilder.substring(0,stringBuilder.toString().length() -1) + ")");
+        stringBuilder.replace(stringBuilder.toString().length() -2, stringBuilder.toString().length(), "\n);");
+        System.out.println(stringBuilder);
         return stringBuilder;
     }
 
@@ -107,7 +121,7 @@ public class MethodsClass<T>{
             // below two lines are used for connectivity.
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/summery-project",
+                    "jdbc:mysql://localhost:3306/summery_project",
                     "root", "root");
 
         }
@@ -117,11 +131,21 @@ public class MethodsClass<T>{
         return connection;
     } // function ends
 
-    public void executeQuary(String quary, Connection connection) throws SQLException {
+    public void execute(String quary, Connection connection) throws SQLException {
         Statement statement;
         statement = connection.createStatement();
         statement.execute(quary);
 
+    }
+
+    private String createFindQuery(String field, Class<Object> type) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT ");
+        sb.append(" * ");
+        sb.append(" FROM ");
+        sb.append(type.getSimpleName());
+        sb.append(" WHERE " + field + "=?");
+        return sb.toString();
     }
 }
 
