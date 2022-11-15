@@ -120,10 +120,10 @@ public class RepoLogic<T>{
                     sb.append("'");
                     sb.append(field.get(object));
                     sb.append("',");
-                    map.containsKey(object);
                 } else {
-                    sb.append(gson.toJson(object));
-                    sb.append(",");
+                    sb.append("'");
+                    sb.append(gson.toJson(field.get(object)));
+                    sb.append("',");
                 }
             } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);

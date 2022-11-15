@@ -365,3 +365,53 @@
 2022-11-15 18:03:46,512 INFO    org.example.ORM.Repository - Connection created for summery_project
 2022-11-15 18:03:46,522 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
 2022-11-15 18:03:46,551 INFO    org.example.ORM.RepoLogic - Product has been created: org.example.exampleClasses.Product@51df223b
+2022-11-15 18:46:55,514 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-15 18:47:18,700 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-15 18:47:18,716 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 18:47:19,781 ERROR   org.example.SQLconnection.ConnectHandler - couldn't open connection
+2022-11-15 18:47:30,048 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:47:30,057 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 18:47:31,095 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 18:47:31,095 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 18:47:31,169 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 18:47:31,169 INFO    org.example.ORM.RepoLogic - Creating table for Shop
+2022-11-15 18:47:31,236 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 18:48:47,168 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:48:47,180 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:48:48,278 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:48:48,316 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"name":"shampoo","price":25.3,"user":{"id":1,"firstName":"shai","lastName":"levi' at line 1
+2022-11-15 18:51:18,928 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:51:18,947 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:52:24,413 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:52:24,429 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:52:25,554 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:52:25,596 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"id":1,"firstName":"shai","lastName":"levi","email":"shai@gmail.com"})' at line 1
+2022-11-15 18:56:24,312 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:56:24,328 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:56:25,344 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:56:25,373 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+2022-11-15 18:58:53,316 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:58:53,332 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:58:54,514 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:58:54,555 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+2022-11-15 18:59:29,003 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:59:29,019 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:59:30,163 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:59:30,201 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''{"id":1,"firstName":"shai","lastName":"levi","email":"shai@gmail.com"},)' at line 1
+2022-11-15 19:00:06,922 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 19:00:06,933 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 19:00:07,979 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:00:08,006 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 19:00:08,056 ERROR   org.example.ORM.Repository - Unknown column 'us' in 'where clause'
+2022-11-15 19:06:32,051 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 19:06:32,069 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 19:06:33,264 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 19:06:33,265 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 19:06:33,385 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:07:01,140 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 19:07:01,158 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 19:07:02,251 ERROR   org.example.ORM.Repository - Table 'product' already exists
+2022-11-15 19:07:20,203 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 19:07:20,217 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 19:07:21,241 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:07:21,267 INFO    org.example.ORM.RepoLogic - Product has been created: true

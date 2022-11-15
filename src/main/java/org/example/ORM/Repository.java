@@ -52,17 +52,16 @@ public class Repository<T> {
         return executeAndReturn(repoLogic.createSelectAllQueryLogic());
     }
 
-    public T add(T obj) {
+    public boolean add(T obj) {
         execute(repoLogic.createAddQueryLogic(obj));
-        return executeAndReturn(repoLogic.findObj(obj)).get(0);
+        return true;
     }
 
-    public List<T> addAll(List<T> objects) {
-        List<T> resList= new ArrayList<>();
+    public boolean addAll(List<T> objects) {
         for(T obj : objects) {
-            resList.add(add(obj));
+            add(obj);
         }
-        return resList;
+        return true;
     }
 
     //TODO - not working
