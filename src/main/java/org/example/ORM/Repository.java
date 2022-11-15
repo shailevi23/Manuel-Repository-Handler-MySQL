@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 
+import javax.swing.plaf.PanelUI;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -115,6 +116,11 @@ public class Repository<T> {
     public T update(T obj) {
         execute(repoLogic.createUpdateQueryLogic(obj));
         return executeAndReturn(repoLogic.findObj(obj)).get(0);
+    }
+
+    public List<T> updateByProperty(String filedName, String value) {
+        executeAndReturn(repoLogic.createSelectByFieldQuery(filedName, value));
+
     }
 
 
