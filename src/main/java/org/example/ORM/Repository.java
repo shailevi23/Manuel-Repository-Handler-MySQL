@@ -32,8 +32,8 @@ public class Repository<T> {
         return executeBoolean(repoLogic.createTableQueryLogic());
     }
 
-    public void deleteTable() {
-        execute(repoLogic.deleteTableQueryLogic());
+    public boolean deleteTable() {
+        return executeBoolean(repoLogic.deleteTableQueryLogic());
     }
 
     public void deleteItemsByProperty(Object property, Object value) {
@@ -54,10 +54,12 @@ public class Repository<T> {
          return executeAndReturn(repoLogic.findObj(obj)).get(0);
     }
 
-    public void addAll(List<T> objects) {
+    public List<T> addAll(List<T> objects) {
+        List<T> resList= new ArrayList<>();
         for(T obj : objects) {
-            add(obj);
+            resList.add(add(obj));
         }
+        return resList;
     }
 
     //TODO - not working
@@ -73,7 +75,7 @@ public class Repository<T> {
             statement.execute(query);
 
         } catch(SQLException e) {
-            logger.error("Connection failed");
+            logger.error(e.getMessage());
             throw new RuntimeException("Connection failed",e);
         }
     }
@@ -81,9 +83,9 @@ public class Repository<T> {
     private boolean executeBoolean(String query) {
         try(Connection c = ConnectHandler.connect(this.sqlConfig)){
             Statement statement = c.createStatement();
-            statement.execute(query);
-            return true;
+            return !statement.execute(query);
         } catch(SQLException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException("Connection failed",e);
         }
     }
@@ -107,6 +109,7 @@ public class Repository<T> {
             }
 
         } catch(SQLException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            logger.error(e.getMessage());
             throw new RuntimeException("Connection failed", e);
         }
         return result;
