@@ -15,14 +15,14 @@ import java.util.List;
 public class Client {
 
     public static void main(String arg[]) {
-        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 
 //`       <---------------1--------------->   //create 3 tables - user, shop, product
         Repository<User> userORM = new Repository<>(User.class, sqlConfig);
-//        userORM.createTable(sqlConfig);
+//        userORM.createTable();
 //
         Repository<Product> productORM = new Repository<>(Product.class, sqlConfig);
-//        productORM.createTable(sqlConfig);
+//        productORM.createTable();
 //
         Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
 //        shopORM.createTable(sqlConfig);
@@ -31,12 +31,12 @@ public class Client {
 
 
 //        <---------------2--------------->   //Insert 3 users to user table
-//        userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1) ,sqlConfig);
+//        userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1));
 //        userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2) ,sqlConfig);
 //        userORM.add(User.createUser("rany", "saliman", "rany@gmail.com", 3) ,sqlConfig);
 
 
-//        productORM.add(Product.createProduct("shampoo", 25.3, 1) ,sqlConfig);
+        productORM.add(Product.createProduct("shampoo", 25.3, 1));
 //        productORM.add(Product.createProduct("table", 250.6, 2) ,sqlConfig);
 //        productORM.add(Product.createProduct("pen", 12.3, 3) ,sqlConfig);
 
@@ -90,9 +90,9 @@ public class Client {
 
 
 //        <---------------7--------------->   //Update User
-        User user = User.createUser("omar", "hm", "omar@gmail.com", 2);
-        User updatedUser = userORM.update(user);
-        System.out.println(updatedUser);
+//        User user = User.createUser("omar", "hm", "omar@gmail.com", 2);
+//        User updatedUser = userORM.update(user);
+//        System.out.println(updatedUser);
         //        <---------------7--------------->
 
     }

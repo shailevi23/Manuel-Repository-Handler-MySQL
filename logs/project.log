@@ -42,3 +42,77 @@
 2022-11-15 12:56:23,744 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
 2022-11-15 12:56:23,933 INFO    org.example.ORM.Repository - Connection created for summery_project
 2022-11-15 12:56:23,939 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:12:09,185 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-15 13:12:09,190 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 13:12:09,693 ERROR   org.example.SQLconnection.ConnectHandler - couldn't open connection
+2022-11-15 13:12:20,586 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:12:20,591 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 13:12:21,126 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:12:21,130 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:12:41,912 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:12:41,917 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 13:20:54,049 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:20:54,056 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 13:43:37,644 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:43:37,651 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.Product
+2022-11-15 13:43:38,180 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 13:43:38,221 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:43:38,228 ERROR   org.example.ORM.Repository - Connection failed
+2022-11-15 13:46:01,003 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:46:01,018 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.Product
+2022-11-15 13:46:35,659 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:46:35,669 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 13:48:00,861 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:48:00,880 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 13:48:54,794 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:48:54,808 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 13:49:04,767 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:49:04,783 ERROR   org.example.ORM.Repository - Connection failed
+2022-11-15 14:24:35,530 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:24:35,537 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:24:36,038 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:24:36,048 ERROR   org.example.ORM.Repository - Connection failed
+2022-11-15 14:26:02,670 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:26:02,684 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:27:21,394 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:27:21,402 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:27:21,923 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:27:21,935 ERROR   org.example.ORM.Repository - Connection failed
+2022-11-15 14:49:11,932 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:49:11,937 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:49:12,464 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:49:12,475 ERROR   org.example.ORM.Repository - Connection failed
+2022-11-15 14:51:41,230 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:51:41,241 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:53:53,478 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:53:53,488 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:54:42,332 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:54:42,346 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:56:26,789 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:56:26,796 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:56:27,295 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:56:27,305 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 14:57:29,040 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:57:29,054 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 14:58:40,134 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:58:44,317 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 14:59:57,329 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:59:57,338 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 15:01:35,373 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:01:35,384 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 15:02:08,700 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 15:02:21,306 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 15:03:00,856 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:03:00,869 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 15:06:59,787 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:06:59,793 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 15:07:00,345 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 15:07:00,355 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 15:07:46,627 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:07:46,638 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 15:07:47,178 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 15:07:47,189 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 15:08:49,303 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:08:49,318 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 15:08:49,838 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 15:08:52,525 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
