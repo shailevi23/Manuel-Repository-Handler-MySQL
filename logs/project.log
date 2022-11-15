@@ -724,3 +724,42 @@
 2022-11-15 23:29:57,497 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
 2022-11-15 23:29:57,527 INFO    org.example.ORM.Repository - Connection created for summery_project
 2022-11-15 23:29:57,530 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:32:24,943 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:32:24,947 INFO    org.example.ORM.RepoLogic - Truncating table User
+2022-11-15 23:32:25,275 INFO    org.example.ORM.RepoLogic - User table has been truncated: true
+2022-11-16 00:03:39,048 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 00:03:39,052 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-16 00:03:39,384 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:03:39,395 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-16 00:03:39,416 INFO    org.example.ORM.RepoLogic - User has been created: User{id=1, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-16 00:03:39,416 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-16 00:03:39,426 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:03:39,429 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-16 00:03:39,440 INFO    org.example.ORM.RepoLogic - User has been created: User{id=2, firstName='omar', lastName='hamdea', email='omar@gmail.com'}
+2022-11-16 00:03:39,440 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-16 00:03:39,449 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:03:39,452 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-16 00:03:39,462 INFO    org.example.ORM.RepoLogic - User has been created: User{id=3, firstName='rany', lastName='saliman', email='rany@gmail.com'}
+2022-11-16 00:04:51,837 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 00:04:51,842 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-16 00:04:52,170 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:04:52,181 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-16 00:04:52,202 INFO    org.example.ORM.RepoLogic - User has been created: User{id=1, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-16 00:04:52,203 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-16 00:04:52,212 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:04:52,215 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-16 00:04:52,226 INFO    org.example.ORM.RepoLogic - User has been created: User{id=2, firstName='omar', lastName='hamdea', email='omar@gmail.com'}
+2022-11-16 00:04:52,226 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-16 00:04:52,235 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:04:52,239 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-16 00:04:52,249 INFO    org.example.ORM.RepoLogic - User has been created: User{id=3, firstName='rany', lastName='saliman', email='rany@gmail.com'}
+2022-11-16 00:04:52,249 INFO    org.example.ORM.RepoLogic - Deleting single item by specific property
+2022-11-16 00:04:52,257 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:05:47,901 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 00:05:47,907 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-16 00:05:48,238 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:05:48,247 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-16 00:05:48,276 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:05:48,280 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-16 00:05:48,290 INFO    org.example.ORM.RepoLogic - Deleting single item by specific property
+2022-11-16 00:05:48,299 INFO    org.example.ORM.Repository - Connection created for summery_project

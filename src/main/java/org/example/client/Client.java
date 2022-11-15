@@ -46,11 +46,11 @@ public class Client {
 //        User user;
 //        user = userORM.add(User.createUserWithoutId("shai", "levi", "ajhsf@gmail.com"));
 //        logger.info("User has been created: " + user.toString());
-//        addRes = userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
-//        logger.info("User has been created: " + addRes);
-//        addRes = userORM.add(User.createUserWithoutId("rany", "saliman", "rany@gmail.com"));
-//        logger.info("User has been created: " + addRes);
-
+//        user = userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
+//        logger.info("User has been created: " + user.toString());
+//        user = userORM.add(User.createUserWithoutId("rany", "saliman", "rany@gmail.com"));
+//        logger.info("User has been created: " + user.toString());
+//
 
 //        boolean addRes;
 //        addRes = productORM.add(Product.createProductWithoutId("shampoo", 25.3));
@@ -133,30 +133,38 @@ public class Client {
 //        prodList.add(Product.createProductWithoutId("new4", 15.3));
 //        shop.setProductList(prodList);
 //        shopORM.update(shop);
-//        <---------------7--------------->
+//        shopORM.deleteEntireObject(shop);
 
-        Map<String, Object> fieldsToUpdate = new HashMap<>();
-        Map<String, Object> filterFields = new HashMap<>();
-
-        fieldsToUpdate.put("email","stam@gmail.com");
-        filterFields.put("firstName","omar");
-
-
-        List<User> userList = userORM.update(fieldsToUpdate, filterFields);
-        for(User u : userList) {
-            logger.info("User has been selected: " + u);
-        }
-
-
-//        <---------------7--------------->   //Delete User Table (Truncate)
-//        boolean res = userORM.deleteTable();
-//        logger.info("User table has been truncated: " + res);
 //        <---------------7--------------->
 
 
+        //TODO working
+//        <---------------7--------------->
 //        List<User> users = userORM.updateByProperty("firstName", "oldShai", "lastName", "levi");
 //        for(User u : users) {
-//            System.out.println(u.toString());
+//         System.out.println(u.toString());
+//        <---------------7--------------->
 //        }
+
+        //TODO working
+//        <---------------8--------------->   //Delete User Table (Truncate)
+//        boolean res = userORM.deleteTable();
+//        logger.info("User table has been truncated: " + res);
+//        <---------------8--------------->
+
+
+
+//        Map<String, Object> fieldsToUpdate = new HashMap<>();
+//        Map<String, Object> filterFields = new HashMap<>();
+//
+//        fieldsToUpdate.put("email","stam@gmail.com");
+//        filterFields.put("firstName","omar");
+//
+//
+//        List<User> userList = userORM.update(fieldsToUpdate, filterFields);
+//        for(User u : userList) {
+//            logger.info("User has been selected: " + u);
+//        }
+
     }
 }

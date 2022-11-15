@@ -3,12 +3,10 @@ package org.example.ORM;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.Anottations.AutoIncrement;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 import org.example.Utils.Utils;
 
-import javax.swing.plaf.PanelUI;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -35,30 +33,28 @@ public class Repository<T> {
     }
 
     public boolean createTable() {
-        return executeBoolean(repoLogic.createTableQueryLogic());
+        return executeBoolean(repoLogic.createTableQuery());
     }
 
     public boolean deleteTable() {
-        return executeBoolean(repoLogic.deleteTableQueryLogic());
+        return executeBoolean(repoLogic.truncateTableQuery());
     }
 
     public void deleteItemsByProperty(String property, Object value) {
-        execute(repoLogic.deleteManyItemsByAnyPropertyQueryLogic(property, value));
+        execute(repoLogic.deleteManyByAnyPropertyQuery(property, value));
     }
 
-
-    //TODO
-//    public void deleteSingleItemByAnyProperty(Object property){
-//        execute(repoLogic.deleteSingleItemByAnyPropertyLogic(property));
-//    }
+    public void deleteEntireObject(Object obj){
+        execute(repoLogic.deleteSingleByAnyPropertyQuery(obj));
+    }
 
     public List<T> selectAll() {
-        return executeAndReturn(repoLogic.createSelectAllQueryLogic());
+        return executeAndReturn(repoLogic.selectAllQueryLogic());
     }
 
     public T add(T obj) {
-        execute(repoLogic.createAddQueryLogic(obj));
-        List<T> list = executeAndReturn(repoLogic.findObj(obj));
+        execute(repoLogic.insertObjectQuery(obj));
+        List<T> list = executeAndReturn(repoLogic.findObjQuery(obj));
         return list.get(list.size() - 1);
     }
 
@@ -89,7 +85,8 @@ public class Repository<T> {
     private boolean executeBoolean(String query) {
         try(Connection c = ConnectHandler.connect(this.sqlConfig)){
             Statement statement = c.createStatement();
-            return !statement.execute(query);
+            statement.execute(query);
+            return true;
         } catch(SQLException e) {
             logger.error(e.getMessage());
             throw new RuntimeException("Connection failed",e);
@@ -142,8 +139,8 @@ public class Repository<T> {
     }
 
     public T update(Object obj) {
-        execute(repoLogic.createUpdateQueryLogic(obj));
-        List<T> list = executeAndReturn(repoLogic.findObj(obj));
+        execute(repoLogic.updateEntireObjectQuery(obj));
+        List<T> list = executeAndReturn(repoLogic.findObjQuery(obj));
         return list.get(list.size() - 1);
     }
 
@@ -155,7 +152,7 @@ public class Repository<T> {
     }
 
     public List<T> updateByProperty(String filedName, Object fieldValue, String filterFieldName, Object filterValue) {
-        execute(repoLogic.createUpdateSinglePropertyQueryLogic(filedName, fieldValue, filterFieldName, filterValue));
+        execute(repoLogic.updateSinglePropertyQuery(filedName, fieldValue, filterFieldName, filterValue));
         Map<String,Object> currMap = new HashMap<>();
         currMap.put(filedName, fieldValue);
         currMap.put(filterFieldName,filterValue);
