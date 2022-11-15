@@ -83,8 +83,8 @@ public class Client {
 
 
 //        <---------------5--------------->   //Select all users
-//        List<User> users = userORM.selectAll();
-//        logger.info("Users has been selected: " + users.toString());
+        List<User> users = userORM.selectAll();
+        logger.info("Users has been selected: " + users.toString());
 //
 //        <---------------5--------------->
 
