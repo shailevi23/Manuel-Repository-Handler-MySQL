@@ -16,7 +16,6 @@ public class ConnectHandler {
 
     }
 
-
     public static Connection connect( SqlConfig sqlConfig) {
         Connection connection;
         try {
@@ -31,13 +30,4 @@ public class ConnectHandler {
         return connection;
     }
 
-    public static void closeConnection(Connection c) {
-        logger.info("closing connection");
-        try {
-            c.close();
-        } catch(SQLException e) {
-            logger.error("couldn't close connection");
-            throw new RuntimeException(e);
-        }
-    }
 }

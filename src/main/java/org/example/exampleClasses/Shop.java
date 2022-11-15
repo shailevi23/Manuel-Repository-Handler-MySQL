@@ -8,7 +8,7 @@ import org.example.Anottations.PrimaryKey;
 import java.util.List;
 
 public class Shop {
-
+    @NotNull
     @AutoIncrement
     @PrimaryKey
     private int id;

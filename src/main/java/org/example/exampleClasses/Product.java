@@ -8,6 +8,7 @@ import org.example.Anottations.PrimaryKey;
 public class Product {
 
     @AutoIncrement
+    @NotNull
     @PrimaryKey
     private int id;
     @NotNull

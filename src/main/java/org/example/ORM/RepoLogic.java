@@ -3,6 +3,10 @@ package org.example.ORM;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
+import org.example.Anottations.PrimaryKey;
+import org.example.Anottations.Unique;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 import org.example.exampleClasses.Shop;
@@ -16,6 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -125,26 +130,71 @@ public class RepoLogic<T>{
 
     //<----------------------------------CREATE TABLE---------------------------------->
     String createTableQueryLogic() {
-        StringBuilder stringBuilder = new StringBuilder();
-        logger.info("Creating table for " + clz.getName());
-        stringBuilder.append("CREATE TABLE ");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(" (\n");
+        StringBuilder sb = new StringBuilder();
+        logger.info("Creating table for " + clz.getSimpleName());
+        sb.append("CREATE TABLE ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" (\n");
+
+        AnnotationsHandler annotationHandler = new AnnotationsHandler(0, 0, null);
 
         for(Field field : clz.getDeclaredFields()) {
-            stringBuilder.append(field.getName());
-            stringBuilder.append(" ");
-            stringBuilder.append(getMySQLDataType(field.getType().getSimpleName()));
-            stringBuilder.append(",\n");
+            sb.append(field.getName());
+            sb.append(" ");
+            sb.append(getMySQLDataType(field.getType().getSimpleName()));
+            annotationHandle(field, sb, annotationHandler);
+            sb.append(",\n");
         }
-        stringBuilder.replace(stringBuilder.toString().length() - 2, stringBuilder.toString().length(), "\n);");
-        return stringBuilder.toString();
+        sb.append("PRIMARY KEY (").append(annotationHandler.getPrimaryField()).append(")");
+        if(annotationHandler.getUniqueField().size() == 1){
+            sb.append(",\n");
+            sb.append("UNIQUE (").append(annotationHandler.getUniqueField().get(0)).append(")");
+        }
+        else if(annotationHandler.getUniqueField().size() > 1){
+            sb.append(",\n");
+            sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
+            for (String fieldName: annotationHandler.getUniqueField()) {
+                sb.append(fieldName);
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ")");
+        }
+        sb.append("\n);");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    private void annotationHandle(Field field, StringBuilder sb ,AnnotationsHandler annotationsHandler) {
+        if(field.getAnnotation(PrimaryKey.class) != null){
+            annotationsHandler.setCountPrimaryKeys(annotationsHandler.getCountPrimaryKeys() + 1);
+            annotationsHandler.setPrimaryField(field.getName());
+            if(annotationsHandler.getCountPrimaryKeys() > 1){
+                throw new IllegalArgumentException(annotationsHandler.messagePrimaryKey());
+            }
+        }
+
+        if(field.getAnnotation(Unique.class) != null){
+            annotationsHandler.getUniqueField().add(field.getName());
+        }
+
+
+        if(field.getAnnotation(NotNull.class) != null){
+            sb.append(" NOT NULL");
+        }
+
+        if(field.getAnnotation(AutoIncrement.class) != null){
+            sb.append(" AUTO_INCREMENT");
+            annotationsHandler.setCountAutoIncrement(annotationsHandler.getCountAutoIncrement() + 1);
+            if(annotationsHandler.getCountAutoIncrement() > 1){
+                throw new IllegalArgumentException(annotationsHandler.messageAutoIncrement());
+            }
+        }
     }
 
     //<----------------------------------DELETE---------------------------------->
     String deleteTableQueryLogic(){
         StringBuilder sb = new StringBuilder();
-        logger.info("Truncating table " + clz.getName());
+        logger.info("Truncating table " + clz.getSimpleName());
         sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         return sb.toString();
     }
