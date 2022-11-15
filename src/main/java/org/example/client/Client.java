@@ -29,7 +29,7 @@ public class Client {
 //        boolean res;
 //        res = userORM.createTable();
 //        logger.info("Is User table has been created? " + res);
-
+//
 //        res = productORM.createTable();
 //        logger.info("Is User table has been created? " + res);
 //
@@ -49,15 +49,16 @@ public class Client {
 //        logger.info("User has been created: " + user.toString());
 
 
-//        Product prod;
-//        prod = productORM.add(Product.createProduct("shampoo", 25.3, 1));
+        Product prod;
+        prod = productORM.add(Product.createProduct("shampoo", 25.3, 1));
+        logger.info("Product has been created: " + prod.toString());
+        prod = productORM.add(Product.createProduct("table", 250.6, 2));
+        logger.info("Product has been created: " + prod.toString());
+        prod = productORM.add(Product.createProduct("pen", 12.3, 3));
+        logger.info("Product has been created: " + prod.toString());
+
+//        prod = productORM.add(Product.createProductWithoutId("new", 23.3));
 //        logger.info("Product has been created: " + prod.toString());
-//        prod = productORM.add(Product.createProduct("table", 250.6, 2));
-//        logger.info("Product has been created: " + prod.toString());
-//        prod = productORM.add(Product.createProduct("pen", 12.3, 3));
-//        logger.info("Product has been created: " + prod.toString());
-        //TODO - if the useremail ( UNIQUE ) already inside the DB -> throw exception
-        //TODO - if 'id' is AutoIncrement let DB handle it
 //        <---------------2--------------->
 
 

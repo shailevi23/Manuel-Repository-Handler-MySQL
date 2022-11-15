@@ -43,14 +43,14 @@ public class RepoLogic<T>{
 
     public String createSelectByFieldQuery(String field, Integer value) {
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + field + " = " + value);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("SELECT * FROM ");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(" WHERE ").append(field);
-        stringBuilder.append("= ").append(value.toString());
-        stringBuilder.append(";");
-        System.out.println(stringBuilder);
-        return stringBuilder.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ").append(field);
+        sb.append("= ").append(value.toString());
+        sb.append(";");
+        System.out.println(sb);
+        return sb.toString();
     }
 
     public String findObj(T object) {
@@ -109,7 +109,10 @@ public class RepoLogic<T>{
         for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if(map.containsKey(field.getType())) {
+                if(field.getAnnotation(AutoIncrement.class) != null){
+                    sb.append("NULL,");
+                }
+                else if(map.containsKey(field.getType())) {
                     sb.append(field.get(object));
                     sb.append(",");
                 }

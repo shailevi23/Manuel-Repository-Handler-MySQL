@@ -234,3 +234,134 @@
 2022-11-15 16:40:18,049 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
 2022-11-15 16:40:18,053 INFO    org.example.ORM.RepoLogic - Creating table for User
 2022-11-15 16:40:18,403 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:52:41,046 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:52:41,053 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 16:52:41,433 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:53:02,343 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:53:02,347 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 16:53:02,664 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:53:02,675 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 16:53:02,693 INFO    org.example.ORM.RepoLogic - User has been created: User{id=1, firstName='shai', lastName='levi'}
+2022-11-15 16:53:02,693 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 16:53:02,702 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:53:02,705 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 16:53:02,717 INFO    org.example.ORM.RepoLogic - User has been created: User{id=2, firstName='omar', lastName='hamdea'}
+2022-11-15 16:53:02,717 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 16:53:02,725 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:53:02,729 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 16:53:02,738 INFO    org.example.ORM.RepoLogic - User has been created: User{id=3, firstName='rany', lastName='saliman'}
+2022-11-15 16:53:34,282 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:53:34,286 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 16:53:34,618 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:53:34,618 INFO    org.example.ORM.RepoLogic - Creating table for Shop
+2022-11-15 16:53:34,644 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:53:50,013 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:53:50,018 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 16:53:50,331 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:53:50,342 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 16:53:50,358 ERROR   org.example.ORM.Repository - org.example.exampleClasses.Product.<init>()
+2022-11-15 16:54:12,367 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:54:16,800 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 16:54:20,655 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:55:27,321 ERROR   org.example.ORM.Repository - Duplicate entry '1' for key 'product.PRIMARY'
+2022-11-15 16:57:37,686 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:57:37,692 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 16:57:38,033 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:57:38,033 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 16:57:38,093 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:57:38,094 INFO    org.example.ORM.RepoLogic - Creating table for Shop
+2022-11-15 16:57:38,119 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:58:22,009 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:58:22,013 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 16:58:22,343 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:58:22,353 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 16:58:22,371 INFO    org.example.ORM.RepoLogic - User has been created: User{id=1, firstName='shai', lastName='levi'}
+2022-11-15 16:58:22,372 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 16:58:22,382 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:58:22,385 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 16:58:22,395 INFO    org.example.ORM.RepoLogic - User has been created: User{id=2, firstName='omar', lastName='hamdea'}
+2022-11-15 16:58:22,395 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 16:58:22,404 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:58:22,407 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 16:58:22,416 INFO    org.example.ORM.RepoLogic - User has been created: User{id=3, firstName='rany', lastName='saliman'}
+2022-11-15 16:58:40,509 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:58:45,929 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 16:58:53,112 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 16:59:23,986 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:02:43,710 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:02:43,720 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:02:53,050 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:02:58,562 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:03:23,792 ERROR   org.example.ORM.Repository - org.example.exampleClasses.Product.<init>()
+2022-11-15 17:03:54,821 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:03:54,826 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:03:55,150 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:03:55,159 ERROR   org.example.ORM.Repository - Duplicate entry '1' for key 'product.PRIMARY'
+2022-11-15 17:04:09,860 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:04:09,865 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:04:10,185 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:04:10,196 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:04:10,213 INFO    org.example.ORM.RepoLogic - Product has been created: org.example.exampleClasses.Product@28a0fd6c
+2022-11-15 17:04:10,213 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:04:10,223 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:04:10,227 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:04:10,237 INFO    org.example.ORM.RepoLogic - Product has been created: org.example.exampleClasses.Product@6b5966e1
+2022-11-15 17:04:10,237 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:04:10,246 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:04:10,249 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:04:10,258 INFO    org.example.ORM.RepoLogic - Product has been created: org.example.exampleClasses.Product@3af17be2
+2022-11-15 17:05:23,436 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:05:23,441 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:05:23,760 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:05:23,769 ERROR   org.example.ORM.Repository - Duplicate entry '3' for key 'product.PRIMARY'
+2022-11-15 17:06:49,003 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:06:49,012 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:06:49,364 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:06:49,374 ERROR   org.example.ORM.Repository - Duplicate entry '3' for key 'product.PRIMARY'
+2022-11-15 17:12:09,647 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:12:09,656 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:12:52,555 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:12:52,566 ERROR   org.example.ORM.Repository - Column count doesn't match value count at row 1
+2022-11-15 17:14:58,500 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:14:58,509 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:15:14,819 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:15:15,825 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:15:42,440 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:15:42,445 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:15:42,770 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:15:42,781 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:30:01,133 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:30:01,156 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:30:02,355 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:30:02,393 ERROR   org.example.ORM.Repository - Duplicate entry '3' for key 'product.PRIMARY'
+2022-11-15 17:32:30,506 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:32:30,525 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:32:31,728 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:32:31,756 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 17:35:11,019 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 17:35:11,027 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 17:35:12,181 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 17:35:12,208 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 18:01:22,674 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:01:22,686 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 18:01:23,848 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 18:01:23,849 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 18:01:23,927 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 18:01:23,927 INFO    org.example.ORM.RepoLogic - Creating table for Shop
+2022-11-15 18:01:23,999 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 18:01:23,999 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:01:24,113 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:01:24,178 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+2022-11-15 18:03:45,105 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 18:03:45,122 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:03:46,304 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:03:46,339 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 18:03:46,403 INFO    org.example.ORM.RepoLogic - Product has been created: org.example.exampleClasses.Product@2c9399a4
+2022-11-15 18:03:46,403 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:03:46,435 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:03:46,444 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 18:03:46,482 INFO    org.example.ORM.RepoLogic - Product has been created: org.example.exampleClasses.Product@172ca72b
+2022-11-15 18:03:46,482 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 18:03:46,512 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 18:03:46,522 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 18:03:46,551 INFO    org.example.ORM.RepoLogic - Product has been created: org.example.exampleClasses.Product@51df223b
