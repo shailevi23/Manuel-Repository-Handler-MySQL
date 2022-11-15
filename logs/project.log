@@ -8,3 +8,10 @@
 2022-11-15 12:12:47,522 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
 2022-11-15 12:15:02,655 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
 2022-11-15 12:15:02,663 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 12:33:04,539 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:33:04,544 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 12:33:05,025 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 12:33:05,038 ERROR   org.example.ORM.Repository - Connection failed
+2022-11-15 12:33:22,506 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:33:22,512 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 12:33:22,982 INFO    org.example.ORM.Repository - Connection created for summery_project
