@@ -161,3 +161,73 @@
 2022-11-15 14:04:14,773 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
 2022-11-15 14:04:14,778 INFO    org.example.ORM.RepoLogic - Truncating table User
 2022-11-15 14:04:15,093 INFO    org.example.ORM.RepoLogic - User table has been truncated: true
+2022-11-15 14:17:11,868 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:17:11,880 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:20:19,623 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:20:19,633 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:20:34,691 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 14:23:18,379 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:23:18,392 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 14:33:57,544 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:33:57,548 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:33:57,876 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:07:16,423 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:07:16,428 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:07:16,745 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:08:09,843 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:08:09,848 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:08:10,160 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:08:33,366 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:08:33,371 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:08:33,680 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT value UNIQUE (lastName,emai)
+)' at line 7
+2022-11-15 15:08:50,126 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:08:50,131 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:08:50,441 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT value UNIQUE (lastName,email)
+)' at line 7
+2022-11-15 15:09:21,468 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:09:21,474 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:09:21,786 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT value UNIQUE (lastName,email)' at line 7
+2022-11-15 15:11:39,023 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:11:39,027 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:11:39,347 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT UC_ +UserUNIQUE (lastName,email)' at line 7
+2022-11-15 15:11:52,417 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:11:52,421 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:11:52,727 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT UC_UserUNIQUE (lastName,email)' at line 7
+2022-11-15 15:12:03,811 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:12:03,816 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:12:04,133 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT UC_User UNIQUE (lastName,email)' at line 7
+2022-11-15 15:12:38,715 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:12:38,719 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:12:39,046 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email)' at line 7
+2022-11-15 15:12:54,820 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:12:54,825 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:12:55,139 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email)' at line 7
+2022-11-15 15:13:27,999 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:13:28,003 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:13:28,333 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:22:13,179 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:22:13,184 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:22:13,512 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:24:08,771 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:24:08,775 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:24:09,096 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:25:32,894 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:25:32,898 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:25:33,210 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:26:00,006 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:26:00,010 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:26:00,336 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email)
+)' at line 7
+2022-11-15 15:26:46,252 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:26:46,256 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:26:46,596 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:28:01,001 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:28:01,005 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:28:01,348 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:28:52,456 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:28:52,460 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:28:52,805 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:29:23,145 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:29:23,151 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:29:23,490 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
