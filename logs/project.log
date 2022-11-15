@@ -39,3 +39,6 @@
 2022-11-15 12:18:19,312 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
 2022-11-15 12:20:55,937 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
 2022-11-15 12:20:57,039 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 12:56:23,744 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-15 12:56:23,933 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 12:56:23,939 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
