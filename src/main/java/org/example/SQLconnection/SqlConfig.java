@@ -1,5 +1,9 @@
 package org.example.SQLconnection;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.example.ORM.RepoLogic;
+
 public class SqlConfig {
 
     String dbName;
@@ -9,10 +13,13 @@ public class SqlConfig {
     final String dbUrl = "jdbc:mysql://localhost:3306/";
     final String schemaName;
 
+    private static Logger logger = LogManager.getLogger(SqlConfig.class.getName());
+
     public SqlConfig(String dbName, String user, String password) {
         this.dbName = dbName;
         this.user = user;
         this.password = password;
+        logger.info("SQL configuration was set for database - " + dbName + "for the user " + user + " and password " + password);
         this.schemaName = "summery_project";
         //CREATE SCHEME LATER
     }

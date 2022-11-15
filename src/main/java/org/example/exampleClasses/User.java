@@ -21,7 +21,6 @@ public class User {
     @NotNull
     private String email;
 
-    //private static Logger logger = LogManager.getLogger(User.class.getName());
 
     public User() {
     }
@@ -32,7 +31,6 @@ public class User {
         user.setLastName(lastName);
         user.setEmail(email);
         user.setId(id);
-        //logger.info("created user named "+ firstName + " " + lastName);
         return user;
     }
 
@@ -43,7 +41,6 @@ public class User {
 
     public void setId(int id) {
         if(id < 0){
-            //logger.error("trying to set id to be negative");
             throw new IllegalArgumentException("Id cannot be negative");
         }
         this.id = id;
@@ -57,12 +54,10 @@ public class User {
 
     public void setFirstName(String firstName) {
         if(firstName == null){
-            //logger.error("trying to set first name to null");
             throw new NullPointerException("First name is null");
         }
 
         if(firstName.equals("")){
-            //logger.error("trying to set first name to empty");
             throw new IllegalArgumentException("First name cannot be empty, Please insert product name");
         }
 
@@ -77,12 +72,10 @@ public class User {
 
     public void setLastName(String lastName) {
         if(lastName == null){
-            //logger.error("trying to set last name to null");
             throw new NullPointerException("Last name is null");
         }
 
         if(lastName.equals("")){
-            //logger.error("trying to set last name to empty");
             throw new IllegalArgumentException("Lat name cannot be empty, Please insert product name");
         }
         this.lastName = lastName;
@@ -98,11 +91,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

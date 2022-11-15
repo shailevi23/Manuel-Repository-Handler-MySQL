@@ -109,6 +109,7 @@ public class RepoLogic<T>{
     //<----------------------------------CREATE TABLE---------------------------------->
     String createTableQueryLogic() {
         StringBuilder stringBuilder = new StringBuilder();
+        logger.info("Creating table for " + clz.getName());
         stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
         stringBuilder.append(" (\n");
@@ -126,6 +127,7 @@ public class RepoLogic<T>{
     //<----------------------------------DELETE---------------------------------->
     String deleteTableQueryLogic(){
         StringBuilder sb = new StringBuilder();
+        logger.info("Truncating table " + clz.getName());
         sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         return sb.toString();
     }
@@ -138,6 +140,7 @@ public class RepoLogic<T>{
 
     String deleteManyItemsByAnyPropertyQueryLogic(Object property, Object value){
         StringBuilder sb = new StringBuilder();
+        logger.info("Deleting many items by specific property");
         sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
         sb.append(" WHERE ").append(property.toString()).append("=");
         if(value.getClass().getSimpleName().equals("Integer")){
