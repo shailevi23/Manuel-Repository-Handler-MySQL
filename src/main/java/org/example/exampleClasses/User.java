@@ -1,5 +1,7 @@
 package org.example.exampleClasses;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.Anottations.AutoIncrement;
 import org.example.Anottations.NotNull;
 import org.example.Anottations.PrimaryKey;

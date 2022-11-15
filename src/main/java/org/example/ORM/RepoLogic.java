@@ -1,7 +1,10 @@
 package org.example.ORM;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
+import org.example.exampleClasses.Shop;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -17,16 +20,19 @@ public class RepoLogic<T>{
 
     private final Class<T> clz;
 
+    private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
     public RepoLogic(Class<T> clz) {
         this.clz = clz;
     }
 
     //<----------------------------------READ---------------------------------->
     public String createSelectAllQueryLogic() {
+        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " Query");
         return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
     }
 
     public String createSelectByFieldQuery(String field, Integer value) {
+        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + field + " = " + value);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("SELECT * FROM ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
@@ -37,13 +43,45 @@ public class RepoLogic<T>{
         return stringBuilder.toString();
     }
 
+    public String findObj(T object) {
+        logger.info("creating SELECT * FROM " + clz.getSimpleName());
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ");
+
+
+        for(Field field : object.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                sb.append(field.getName());
+                sb.append(" = ");
+                if(field.get(object) instanceof Integer) {
+                    sb.append(field.get(object));
+                    sb.append(" AND ");
+                }
+                else {
+                    sb.append("'");
+                    sb.append(field.get(object));
+                    sb.append("' AND ");
+                }
+            } catch(IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        sb.replace(sb.length() - 5, sb.length(),";" );
+
+        System.out.println(sb);
+        return sb.toString();
+    }
+
 
     //<----------------------------------ADD---------------------------------->
     String createAddQueryLogic(T object) {
         StringBuilder sb = new StringBuilder();
-
+        logger.info("creating INSERT INTO " + clz.getSimpleName() + " Query");
         sb.append("INSERT INTO ");
-        sb.append(clz.getSimpleName());
+        sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" VALUES (");
 
         for(Field field : object.getClass().getDeclaredFields()) {
@@ -71,6 +109,7 @@ public class RepoLogic<T>{
     //<----------------------------------CREATE TABLE---------------------------------->
     String createTableQueryLogic() {
         StringBuilder stringBuilder = new StringBuilder();
+        logger.info("Creating table for " + clz.getName());
         stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
         stringBuilder.append(" (\n");
@@ -88,6 +127,7 @@ public class RepoLogic<T>{
     //<----------------------------------DELETE---------------------------------->
     String deleteTableQueryLogic(){
         StringBuilder sb = new StringBuilder();
+        logger.info("Truncating table " + clz.getName());
         sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         return sb.toString();
     }
@@ -100,6 +140,7 @@ public class RepoLogic<T>{
 
     String deleteManyItemsByAnyPropertyQueryLogic(Object property, Object value){
         StringBuilder sb = new StringBuilder();
+        logger.info("Deleting many items by specific property");
         sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
         sb.append(" WHERE ").append(property.toString()).append("=");
         if(value.getClass().getSimpleName().equals("Integer")){
@@ -169,37 +210,6 @@ public class RepoLogic<T>{
         System.out.println(sb);
         return sb.toString();
     }
-    public String findObj(T object) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM ");
-        sb.append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ");
-
-
-        for(Field field : object.getClass().getDeclaredFields()) {
-            field.setAccessible(true);
-            try {
-                sb.append(field.getName());
-                sb.append(" = ");
-                if(field.get(object) instanceof Integer) {
-                    sb.append(field.get(object));
-                    sb.append(" AND ");
-                }
-                else {
-                    sb.append("'");
-                    sb.append(field.get(object));
-                    sb.append("' AND ");
-                }
-            } catch(IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        sb.replace(sb.length() - 5, sb.length(),";" );
-
-        System.out.println(sb);
-        return sb.toString();
-    }
-
 
     //<----------------------------------HELPERS---------------------------------->
     private String getMySQLDataType(String javaType) {

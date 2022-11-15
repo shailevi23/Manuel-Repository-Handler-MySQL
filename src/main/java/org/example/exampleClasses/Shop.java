@@ -1,5 +1,6 @@
 package org.example.exampleClasses;
 
+
 import org.example.Anottations.AutoIncrement;
 import org.example.Anottations.NotNull;
 import org.example.Anottations.PrimaryKey;
@@ -15,6 +16,7 @@ public class Shop {
     private String name;
     @NotNull
     private List<Product> productList;
+
 
 
     private Shop(){

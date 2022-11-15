@@ -1,0 +1,44 @@
+2022-11-15 11:55:43,767 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-15 11:55:43,776 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM org.example.exampleClasses.User WHERE id = 1
+2022-11-15 11:56:00,268 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 11:56:00,274 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM org.example.exampleClasses.User WHERE id = 1
+2022-11-15 12:12:14,954 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:12:14,961 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 12:12:47,516 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:12:47,522 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 12:15:02,655 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:15:02,663 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 11:37:07,355 INFO    org.example.exampleClasses.User - created user named shai levi
+2022-11-15 11:37:07,364 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:40:15,550 INFO    org.example.exampleClasses.User - created user named shai levi
+2022-11-15 11:40:15,559 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:41:12,169 INFO    org.example.exampleClasses.User - created user named shai levi
+2022-11-15 11:41:12,174 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:42:08,769 INFO    org.example.exampleClasses.User - created user named shai levi
+2022-11-15 11:42:08,781 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:45:07,418 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:45:20,619 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:45:55,297 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:46:31,423 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:47:53,758 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:50:39,351 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:56:25,931 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 11:57:31,860 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 12:00:17,788 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 12:02:06,683 INFO    org.example.ORM.RepoLogic - creating INSERT INTO class org.example.exampleClasses.User Query
+2022-11-15 12:02:08,042 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM class org.example.exampleClasses.User WHERE id = 1
+2022-11-15 12:04:44,364 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 12:04:45,458 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE id = 1
+2022-11-15 12:14:29,857 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 12:14:30,933 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 12:16:10,161 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 12:16:11,266 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 12:16:55,927 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 12:16:57,105 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 12:18:18,242 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 12:18:19,312 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 12:20:55,937 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 12:20:57,039 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 12:56:23,744 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-15 12:56:23,933 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 12:56:23,939 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
