@@ -15,48 +15,70 @@ public class Repository<T> {
     private final Class<T> clz;
     private RepoLogic<T> repoLogic;
 
-    public Repository(Class<T> clz) {
+    private SqlConfig sqlConfig;
+
+    public Repository(Class<T> clz, SqlConfig sqlConfig) {
         this.clz = clz;
+        this.sqlConfig = sqlConfig;
         repoLogic = new RepoLogic<>(clz);
     }
 
-    public void createTable(SqlConfig sqlConfig) {
-        execute(repoLogic.createTableQueryLogic(), sqlConfig);
+    public void createTable() {
+        execute(repoLogic.createTableQueryLogic());
     }
 
-    public void deleteTable(SqlConfig sqlConfig) {
-        execute(repoLogic.deleteTableQueryLogic(), sqlConfig);
+    public void deleteTable() {
+        execute(repoLogic.deleteTableQueryLogic());
     }
 
-    public void deleteItemsByProperty(Object property, Object value, SqlConfig sqlConfig) {
-        execute(repoLogic.deleteManyItemsByAnyPropertyQueryLogic(property, value), sqlConfig);
+    public void deleteItemsByProperty(Object property, Object value) {
+        execute(repoLogic.deleteManyItemsByAnyPropertyQueryLogic(property, value));
     }
 
     //TODO
-//    public void deleteSingleItemByAnyProperty(Object property, SqlConfig sqlConfig){
-//        execute(repoLogic.deleteSingleItemByAnyPropertyLogic(property), sqlConfig);
+//    public void deleteSingleItemByAnyProperty(Object property){
+//        execute(repoLogic.deleteSingleItemByAnyPropertyLogic(property));
 //    }
 
-    public ResultSet selectAll(SqlConfig sqlConfig) {
-        return executeAndReturn(repoLogic.createSelectAllQueryLogic(), sqlConfig);
+    public List<T> selectAll() {
+        return executeAndReturn(repoLogic.createSelectAllQueryLogic());
     }
 
-    public void add(T obj, SqlConfig sqlConfig) {
-        execute(repoLogic.createAddQueryLogic(obj), sqlConfig);
+    public void add(T obj) {
+        execute(repoLogic.createAddQueryLogic(obj));
     }
 
-    public void addAll(List<T> objects, SqlConfig sqlConfig) {
+    public void addAll(List<T> objects) {
         for(T obj : objects) {
-            add(obj, sqlConfig);
+            add(obj);
         }
     }
 
 
     //TODO - not working
-    public List<T> selectById(int id, SqlConfig sqlConfig){
-        ResultSet rs = executeAndReturn(repoLogic.createSelectByFieldQuery("id", id), sqlConfig);
+    public List<T> selectById(int id){
+        return executeAndReturn(repoLogic.createSelectByFieldQuery("id", id));
+
+    }
+
+    private void execute(String query) {
+
+        try(Connection c = ConnectHandler.connect(this.sqlConfig)){
+            Statement statement = c.createStatement();
+            statement.execute(query);
+
+        } catch(SQLException e) {
+            throw new RuntimeException("Connection failed",e);
+        }
+    }
+
+    private List<T> executeAndReturn(String query) {
         List<T> result = new ArrayList<>();
-        try {
+        try{
+            Connection c = ConnectHandler.connect(this.sqlConfig);
+            Statement statement = c.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+
             while (rs.next()) {
                 Constructor<T> constructor = clz.getConstructor(null);
                 T item = constructor.newInstance();
@@ -67,37 +89,11 @@ public class Repository<T> {
                 }
                 result.add(item);
             }
-        }
-        catch (InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            throw new RuntimeException("Couldn't use reflection properly and create an instance", e);
-        }
-        catch (SQLException e) {
-            throw new RuntimeException("Database access error or closed result set", e);
-        }
-        return result;
-    }
 
-
-    private void execute(String query, SqlConfig sqlConfig) {
-        ConnectHandler c = new ConnectHandler(sqlConfig);
-        try(Connection connect = c.connect()){
-            Statement statement = connect.createStatement();
-            statement.execute(query);
-
-        } catch(SQLException e) {
-            throw new RuntimeException("Connection failed",e);
-        }
-    }
-
-    private ResultSet executeAndReturn(String query, SqlConfig sqlConfig) {
-        ConnectHandler c = new ConnectHandler(sqlConfig);
-        try(Connection connect = c.connect()){
-            Statement statement = connect.createStatement();
-            return statement.executeQuery(query);
-
-        } catch(SQLException e) {
+        } catch(SQLException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException("Connection failed", e);
         }
+        return result;
     }
 
 

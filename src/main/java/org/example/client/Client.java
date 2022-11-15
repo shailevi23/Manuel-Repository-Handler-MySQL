@@ -15,7 +15,7 @@ import java.util.List;
 public class Client {
 
     public static void main(String arg[]) {
-        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
 
 //`       <---------------1--------------->   //create 3 tables - user, shop, product
 //        Repository<User> userORM = new Repository<>(User.class);
@@ -35,6 +35,13 @@ public class Client {
 //        userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1) ,sqlConfig);
 //        userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2) ,sqlConfig);
 //        userORM.add(User.createUser("rany", "saliman", "rany@gmail.com", 3) ,sqlConfig);
+
+
+//        Repository<Product> productORM = new Repository<>(Product.class);
+//        productORM.add(Product.createProduct("shampoo", 25.3, 1) ,sqlConfig);
+//        productORM.add(Product.createProduct("table", 250.6, 2) ,sqlConfig);
+//        productORM.add(Product.createProduct("pen", 12.3, 3) ,sqlConfig);
+
         //TODO - if the useremail ( UNIQUE ) already inside the DB -> throw exception
         //TODO - if 'id' is AutoIncrement let DB handle it
 
@@ -66,6 +73,7 @@ public class Client {
 //        Repository<User> userORM = new Repository<>(User.class);
 //        ResultSet rs = userORM.selectAll(sqlConfig);
 //        System.out.println(rs);
+//
         //TODO - return list of items and not result set by using reflection
 //        <---------------5--------------->
 
@@ -73,9 +81,13 @@ public class Client {
 
 //        <---------------6--------------->   //select by Id
         //TODO - not working
-//        Repository<User> userORM = new Repository<>(User.class);
-//        userORM.selectById(1, sqlConfig);
-//        <---------------6--------------->
+        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+        List<User> userList = userORM.selectById(1);
+        for(User u : userList) {
+            System.out.println(u);
+        }
+
+        //        <---------------6--------------->
 
 
 
