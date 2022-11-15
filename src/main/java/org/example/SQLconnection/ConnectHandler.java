@@ -7,13 +7,12 @@ import java.sql.SQLException;
 public class ConnectHandler {
 
 
-    SqlConfig sqlConfig;
+    private ConnectHandler(){
 
-    public ConnectHandler(SqlConfig sqlConfig){
-        this.sqlConfig = sqlConfig;
     }
 
-    public Connection connect() {
+
+    public static Connection connect( SqlConfig sqlConfig) {
         Connection connection;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -24,5 +23,13 @@ public class ConnectHandler {
         }
 
         return connection;
+    }
+
+    public static void closeConnection(Connection c) {
+        try {
+            c.close();
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
