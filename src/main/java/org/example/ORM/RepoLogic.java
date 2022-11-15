@@ -119,52 +119,24 @@ public class RepoLogic<T>{
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" (\n");
 
-        int countPrimaryKeys = 0;
-        int countAutoIncrement = 0;
-        String primaryField = null;
-        ArrayList<String> uniqueField = new ArrayList<>();
-
+        AnnotationsHandler annotationHandler = new AnnotationsHandler(0, 0, null);
 
         for(Field field : clz.getDeclaredFields()) {
-            if(field.getAnnotation(PrimaryKey.class) != null){
-                countPrimaryKeys += 1;
-                primaryField = field.getName();
-                if(countPrimaryKeys > 1){
-                    throw new IllegalArgumentException("Cant Have 2 Primary Keys values in table");
-                }
-            }
-
-            if(field.getAnnotation(Unique.class) != null){
-                uniqueField.add(field.getName());
-            }
-
             sb.append(field.getName());
             sb.append(" ");
             sb.append(getMySQLDataType(field.getType().getSimpleName()));
-
-            if(field.getAnnotation(NotNull.class) != null){
-                sb.append(" NOT NULL");
-            }
-
-            if(field.getAnnotation(AutoIncrement.class) != null){
-                sb.append(" AUTO_INCREMENT");
-                countAutoIncrement += 1;
-                if(countAutoIncrement > 1){
-                    throw new IllegalArgumentException("Cant Have 2 Auto Increment values in table");
-                }
-            }
-
+            annotationHandle(field, sb, annotationHandler);
             sb.append(",\n");
         }
-        sb.append("PRIMARY KEY (").append(primaryField).append(")");
-        if(uniqueField.size() == 1){
+        sb.append("PRIMARY KEY (").append(annotationHandler.getPrimaryField()).append(")");
+        if(annotationHandler.getUniqueField().size() == 1){
             sb.append(",\n");
-            sb.append("UNIQUE (").append(uniqueField.get(0)).append(")");
+            sb.append("UNIQUE (").append(annotationHandler.getUniqueField().get(0)).append(")");
         }
-        else if(uniqueField.size() > 1){
+        else if(annotationHandler.getUniqueField().size() > 1){
             sb.append(",\n");
             sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
-            for (String fieldName: uniqueField) {
+            for (String fieldName: annotationHandler.getUniqueField()) {
                 sb.append(fieldName);
                 sb.append(",");
             }
@@ -173,6 +145,33 @@ public class RepoLogic<T>{
         sb.append("\n);");
         System.out.println(sb.toString());
         return sb.toString();
+    }
+
+    private void annotationHandle(Field field, StringBuilder sb ,AnnotationsHandler annotationsHandler) {
+        if(field.getAnnotation(PrimaryKey.class) != null){
+            annotationsHandler.setCountPrimaryKeys(annotationsHandler.getCountPrimaryKeys() + 1);
+            annotationsHandler.setPrimaryField(field.getName());
+            if(annotationsHandler.getCountPrimaryKeys() > 1){
+                throw new IllegalArgumentException(annotationsHandler.messagePrimaryKey());
+            }
+        }
+
+        if(field.getAnnotation(Unique.class) != null){
+            annotationsHandler.getUniqueField().add(field.getName());
+        }
+
+
+        if(field.getAnnotation(NotNull.class) != null){
+            sb.append(" NOT NULL");
+        }
+
+        if(field.getAnnotation(AutoIncrement.class) != null){
+            sb.append(" AUTO_INCREMENT");
+            annotationsHandler.setCountAutoIncrement(annotationsHandler.getCountAutoIncrement() + 1);
+            if(annotationsHandler.getCountAutoIncrement() > 1){
+                throw new IllegalArgumentException(annotationsHandler.messageAutoIncrement());
+            }
+        }
     }
 
     //<----------------------------------DELETE---------------------------------->
