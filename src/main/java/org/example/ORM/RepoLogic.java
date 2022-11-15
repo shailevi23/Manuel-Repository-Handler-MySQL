@@ -109,7 +109,7 @@ public class RepoLogic<T>{
     //<----------------------------------CREATE TABLE---------------------------------->
     String createTableQueryLogic() {
         StringBuilder stringBuilder = new StringBuilder();
-        logger.info("Creating table for " + clz.getName());
+        logger.info("Creating table for " + clz.getSimpleName());
         stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
         stringBuilder.append(" (\n");
@@ -127,7 +127,7 @@ public class RepoLogic<T>{
     //<----------------------------------DELETE---------------------------------->
     String deleteTableQueryLogic(){
         StringBuilder sb = new StringBuilder();
-        logger.info("Truncating table " + clz.getName());
+        logger.info("Truncating table " + clz.getSimpleName());
         sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         return sb.toString();
     }
