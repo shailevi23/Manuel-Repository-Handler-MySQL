@@ -1,10 +1,12 @@
 package org.example.ORM;
 
+import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.Anottations.AutoIncrement;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
+import org.example.Utils.Utils;
 
 import javax.swing.plaf.PanelUI;
 import java.lang.reflect.Constructor;
@@ -52,9 +54,10 @@ public class Repository<T> {
         return executeAndReturn(repoLogic.createSelectAllQueryLogic());
     }
 
-    public boolean add(T obj) {
+    public T add(T obj) {
         execute(repoLogic.createAddQueryLogic(obj));
-        return true;
+        List<T> list = executeAndReturn(repoLogic.findObj(obj));
+        return list.get(list.size() - 1);
     }
 
     public boolean addAll(List<T> objects) {
@@ -98,18 +101,20 @@ public class Repository<T> {
             Statement statement = c.createStatement();
             ResultSet rs = statement.executeQuery(query);
 
+            Gson gson = new Gson();
+
             while (rs.next()) {
                 Constructor<T> constructor = clz.getConstructor(null);
                 T item = constructor.newInstance();
                 Field[]  declaredFields = clz.getDeclaredFields();
                 for(Field field : declaredFields){
-                    if(field.getAnnotation(AutoIncrement.class) != null){
-
-                    }
-                    else{
                         field.setAccessible(true);
-                        field.set(item, rs.getObject(field.getName()));
-                    }
+                        if(Utils.mapInit().containsKey(field.getType()) || field.getType().equals(String.class)){
+                            field.set(item, rs.getObject(field.getName()));
+                        }
+                        else{
+                            field.set(item, gson.fromJson(rs.getObject(field.getName()).toString(), field.getType()));
+                        }
                 }
                 result.add(item);
             }

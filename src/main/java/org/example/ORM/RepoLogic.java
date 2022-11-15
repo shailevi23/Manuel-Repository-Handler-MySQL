@@ -9,6 +9,7 @@ import org.example.Anottations.PrimaryKey;
 import org.example.Anottations.Unique;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
+import org.example.Utils.Utils;
 import org.example.exampleClasses.Shop;
 
 import java.lang.reflect.Constructor;
@@ -29,7 +30,6 @@ public class RepoLogic<T>{
     private final Class<T> clz;
 
     private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
-    Map<Object,String> map = new HashMap<>();
 
     public RepoLogic(Class<T> clz) {
         this.clz = clz;
@@ -40,6 +40,21 @@ public class RepoLogic<T>{
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " Query");
         return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
     }
+
+    public String createSelectAllQueryLogicReflection() {
+        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " Query");
+        StringBuilder sb = new StringBuilder();
+        for(Field field : clz.getDeclaredFields()) {
+            sb.append(field.getName());
+            sb.append(" ");
+            sb.append(getMySQLDataType(field.getType().getSimpleName()));
+            sb.append(",\n");
+        }
+
+
+        return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
+    }
+
 
     public String createSelectByFieldQuery(String field, Integer value) {
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + field + " = " + value);
@@ -63,18 +78,18 @@ public class RepoLogic<T>{
 
         for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
-            mapInit(map);
             try {
-                sb.append(field.getName());
-                sb.append(" = ");
-                if(map.containsKey(field.getType())){
-                    sb.append(field.get(object));
-                    sb.append(" AND ");
-                }
-                else if (field.get(object) instanceof String){
-                    sb.append("'");
-                    sb.append(field.get(object));
-                    sb.append("' AND ");
+                if(!field.isAnnotationPresent(AutoIncrement.class)) {
+                    sb.append(field.getName());
+                    sb.append(" = ");
+                    if (Utils.map.containsKey(field.getType())) {
+                        sb.append(field.get(object));
+                        sb.append(" AND ");
+                    } else if (field.get(object) instanceof String) {
+                        sb.append("'");
+                        sb.append(field.get(object));
+                        sb.append("' AND ");
+                    }
                 }
             } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);
@@ -105,14 +120,13 @@ public class RepoLogic<T>{
 
     void checkInstanceOfFieldsAndAppendObjectToJson(T object, StringBuilder sb){
         Gson gson = new Gson();
-        mapInit(map);
         for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
                 if(field.getAnnotation(AutoIncrement.class) != null){
                     sb.append("NULL,");
                 }
-                else if(map.containsKey(field.getType())) {
+                else if(Utils.map.containsKey(field.getType())) {
                     sb.append(field.get(object));
                     sb.append(",");
                 }
@@ -176,16 +190,16 @@ public class RepoLogic<T>{
             }
         }
 
-        if(field.getAnnotation(Unique.class) != null){
+        if(field.isAnnotationPresent(Unique.class)){
             annotationsHandler.getUniqueField().add(field.getName());
         }
 
 
-        if(field.getAnnotation(NotNull.class) != null){
+        if(field.isAnnotationPresent(NotNull.class)){
             sb.append(" NOT NULL");
         }
 
-        if(field.getAnnotation(AutoIncrement.class) != null){
+        if(field.isAnnotationPresent(AutoIncrement.class)){
             sb.append(" AUTO_INCREMENT");
             annotationsHandler.setCountAutoIncrement(annotationsHandler.getCountAutoIncrement() + 1);
             if(annotationsHandler.getCountAutoIncrement() > 1){
@@ -346,15 +360,5 @@ public class RepoLogic<T>{
         }
     }
 
-    public void mapInit(Map map){
-        map.put(Integer.class, "Integer");
-        map.put(int.class, "int");
-        map.put(long.class, "long");
-        map.put(Long.class, "Long");
-        map.put(double.class, "double");
-        map.put(Double.class, "Double");
-        map.put(boolean.class, "boolean");
-        map.put(Boolean.class, "Boolean");
-    }
 
 }
