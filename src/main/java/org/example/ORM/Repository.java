@@ -23,8 +23,8 @@ public class Repository<T> {
         repoLogic = new RepoLogic<>(clz);
     }
 
-    public void createTable() {
-        execute(repoLogic.createTableQueryLogic());
+    public boolean createTable() {
+        return executeBoolean(repoLogic.createTableQueryLogic());
     }
 
     public void deleteTable() {
@@ -44,8 +44,9 @@ public class Repository<T> {
         return executeAndReturn(repoLogic.createSelectAllQueryLogic());
     }
 
-    public void add(T obj) {
-        execute(repoLogic.createAddQueryLogic(obj));
+    public T add(T obj) {
+         execute(repoLogic.createAddQueryLogic(obj));
+         return executeAndReturn(repoLogic.findObj(obj)).get(0);
     }
 
     public void addAll(List<T> objects) {
@@ -62,11 +63,20 @@ public class Repository<T> {
     }
 
     private void execute(String query) {
-
         try(Connection c = ConnectHandler.connect(this.sqlConfig)){
             Statement statement = c.createStatement();
             statement.execute(query);
 
+        } catch(SQLException e) {
+            throw new RuntimeException("Connection failed",e);
+        }
+    }
+
+    private boolean executeBoolean(String query) {
+        try(Connection c = ConnectHandler.connect(this.sqlConfig)){
+            Statement statement = c.createStatement();
+            statement.execute(query);
+            return true;
         } catch(SQLException e) {
             throw new RuntimeException("Connection failed",e);
         }

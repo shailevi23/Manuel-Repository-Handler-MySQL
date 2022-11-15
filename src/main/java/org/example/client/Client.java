@@ -15,26 +15,34 @@ import java.util.List;
 public class Client {
 
     public static void main(String arg[]) {
-        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 
 //`       <---------------1--------------->   //create 3 tables - user, shop, product
-//        Repository<User> userORM = new Repository<>(User.class);
-//        userORM.createTable(sqlConfig);
+//        boolean createTable;
+//        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+//        createTable = userORM.createTable();
+//        System.out.println( "Does User table has been created? "  + createTable);
 //
-//        Repository<Product> productORM = new Repository<>(Product.class);
-//        productORM.createTable(sqlConfig);
+//        Repository<Product> productORM = new Repository<>(Product.class, sqlConfig);
+//        createTable = productORM.createTable();
+//        System.out.println( "Does Product table has been created? "  + createTable);
 //
-//        Repository<Shop> shopORM = new Repository<>(Shop.class);
-//        shopORM.createTable(sqlConfig);
+//
+//        Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
+//        createTable = shopORM.createTable();
+//        System.out.println( "Does Shop table has been created? "  + createTable);
+
 //        <---------------1--------------->
 
 
 
 //        <---------------2--------------->   //Insert 3 users to user table
-//        Repository<User> userORM = new Repository<>(User.class);
-//        userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1) ,sqlConfig);
-//        userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2) ,sqlConfig);
-//        userORM.add(User.createUser("rany", "saliman", "rany@gmail.com", 3) ,sqlConfig);
+        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+        User user;
+        user = userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1));
+        System.out.println(user.toString());
+//        userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
+//        userORM.add(User.createUser("rany", "saliman", "rany@gmail.com", 3));
 
 
 //        Repository<Product> productORM = new Repository<>(Product.class);
@@ -81,11 +89,11 @@ public class Client {
 
 //        <---------------6--------------->   //select by Id
         //TODO - not working
-        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
-        List<User> userList = userORM.selectById(1);
-        for(User u : userList) {
-            System.out.println(u);
-        }
+//        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+//        List<User> userList = userORM.selectById(1);
+//        for(User u : userList) {
+//            System.out.println(u);
+//        }
 
         //        <---------------6--------------->
 
