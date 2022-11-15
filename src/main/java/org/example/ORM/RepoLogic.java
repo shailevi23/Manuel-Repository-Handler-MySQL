@@ -27,12 +27,12 @@ public class RepoLogic<T>{
 
     //<----------------------------------READ---------------------------------->
     public String createSelectAllQueryLogic() {
-        logger.info("creating SELECT * FROM " + clz + " Query");
+        logger.info("creating SELECT * FROM " + clz.getName() + " Query");
         return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
     }
 
     public String createSelectByFieldQuery(String field, Integer value) {
-        logger.info("creating SELECT * FROM " + clz + " WHERE " + field + " = " + value);
+        logger.info("creating SELECT * FROM " + clz.getName() + " WHERE " + field + " = " + value);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("SELECT * FROM ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
@@ -47,7 +47,7 @@ public class RepoLogic<T>{
     //<----------------------------------ADD---------------------------------->
     String createAddQueryLogic(T object) {
         StringBuilder sb = new StringBuilder();
-        logger.info("creating INSERT INTO " + clz + " Query");
+        logger.info("creating INSERT INTO " + clz.getName() + " Query");
         sb.append("INSERT INTO ");
         sb.append(clz.getSimpleName());
         sb.append(" VALUES (");
@@ -77,6 +77,7 @@ public class RepoLogic<T>{
     //<----------------------------------CREATE TABLE---------------------------------->
     String createTableQueryLogic() {
         StringBuilder stringBuilder = new StringBuilder();
+        logger.info("Creating table for " + clz.getName());
         stringBuilder.append("CREATE TABLE ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
         stringBuilder.append(" (\n");
@@ -94,6 +95,7 @@ public class RepoLogic<T>{
     //<----------------------------------DELETE---------------------------------->
     String deleteTableQueryLogic(){
         StringBuilder sb = new StringBuilder();
+        logger.info("Truncating table " + clz.getName());
         sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         return sb.toString();
     }
@@ -106,6 +108,7 @@ public class RepoLogic<T>{
 
     String deleteManyItemsByAnyPropertyQueryLogic(Object property, Object value){
         StringBuilder sb = new StringBuilder();
+        logger.info("Deleting many items by specific property");
         sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
         sb.append(" WHERE ").append(property.toString()).append("=");
         if(value.getClass().getSimpleName().equals("Integer")){

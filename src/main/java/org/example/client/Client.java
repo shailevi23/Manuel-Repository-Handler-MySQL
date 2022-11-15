@@ -15,11 +15,11 @@ import java.util.List;
 public class Client {
 
     public static void main(String arg[]) {
-        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 
 //`       <---------------1--------------->   //create 3 tables - user, shop, product
-//        Repository<User> userORM = new Repository<>(User.class);
-//        userORM.createTable(sqlConfig);
+        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+        userORM.createTable();
 //
 //        Repository<Product> productORM = new Repository<>(Product.class);
 //        productORM.createTable(sqlConfig);
@@ -80,12 +80,12 @@ public class Client {
 
 
 //        <---------------6--------------->   //select by Id
-        //TODO - not working
-        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
-        List<User> userList = userORM.selectById(1);
-        for(User u : userList) {
-            System.out.println(u);
-        }
+//        //TODO - not working
+//        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+//        List<User> userList = userORM.selectById(1);
+//        for(User u : userList) {
+//            System.out.println(u);
+//        }
 
         //        <---------------6--------------->
 
