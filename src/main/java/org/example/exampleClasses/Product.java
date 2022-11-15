@@ -10,16 +10,25 @@ public class Product {
     @AutoIncrement
     @NotNull
     @PrimaryKey
-    private int id;
+    private Integer id;
     @NotNull
     private String name;
     @NotNull
     private Double price;
 
 
-    private Product(){
+    public Product(){
 
     }
+
+    public static Product createProductWithoutId(String name, Double price) {
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        product.setId(null);
+        return product;
+    }
+
 
     public static Product createProduct(String name, Double price, int id) {
         Product product = new Product();
@@ -37,7 +46,7 @@ public class Product {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

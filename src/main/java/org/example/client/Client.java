@@ -13,7 +13,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Client {
     private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
@@ -29,7 +31,7 @@ public class Client {
 //        boolean res;
 //        res = userORM.createTable();
 //        logger.info("Is User table has been created? " + res);
-
+//
 //        res = productORM.createTable();
 //        logger.info("Is User table has been created? " + res);
 //
@@ -49,15 +51,16 @@ public class Client {
 //        logger.info("User has been created: " + user.toString());
 
 
-//        Product prod;
-//        prod = productORM.add(Product.createProduct("shampoo", 25.3, 1));
-//        logger.info("Product has been created: " + prod.toString());
+//        boolean addRes;
+//        addRes = productORM.add(Product.createProductWithoutId("shampoo", 25.3));
+//        logger.info("Product has been created: " + addRes);
 //        prod = productORM.add(Product.createProduct("table", 250.6, 2));
 //        logger.info("Product has been created: " + prod.toString());
 //        prod = productORM.add(Product.createProduct("pen", 12.3, 3));
 //        logger.info("Product has been created: " + prod.toString());
-        //TODO - if the useremail ( UNIQUE ) already inside the DB -> throw exception
-        //TODO - if 'id' is AutoIncrement let DB handle it
+
+//        prod = productORM.add(Product.createProductWithoutId("new", 23.3));
+//        logger.info("Product has been created: " + prod.toString());
 //        <---------------2--------------->
 
 
@@ -83,9 +86,10 @@ public class Client {
 
 
 //        <---------------5--------------->   //Select all users
-        List<User> users = userORM.selectAll();
-        logger.info("Users has been selected: " + users.toString());
-//
+//        List<User> users = userORM.selectAll();
+//        logger.info("Users has been selected: " + users.toString());
+
+        //TODO - return list of items and not result set by using reflection
 //        <---------------5--------------->
 
 
@@ -105,6 +109,18 @@ public class Client {
 //        User updatedUser = userORM.update(user);
 //        logger.info("User has been updated: " + updatedUser.toString());
 //        <---------------7--------------->
+
+//        Map<String, Object> fieldsToUpdate = new HashMap<>();
+//        Map<String, Object> filterFields = new HashMap<>();
+//
+//        fieldsToUpdate.put("email","stam@gmail.com");
+//        filterFields.put("firstName","omar");
+
+
+//        List<User> userList = userORM.update(fieldsToUpdate, filterFields);
+//        for(User u : userList) {
+//            logger.info("User has been selected: " + u);
+//        }
 
 
 //        <---------------7--------------->   //Delete User Table (Truncate)

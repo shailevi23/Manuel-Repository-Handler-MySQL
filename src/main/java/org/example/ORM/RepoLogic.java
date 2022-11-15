@@ -43,14 +43,14 @@ public class RepoLogic<T>{
 
     public String createSelectByFieldQuery(String field, Integer value) {
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + field + " = " + value);
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("SELECT * FROM ");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(" WHERE ").append(field);
-        stringBuilder.append("= ").append(value.toString());
-        stringBuilder.append(";");
-        System.out.println(stringBuilder);
-        return stringBuilder.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ").append(field);
+        sb.append("= ").append(value.toString());
+        sb.append(";");
+        System.out.println(sb);
+        return sb.toString();
     }
 
     public String findObj(T object) {
@@ -109,7 +109,10 @@ public class RepoLogic<T>{
         for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if(map.containsKey(field.getType())) {
+                if(field.getAnnotation(AutoIncrement.class) != null){
+                    sb.append("NULL,");
+                }
+                else if(map.containsKey(field.getType())) {
                     sb.append(field.get(object));
                     sb.append(",");
                 }
@@ -117,10 +120,10 @@ public class RepoLogic<T>{
                     sb.append("'");
                     sb.append(field.get(object));
                     sb.append("',");
-                    map.containsKey(object);
                 } else {
-                    sb.append(gson.toJson(object));
-                    sb.append(",");
+                    sb.append("'");
+                    sb.append(gson.toJson(field.get(object)));
+                    sb.append("',");
                 }
             } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);
@@ -273,6 +276,46 @@ public class RepoLogic<T>{
         }
         sb.deleteCharAt(sb.length() -1 );
         sb.append(whereString);
+        sb.append(";");
+        System.out.println(sb);
+        return sb.toString();
+    }
+
+    String createUpdateQueryByFilterLogic(Map<String, Object> fieldsToUpdate, Map<String, Object>  filtersField) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder whereString = new StringBuilder();
+
+        sb.append("UPDATE ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" SET ");
+
+        for (Map.Entry<String,Object> entry : fieldsToUpdate.entrySet()){
+            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
+                sb.append(entry.getValue());
+                sb.append(", ");
+            }
+            else {
+                sb.append("'");
+                sb.append(entry.getValue());
+                sb.append("',");
+            }
+        }
+        sb.deleteCharAt(sb.length() -1 );
+        sb.append(" WHERE ");
+
+        for (Map.Entry<String,Object> entry : filtersField.entrySet()){
+            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
+                sb.append(entry.getValue());
+                sb.append(", ");
+            }
+            else {
+                sb.append("'");
+                sb.append(entry.getValue());
+                sb.append("',");
+            }
+        }
+
+        sb.deleteCharAt(sb.length() -1 );
         sb.append(";");
         System.out.println(sb);
         return sb.toString();
