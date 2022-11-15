@@ -1,0 +1,10 @@
+2022-11-15 11:55:43,767 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-15 11:55:43,776 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM org.example.exampleClasses.User WHERE id = 1
+2022-11-15 11:56:00,268 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 11:56:00,274 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM org.example.exampleClasses.User WHERE id = 1
+2022-11-15 12:12:14,954 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:12:14,961 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 12:12:47,516 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:12:47,522 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 12:15:02,655 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 12:15:02,663 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User

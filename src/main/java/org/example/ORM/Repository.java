@@ -1,5 +1,7 @@
 package org.example.ORM;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 
@@ -16,6 +18,9 @@ public class Repository<T> {
     private RepoLogic<T> repoLogic;
 
     private SqlConfig sqlConfig;
+
+    private static Logger logger = LogManager.getLogger(Repository.class.getName());
+
 
     public Repository(Class<T> clz, SqlConfig sqlConfig) {
         this.clz = clz;
@@ -64,10 +69,12 @@ public class Repository<T> {
     private void execute(String query) {
 
         try(Connection c = ConnectHandler.connect(this.sqlConfig)){
+            logger.info("Connection created for " + sqlConfig.getDbName());
             Statement statement = c.createStatement();
             statement.execute(query);
 
         } catch(SQLException e) {
+            logger.error("Connection failed");
             throw new RuntimeException("Connection failed",e);
         }
     }

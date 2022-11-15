@@ -1,7 +1,6 @@
 package org.example.exampleClasses;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.example.Anottations.AutoIncrement;
 import org.example.Anottations.NotNull;
 import org.example.Anottations.PrimaryKey;
@@ -16,7 +15,6 @@ public class Product {
     @NotNull
     private Double price;
 
-    private static Logger logger = LogManager.getLogger(Product.class.getName());
 
     private Product(){
 
@@ -27,7 +25,6 @@ public class Product {
         product.setName(name);
         product.setPrice(price);
         product.setId(id);
-        logger.info("created product named "+ name);
         return product;
     }
 
@@ -45,12 +42,10 @@ public class Product {
 
     public void setName(String name) {
         if(name == null){
-            logger.error("trying to set product name to null");
             throw new NullPointerException("Name is null");
         }
 
         if(name.equals("")){
-            logger.error("Product name is empty");
             throw new IllegalArgumentException("Name cannot be empty, Please insert product name");
         }
 
@@ -65,7 +60,6 @@ public class Product {
 
     public void setPrice(Double price) {
         if(price < 0){
-            logger.error("trying to set product's price to negative number");
             throw new IllegalArgumentException("Price cannot be a negative number");
         }
 
