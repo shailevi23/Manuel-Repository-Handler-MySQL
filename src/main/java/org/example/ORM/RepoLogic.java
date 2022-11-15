@@ -281,6 +281,46 @@ public class RepoLogic<T>{
         return sb.toString();
     }
 
+    String createUpdateQueryByFilterLogic(Map<String, Object> fieldsToUpdate, Map<String, Object>  filtersField) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder whereString = new StringBuilder();
+
+        sb.append("UPDATE ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" SET ");
+
+        for (Map.Entry<String,Object> entry : fieldsToUpdate.entrySet()){
+            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
+                sb.append(entry.getValue());
+                sb.append(", ");
+            }
+            else {
+                sb.append("'");
+                sb.append(entry.getValue());
+                sb.append("',");
+            }
+        }
+        sb.deleteCharAt(sb.length() -1 );
+        sb.append(" WHERE ");
+
+        for (Map.Entry<String,Object> entry : filtersField.entrySet()){
+            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
+                sb.append(entry.getValue());
+                sb.append(", ");
+            }
+            else {
+                sb.append("'");
+                sb.append(entry.getValue());
+                sb.append("',");
+            }
+        }
+
+        sb.deleteCharAt(sb.length() -1 );
+        sb.append(";");
+        System.out.println(sb);
+        return sb.toString();
+    }
+
     //<----------------------------------HELPERS---------------------------------->
     private String getMySQLDataType(String javaType) {
         switch(javaType) {

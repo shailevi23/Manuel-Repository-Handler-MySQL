@@ -6,12 +6,14 @@ import org.example.Anottations.AutoIncrement;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 
+import javax.swing.plaf.PanelUI;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Repository<T> {
 
@@ -120,9 +122,52 @@ public class Repository<T> {
         return result;
     }
 
+    public int exe(String query) {
+        try{
+            Connection c = ConnectHandler.connect(this.sqlConfig);
+            Statement statement = c.createStatement();
+
+            return statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+
+        } catch(SQLException e) {
+            logger.error(e.getMessage());
+            throw new RuntimeException("Connection failed", e);
+        }
+    }
+
     public T update(T obj) {
         execute(repoLogic.createUpdateQueryLogic(obj));
         return executeAndReturn(repoLogic.findObj(obj)).get(0);
     }
+
+    public List<T> update(Map<String, Object> fieldsToUpdate, Map<String, Object>  filtersField) {
+//        execute(repoLogic.createUpdateQueryByFilterLogic(fieldsToUpdate, filtersField));
+//        return executeAndReturn(repoLogic.createUpdateQueryByFilterLogic(fieldsToUpdate, filtersField));
+
+        return null;
+    }
+
+//    public List<T> updateByProperty(String filedName, String value) {
+//        executeAndReturn(repoLogic.createSelectByFieldQuery(filedName, value));
+//
+//    }
+
+
+
+
+
+    //use Annotations when reading from db
+
+//for (Field field : usr.getClass().getDeclaredFields()) {
+//        DBField dbField = field.getAnnotation(DBField.class);
+//        System.out.println("field name: " + dbField.name());
+//
+//        // changed the access to public
+//        field.setAccessible(true);
+//        Object value = field.get(usr);
+//        System.out.println("field value: " + value);
+//
+//        System.out.println("field type: " + dbField.type());
+//        System.out.println("is primary: " + dbField.isPrimaryKey());
 
 }
