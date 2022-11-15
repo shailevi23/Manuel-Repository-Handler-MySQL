@@ -415,3 +415,22 @@
 2022-11-15 19:07:20,217 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
 2022-11-15 19:07:21,241 INFO    org.example.ORM.Repository - Connection created for summery_project
 2022-11-15 19:07:21,267 INFO    org.example.ORM.RepoLogic - Product has been created: true
+2022-11-15 19:29:06,941 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 19:29:06,957 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 19:29:07,512 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:29:07,523 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 19:29:07,536 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:29:07,540 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 19:29:07,550 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:29:07,559 ERROR   org.example.ORM.Repository - Duplicate entry 'rany@gmail.com' for key 'user.email'
+2022-11-15 19:29:20,956 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 19:29:20,973 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 19:29:21,492 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:29:21,506 ERROR   org.example.ORM.Repository - Duplicate entry 'shai@gmail.com' for key 'user.email'
+2022-11-15 19:29:32,207 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 19:29:32,225 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 19:29:32,752 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:29:32,761 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 19:29:32,775 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 19:29:32,779 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 19:29:32,790 INFO    org.example.ORM.Repository - Connection created for summery_project
