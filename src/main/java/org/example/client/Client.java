@@ -26,9 +26,9 @@ public class Client {
         Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
 
 
-        boolean res;
-        res = userORM.createTable();
-        logger.info("Is User table has been created? " + res);
+//        boolean res;
+//        res = userORM.createTable();
+//        logger.info("Is User table has been created? " + res);
 
 //        res = productORM.createTable();
 //        logger.info("Is User table has been created? " + res);
@@ -58,8 +58,6 @@ public class Client {
 //        logger.info("Product has been created: " + prod.toString());
         //TODO - if the useremail ( UNIQUE ) already inside the DB -> throw exception
         //TODO - if 'id' is AutoIncrement let DB handle it
-        //TODO - handle type's by MAP and handle JSON
-
 //        <---------------2--------------->
 
 
@@ -88,7 +86,6 @@ public class Client {
 //        List<User> users = userORM.selectAll();
 //        logger.info("Users has been selected: " + users.toString());
 //
-        //TODO - return list of items and not result set by using reflection
 //        <---------------5--------------->
 
 

@@ -120,22 +120,4 @@ public class Repository<T> {
         return executeAndReturn(repoLogic.findObj(obj)).get(0);
     }
 
-
-
-
-
-    //use Annotations when reading from db
-
-//for (Field field : usr.getClass().getDeclaredFields()) {
-//        DBField dbField = field.getAnnotation(DBField.class);
-//        System.out.println("field name: " + dbField.name());
-//
-//        // changed the access to public
-//        field.setAccessible(true);
-//        Object value = field.get(usr);
-//        System.out.println("field value: " + value);
-//
-//        System.out.println("field type: " + dbField.type());
-//        System.out.println("is primary: " + dbField.isPrimaryKey());
-
 }

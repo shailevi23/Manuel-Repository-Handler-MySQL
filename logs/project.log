@@ -231,3 +231,6 @@
 2022-11-15 15:29:23,145 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
 2022-11-15 15:29:23,151 INFO    org.example.ORM.RepoLogic - Creating table for User
 2022-11-15 15:29:23,490 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 16:40:18,049 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 16:40:18,053 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 16:40:18,403 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
