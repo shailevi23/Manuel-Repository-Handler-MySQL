@@ -1,18 +1,42 @@
 package org.example.exampleClasses;
 
-public class Product {
-    String name;
-    Double price;
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
+import org.example.Anottations.PrimaryKey;
 
-    public Product(String name, Double price) {
-        this.name = name;
-        this.price = price;
+public class Product {
+
+    @AutoIncrement
+    @PrimaryKey
+    private int id;
+    @NotNull
+    private String name;
+    @NotNull
+    private Double price;
+
+    private Product(){
+
+    }
+
+    public static Product createProduct(String name, Double price, int id) {
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(price);
+        product.setId(id);
+        return product;
     }
 
     public String getName() {
         return name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         if(name == null){

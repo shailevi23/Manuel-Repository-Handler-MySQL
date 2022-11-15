@@ -1,18 +1,36 @@
 package org.example.exampleClasses;
 
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
+import org.example.Anottations.PrimaryKey;
+import org.example.Anottations.Unique;
+
 public class User {
 
+    @AutoIncrement
+    @PrimaryKey
     private int id;
+    @NotNull
     private String firstName;
+    @NotNull
     private String lastName;
 
+    @Unique
+    @NotNull
+    private String email;
 
-    public User(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+
+    public User() {
     }
 
+    public static User createUser(String firstName, String lastName, String email, int id){
+        User user = new User();
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setId(id);
+        return user;
+    }
 
     public int getId() {
         return id;
@@ -59,5 +77,23 @@ public class User {
             throw new IllegalArgumentException("Lat name cannot be empty, Please insert product name");
         }
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

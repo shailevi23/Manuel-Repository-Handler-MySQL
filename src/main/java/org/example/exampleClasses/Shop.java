@@ -1,21 +1,44 @@
 package org.example.exampleClasses;
 
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
+import org.example.Anottations.PrimaryKey;
+
 import java.util.List;
 
 public class Shop {
 
+    @AutoIncrement
+    @PrimaryKey
+    private int id;
+    @NotNull
     private String name;
+    @NotNull
     private List<Product> productList;
 
-    public Shop(String name, List<Product> productList) {
-        this.name = name;
-        this.productList = productList;
+
+    private Shop(){
+
+    }
+    public static Shop createShop(String name, List<Product> productList, int id) {
+        Shop shop = new Shop();
+        shop.setName(name);
+        shop.setProductList(productList);
+        shop.setId(id);
+        return shop;
     }
 
     public String getName() {
         return name;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         if(name == null){

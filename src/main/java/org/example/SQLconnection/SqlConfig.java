@@ -1,4 +1,4 @@
-package org.example.SqlConfig;
+package org.example.SQLconnection;
 
 public class SqlConfig {
 
@@ -6,6 +6,7 @@ public class SqlConfig {
     String user;
     String password;
 
+    final String dbUrl = "jdbc:mysql://localhost:3306/";
     final String schemaName;
 
     public SqlConfig(String dbName, String user, String password) {
@@ -13,6 +14,7 @@ public class SqlConfig {
         this.user = user;
         this.password = password;
         this.schemaName = "summery_project";
+        //CREATE SCHEME LATER
     }
 
     public String getDbName() {
@@ -37,5 +39,17 @@ public class SqlConfig {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getSchemaName() {
+        return schemaName;
+    }
+
+    public String getDB_URL() {
+        return dbUrl;
+    }
+
+    public String getDBurlAndName() {
+        return dbUrl + dbName;
     }
 }
