@@ -42,66 +42,192 @@
 2022-11-15 12:56:23,744 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
 2022-11-15 12:56:23,933 INFO    org.example.ORM.Repository - Connection created for summery_project
 2022-11-15 12:56:23,939 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:17:50,675 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:17:50,677 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
-2022-11-15 13:18:24,684 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:18:24,686 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
-2022-11-15 13:18:24,888 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 13:18:24,911 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:18:24,914 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:18:24,937 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 13:18:24,954 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:18:24,955 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:18:24,974 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 13:18:24,989 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:18:24,990 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:19:54,228 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:19:54,420 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:19:54,428 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:40:30,201 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:40:30,204 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User Query
-2022-11-15 13:42:03,686 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:42:03,688 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 13:42:03,865 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:42:03,875 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:42:03,907 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 13:42:03,933 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:42:03,935 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:42:03,951 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 13:42:03,961 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:42:03,963 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 13:43:27,219 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:43:27,221 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE id = 1
-2022-11-15 13:54:22,574 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:54:22,576 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.Shop
-2022-11-15 13:54:42,363 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:54:42,366 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.Shop
-2022-11-15 13:54:54,000 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:54:54,002 INFO    org.example.ORM.RepoLogic - Truncating table org.example.exampleClasses.Shop
-2022-11-15 13:54:54,182 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 13:57:58,937 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 13:57:58,939 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
-2022-11-15 13:57:59,123 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:03:27,069 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 14:03:27,071 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
-2022-11-15 14:03:27,265 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:03:27,274 ERROR   org.example.ORM.Repository - Connection failed
-2022-11-15 14:03:48,564 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 14:03:48,566 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
-2022-11-15 14:03:48,752 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:04:31,527 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 14:04:31,529 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
-2022-11-15 14:04:31,712 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:04:51,954 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 14:04:51,956 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
-2022-11-15 14:04:52,139 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:15:13,039 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
-2022-11-15 14:15:13,042 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 14:15:13,235 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:15:13,242 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 14:15:13,276 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 14:15:13,290 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:15:13,294 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
-2022-11-15 14:15:13,323 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
-2022-11-15 14:15:13,345 INFO    org.example.ORM.Repository - Connection created for summery_project
-2022-11-15 14:15:13,349 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:30:39,080 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:30:39,084 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.User
+2022-11-15 13:34:27,593 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:34:27,598 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:34:27,897 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:34:27,910 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:34:27,927 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:34:27,935 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:34:27,939 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:34:27,949 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:34:27,959 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:34:27,963 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:34:27,982 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:34:27,986 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:35:56,428 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:35:56,432 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:35:56,725 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:35:56,734 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:35:56,752 INFO    org.example.ORM.RepoLogic - User has been created: User{id=1, firstName='shai', lastName='levi'}
+2022-11-15 13:35:56,752 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:35:56,763 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:35:56,766 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:35:56,778 INFO    org.example.ORM.RepoLogic - User has been created: User{id=2, firstName='omar', lastName='hamdea'}
+2022-11-15 13:35:56,778 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:35:56,787 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:35:56,790 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:35:56,801 INFO    org.example.ORM.RepoLogic - User has been created: User{id=3, firstName='rany', lastName='saliman'}
+2022-11-15 13:38:00,151 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:38:00,155 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 13:38:00,448 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:38:00,458 ERROR   org.example.ORM.Repository - Table 'summery_project.product' doesn't exist
+2022-11-15 13:38:25,004 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:38:25,008 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.Product
+2022-11-15 13:38:25,326 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 13:38:25,326 INFO    org.example.ORM.RepoLogic - Creating table for org.example.exampleClasses.Shop
+2022-11-15 13:38:25,356 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 13:38:25,357 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Product Query
+2022-11-15 13:38:25,367 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:38:25,372 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product
+2022-11-15 13:38:25,387 ERROR   org.example.ORM.Repository - org.example.exampleClasses.Product.<init>()
+2022-11-15 13:39:29,200 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:39:29,205 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
+2022-11-15 13:39:29,502 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:39:29,512 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
+2022-11-15 13:39:29,521 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:39:29,525 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
+2022-11-15 13:39:29,534 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:41:38,691 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:41:38,696 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:41:39,000 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:41:39,010 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:41:39,027 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:41:39,035 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:41:39,039 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:41:39,049 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:41:39,058 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:41:39,061 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:41:39,070 INFO    org.example.ORM.RepoLogic - Product has been created: [User{id=1, firstName='shai', lastName='levi'}, User{id=2, firstName='omar', lastName='hamdea'}, User{id=3, firstName='rany', lastName='saliman'}]
+2022-11-15 13:53:55,171 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:53:55,176 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:53:55,480 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:53:55,488 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:53:55,507 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:53:55,516 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:53:55,520 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:53:55,532 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 13:53:55,541 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:53:55,545 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:53:55,556 INFO    org.example.ORM.RepoLogic - Users has been created: [User{id=1, firstName='shai', lastName='levi'}, User{id=2, firstName='omar', lastName='hamdea'}, User{id=3, firstName='rany', lastName='saliman'}]
+2022-11-15 13:55:20,233 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:55:20,237 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User Query
+2022-11-15 13:55:20,544 INFO    org.example.ORM.RepoLogic - Users has been created: [User{id=1, firstName='shai', lastName='levi'}, User{id=2, firstName='omar', lastName='hamdea'}, User{id=3, firstName='rany', lastName='saliman'}, User{id=1, firstName='shai', lastName='levi'}, User{id=2, firstName='omar', lastName='hamdea'}, User{id=3, firstName='rany', lastName='saliman'}]
+2022-11-15 13:55:41,795 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:55:41,800 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE id = 1
+2022-11-15 13:59:01,701 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:59:02,007 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:59:02,018 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 13:59:02,034 INFO    org.example.ORM.RepoLogic - User has been updated: User{id=2, firstName='omar', lastName='hm'}
+2022-11-15 13:59:23,070 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:59:23,074 INFO    org.example.ORM.RepoLogic - Truncating table org.example.exampleClasses.User
+2022-11-15 13:59:23,377 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 13:59:50,903 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 13:59:50,907 INFO    org.example.ORM.RepoLogic - Truncating table org.example.exampleClasses.User
+2022-11-15 14:01:16,768 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:01:16,772 INFO    org.example.ORM.RepoLogic - Truncating table User
+2022-11-15 14:01:17,109 INFO    org.example.ORM.RepoLogic - User table has been truncated: true
+2022-11-15 14:02:01,049 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:02:01,054 INFO    org.example.ORM.RepoLogic - Truncating table User
+2022-11-15 14:02:01,386 INFO    org.example.ORM.RepoLogic - User table has been truncated: false
+2022-11-15 14:02:14,895 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:02:14,898 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:02:15,208 ERROR   org.example.ORM.Repository - Table 'user' already exists
+2022-11-15 14:02:34,522 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:02:34,526 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:02:34,845 INFO    org.example.ORM.RepoLogic - Is User table has been created? false
+2022-11-15 14:02:53,726 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:02:54,540 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 14:02:55,901 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:02:55,906 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 14:02:56,204 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:02:56,215 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 14:02:56,234 INFO    org.example.ORM.RepoLogic - User has been created: User{id=1, firstName='shai', lastName='levi'}
+2022-11-15 14:02:56,234 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 14:02:56,243 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:02:56,246 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 14:02:56,257 INFO    org.example.ORM.RepoLogic - User has been created: User{id=2, firstName='omar', lastName='hamdea'}
+2022-11-15 14:02:56,257 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 14:02:56,266 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 14:02:56,269 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 14:02:56,277 INFO    org.example.ORM.RepoLogic - User has been created: User{id=3, firstName='rany', lastName='saliman'}
+2022-11-15 14:03:22,927 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:03:22,932 INFO    org.example.ORM.RepoLogic - Truncating table User
+2022-11-15 14:03:23,254 INFO    org.example.ORM.RepoLogic - User table has been truncated: false
+2022-11-15 14:03:30,578 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:03:30,583 INFO    org.example.ORM.RepoLogic - Truncating table User
+2022-11-15 14:03:30,902 INFO    org.example.ORM.RepoLogic - User table has been truncated: false
+2022-11-15 14:04:14,773 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:04:14,778 INFO    org.example.ORM.RepoLogic - Truncating table User
+2022-11-15 14:04:15,093 INFO    org.example.ORM.RepoLogic - User table has been truncated: true
+2022-11-15 14:17:11,868 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:17:11,880 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:20:19,623 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:20:19,633 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:20:34,691 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 14:23:18,379 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:23:18,392 INFO    org.example.ORM.RepoLogic - Creating table for Product
+2022-11-15 14:33:57,544 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:33:57,548 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:33:57,876 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:07:16,423 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:07:16,428 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:07:16,745 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:08:09,843 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:08:09,848 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:08:10,160 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:08:33,366 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:08:33,371 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:08:33,680 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT value UNIQUE (lastName,emai)
+)' at line 7
+2022-11-15 15:08:50,126 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:08:50,131 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:08:50,441 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT value UNIQUE (lastName,email)
+)' at line 7
+2022-11-15 15:09:21,468 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:09:21,474 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:09:21,786 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT value UNIQUE (lastName,email)' at line 7
+2022-11-15 15:11:39,023 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:11:39,027 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:11:39,347 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT UC_ +UserUNIQUE (lastName,email)' at line 7
+2022-11-15 15:11:52,417 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:11:52,421 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:11:52,727 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT UC_UserUNIQUE (lastName,email)' at line 7
+2022-11-15 15:12:03,811 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:12:03,816 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:12:04,133 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTRAINT UC_User UNIQUE (lastName,email)' at line 7
+2022-11-15 15:12:38,715 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:12:38,719 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:12:39,046 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email)' at line 7
+2022-11-15 15:12:54,820 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:12:54,825 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:12:55,139 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email)' at line 7
+2022-11-15 15:13:27,999 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:13:28,003 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:13:28,333 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:22:13,179 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:22:13,184 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:22:13,512 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:24:08,771 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:24:08,775 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:24:09,096 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:25:32,894 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:25:32,898 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:25:33,210 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email))' at line 7
+2022-11-15 15:26:00,006 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:26:00,010 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:26:00,336 ERROR   org.example.ORM.Repository - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE (email)
+)' at line 7
+2022-11-15 15:26:46,252 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:26:46,256 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:26:46,596 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:28:01,001 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:28:01,005 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:28:01,348 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:28:52,456 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:28:52,460 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:28:52,805 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 15:29:23,145 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 15:29:23,151 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 15:29:23,490 INFO    org.example.ORM.RepoLogic - Is User table has been created? true

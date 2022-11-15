@@ -8,7 +8,7 @@ import org.example.Anottations.PrimaryKey;
 import org.example.Anottations.Unique;
 
 public class User {
-
+    @NotNull
     @AutoIncrement
     @PrimaryKey
     private int id;
@@ -16,9 +16,8 @@ public class User {
     private String firstName;
     @NotNull
     private String lastName;
-
-    @Unique
     @NotNull
+    @Unique
     private String email;
 
 

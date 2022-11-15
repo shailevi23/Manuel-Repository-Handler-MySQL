@@ -2,6 +2,10 @@ package org.example.ORM;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
+import org.example.Anottations.PrimaryKey;
+import org.example.Anottations.Unique;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 import org.example.exampleClasses.Shop;
@@ -14,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RepoLogic<T>{
@@ -108,26 +113,72 @@ public class RepoLogic<T>{
 
     //<----------------------------------CREATE TABLE---------------------------------->
     String createTableQueryLogic() {
-        StringBuilder stringBuilder = new StringBuilder();
-        logger.info("Creating table for " + clz.getName());
-        stringBuilder.append("CREATE TABLE ");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(" (\n");
+        StringBuilder sb = new StringBuilder();
+        logger.info("Creating table for " + clz.getSimpleName());
+        sb.append("CREATE TABLE ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" (\n");
+
+        int countPrimaryKeys = 0;
+        int countAutoIncrement = 0;
+        String primaryField = null;
+        ArrayList<String> uniqueField = new ArrayList<>();
+
 
         for(Field field : clz.getDeclaredFields()) {
-            stringBuilder.append(field.getName());
-            stringBuilder.append(" ");
-            stringBuilder.append(getMySQLDataType(field.getType().getSimpleName()));
-            stringBuilder.append(",\n");
+            if(field.getAnnotation(PrimaryKey.class) != null){
+                countPrimaryKeys += 1;
+                primaryField = field.getName();
+                if(countPrimaryKeys > 1){
+                    throw new IllegalArgumentException("Cant Have 2 Primary Keys values in table");
+                }
+            }
+
+            if(field.getAnnotation(Unique.class) != null){
+                uniqueField.add(field.getName());
+            }
+
+            sb.append(field.getName());
+            sb.append(" ");
+            sb.append(getMySQLDataType(field.getType().getSimpleName()));
+
+            if(field.getAnnotation(NotNull.class) != null){
+                sb.append(" NOT NULL");
+            }
+
+            if(field.getAnnotation(AutoIncrement.class) != null){
+                sb.append(" AUTO_INCREMENT");
+                countAutoIncrement += 1;
+                if(countAutoIncrement > 1){
+                    throw new IllegalArgumentException("Cant Have 2 Auto Increment values in table");
+                }
+            }
+
+            sb.append(",\n");
         }
-        stringBuilder.replace(stringBuilder.toString().length() - 2, stringBuilder.toString().length(), "\n);");
-        return stringBuilder.toString();
+        sb.append("PRIMARY KEY (").append(primaryField).append(")");
+        if(uniqueField.size() == 1){
+            sb.append(",\n");
+            sb.append("UNIQUE (").append(uniqueField.get(0)).append(")");
+        }
+        else if(uniqueField.size() > 1){
+            sb.append(",\n");
+            sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
+            for (String fieldName: uniqueField) {
+                sb.append(fieldName);
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ")");
+        }
+        sb.append("\n);");
+        System.out.println(sb.toString());
+        return sb.toString();
     }
 
     //<----------------------------------DELETE---------------------------------->
     String deleteTableQueryLogic(){
         StringBuilder sb = new StringBuilder();
-        logger.info("Truncating table " + clz.getName());
+        logger.info("Truncating table " + clz.getSimpleName());
         sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
         return sb.toString();
     }
