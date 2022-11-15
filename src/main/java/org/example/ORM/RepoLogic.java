@@ -1,5 +1,6 @@
 package org.example.ORM;
 
+import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.Anottations.AutoIncrement;
@@ -18,6 +19,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +29,8 @@ public class RepoLogic<T>{
     private final Class<T> clz;
 
     private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
+    Map<Object,String> map = new HashMap<>();
+
     public RepoLogic(Class<T> clz) {
         this.clz = clz;
     }
@@ -59,14 +63,15 @@ public class RepoLogic<T>{
 
         for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
+            mapInit(map);
             try {
                 sb.append(field.getName());
                 sb.append(" = ");
-                if(field.get(object) instanceof Integer) {
+                if(map.containsKey(field.getType())){
                     sb.append(field.get(object));
                     sb.append(" AND ");
                 }
-                else {
+                else if (field.get(object) instanceof String){
                     sb.append("'");
                     sb.append(field.get(object));
                     sb.append("' AND ");
@@ -90,26 +95,37 @@ public class RepoLogic<T>{
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" VALUES (");
 
+        checkInstanceOfFieldsAndAppendObjectToJson(object, sb);
+
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append(");");
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    void checkInstanceOfFieldsAndAppendObjectToJson(T object, StringBuilder sb){
+        Gson gson = new Gson();
+        mapInit(map);
         for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if(field.get(object) instanceof Integer) {
+                if(map.containsKey(field.getType())) {
                     sb.append(field.get(object));
                     sb.append(",");
                 }
-                else {
+                else if(field.get(object) instanceof String) {
                     sb.append("'");
                     sb.append(field.get(object));
                     sb.append("',");
+                    map.containsKey(object);
+                } else {
+                    sb.append(gson.toJson(object));
+                    sb.append(",");
                 }
             } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append(");");
-        System.out.println(sb.toString());
-        return sb.toString();
     }
 
     //<----------------------------------CREATE TABLE---------------------------------->
@@ -120,46 +136,59 @@ public class RepoLogic<T>{
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" (\n");
 
-        int countPrimaryKeys = 0;
-        int countAutoIncrement = 0;
-        String primaryField = null;
+        AnnotationsHandler annotationHandler = new AnnotationsHandler(0, 0, null);
 
         for(Field field : clz.getDeclaredFields()) {
-            if(field.getAnnotation(PrimaryKey.class) != null){
-                countPrimaryKeys += 1;
-                primaryField = field.getName();
-                if(countPrimaryKeys > 1){
-                    throw new IllegalArgumentException("Cant Have 2 Primary Keys values in table");
-                }
-            }
-
             sb.append(field.getName());
             sb.append(" ");
             sb.append(getMySQLDataType(field.getType().getSimpleName()));
-
-            if(field.getAnnotation(NotNull.class) != null){
-                sb.append(" NOT NULL");
-            }
-
-            if(field.getAnnotation(Unique.class) != null){
-                sb.append(" UNIQUE");
-            }
-
-            if(field.getAnnotation(AutoIncrement.class) != null){
-                sb.append(" AUTO_INCREMENT");
-                countAutoIncrement += 1;
-                if(countAutoIncrement > 1){
-                    throw new IllegalArgumentException("Cant Have 2 Auto Increment values in table");
-                }
-            }
-
+            annotationHandle(field, sb, annotationHandler);
             sb.append(",\n");
         }
-        sb.append("PRIMARY KEY (").append(primaryField).append(")\n");
-        sb.append(");");
-
-        System.out.println(sb);
+        sb.append("PRIMARY KEY (").append(annotationHandler.getPrimaryField()).append(")");
+        if(annotationHandler.getUniqueField().size() == 1){
+            sb.append(",\n");
+            sb.append("UNIQUE (").append(annotationHandler.getUniqueField().get(0)).append(")");
+        }
+        else if(annotationHandler.getUniqueField().size() > 1){
+            sb.append(",\n");
+            sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
+            for (String fieldName: annotationHandler.getUniqueField()) {
+                sb.append(fieldName);
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ")");
+        }
+        sb.append("\n);");
+        System.out.println(sb.toString());
         return sb.toString();
+    }
+
+    private void annotationHandle(Field field, StringBuilder sb ,AnnotationsHandler annotationsHandler) {
+        if(field.getAnnotation(PrimaryKey.class) != null){
+            annotationsHandler.setCountPrimaryKeys(annotationsHandler.getCountPrimaryKeys() + 1);
+            annotationsHandler.setPrimaryField(field.getName());
+            if(annotationsHandler.getCountPrimaryKeys() > 1){
+                throw new IllegalArgumentException(annotationsHandler.messagePrimaryKey());
+            }
+        }
+
+        if(field.getAnnotation(Unique.class) != null){
+            annotationsHandler.getUniqueField().add(field.getName());
+        }
+
+
+        if(field.getAnnotation(NotNull.class) != null){
+            sb.append(" NOT NULL");
+        }
+
+        if(field.getAnnotation(AutoIncrement.class) != null){
+            sb.append(" AUTO_INCREMENT");
+            annotationsHandler.setCountAutoIncrement(annotationsHandler.getCountAutoIncrement() + 1);
+            if(annotationsHandler.getCountAutoIncrement() > 1){
+                throw new IllegalArgumentException(annotationsHandler.messageAutoIncrement());
+            }
+        }
     }
 
     //<----------------------------------DELETE---------------------------------->
@@ -312,6 +341,17 @@ public class RepoLogic<T>{
             default:
                 return "varchar(255)";
         }
+    }
+
+    public void mapInit(Map map){
+        map.put(Integer.class, "Integer");
+        map.put(int.class, "int");
+        map.put(long.class, "long");
+        map.put(Long.class, "Long");
+        map.put(double.class, "double");
+        map.put(Double.class, "Double");
+        map.put(boolean.class, "boolean");
+        map.put(Boolean.class, "Boolean");
     }
 
 }

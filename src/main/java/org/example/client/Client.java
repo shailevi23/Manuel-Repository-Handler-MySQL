@@ -42,8 +42,8 @@ public class Client {
 
 
 //        <---------------2--------------->   //Insert 3 users to user table
-        User user;
-        userORM.add(User.createUser("omar", "bdad", "Addli@gmail.com", 3));
+//        User user;
+//        user = userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1));
 //        logger.info("User has been created: " + user.toString());
 //        user = userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
 //        logger.info("User has been created: " + user.toString());
@@ -60,8 +60,6 @@ public class Client {
 //        logger.info("Product has been created: " + prod.toString());
         //TODO - if the useremail ( UNIQUE ) already inside the DB -> throw exception
         //TODO - if 'id' is AutoIncrement let DB handle it
-        //TODO - handle type's by MAP and handle JSON
-
 //        <---------------2--------------->
 
 
@@ -124,7 +122,7 @@ public class Client {
 //        }
 
 
-        //        <---------------7--------------->   //Delete User Table (Truncate)
+//        <---------------7--------------->   //Delete User Table (Truncate)
 //        boolean res = userORM.deleteTable();
 //        logger.info("User table has been truncated: " + res);
 //        <---------------7--------------->
