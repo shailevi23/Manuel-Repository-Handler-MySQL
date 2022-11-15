@@ -10,24 +10,25 @@ import org.example.Anottations.Unique;
 import org.example.Utils.Utils;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 
-public class RepoLogic<T> {
+public class QueryLogic<T> {
 
+
+    private static Logger logger = LogManager.getLogger(QueryLogic.class.getName());
     private final Class<T> clz;
 
-    private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
-
-    public RepoLogic(Class<T> clz) {
+    public QueryLogic(Class<T> clz) {
         this.clz = clz;
     }
 
-    public String selectAllQueryLogic() {
+    String selectAllQueryLogic() {
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " Query");
         return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
     }
 
-    public String selectByIdQuery(String fieldName, Integer value) {
+     String selectByIdQuery(String fieldName, Integer value) {
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + fieldName + " = " + value);
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * FROM ");
@@ -38,7 +39,13 @@ public class RepoLogic<T> {
         return sb.toString();
     }
 
-    public String selectByManyFiltersQuery(Map<String, Object> filters) {
+     String selectByManyFiltersQuery(String filedName, Object fieldValue, String filterFieldName, Object filterValue) {
+
+         Map<String,Object> currMap = new HashMap<>();
+         currMap.put(filedName, fieldValue);
+         currMap.put(filterFieldName,filterValue);
+
+
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE ");
         StringBuilder sb = new StringBuilder();
         Gson gson = new Gson();
@@ -46,7 +53,7 @@ public class RepoLogic<T> {
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" WHERE ");
 
-        for (Map.Entry<String, Object> entry : filters.entrySet()) {
+        for (Map.Entry<String, Object> entry : currMap.entrySet()) {
             sb.append(entry.getKey());
             sb.append(" = ");
             if (Utils.map.containsKey(entry.getValue().getClass())) {
@@ -66,7 +73,7 @@ public class RepoLogic<T> {
         return sb.toString();
     }
 
-    public String findObjQuery(Object object) {
+     String findObjQuery(Object object) {
         logger.info("creating SELECT * FROM " + clz.getSimpleName());
         StringBuilder sb = new StringBuilder();
         Gson gson = new Gson();
@@ -137,18 +144,6 @@ public class RepoLogic<T> {
         }
 
         sb.append("PRIMARY KEY (").append(annotationHandler.getPrimaryField()).append(")");
-        if (annotationHandler.getUniqueField().size() == 1) {
-            sb.append(",\n");
-            sb.append("UNIQUE (").append(annotationHandler.getUniqueField().get(0)).append(")");
-        } else if (annotationHandler.getUniqueField().size() > 1) {
-            sb.append(",\n");
-            sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
-            for (String fieldName : annotationHandler.getUniqueField()) {
-                sb.append(fieldName);
-                sb.append(",");
-            }
-            sb.replace(sb.length() - 1, sb.length(), ")");
-        }
         sb.append("\n);");
         return sb.toString();
     }
@@ -163,7 +158,7 @@ public class RepoLogic<T> {
     }
 
 
-    public String deleteSingleByAnyPropertyQuery(Object obj) {
+     String deleteSingleByAnyPropertyQuery(Object obj) {
         StringBuilder sb = new StringBuilder();
         Gson gson = new Gson();
         logger.info("Deleting single item by specific property");
@@ -324,7 +319,7 @@ public class RepoLogic<T> {
         }
     }
 
-    void reflectionHandlerHelper(T object, StringBuilder sb) {
+    private void reflectionHandlerHelper(T object, StringBuilder sb) {
         Gson gson = new Gson();
         for (Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
@@ -358,12 +353,12 @@ public class RepoLogic<T> {
             }
         }
 
-        if (field.isAnnotationPresent(Unique.class)) {
-            annotationsHandler.getUniqueField().add(field.getName());
-        }
-
         if (field.isAnnotationPresent(NotNull.class)) {
             sb.append(" NOT NULL");
+        }
+
+        if (field.isAnnotationPresent(Unique.class)) {
+            sb.append(" UNIQUE");
         }
 
         if (field.isAnnotationPresent(AutoIncrement.class)) {

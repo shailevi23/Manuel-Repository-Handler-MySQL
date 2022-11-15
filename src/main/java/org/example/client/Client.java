@@ -2,32 +2,25 @@ package org.example.client;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.ORM.RepoLogic;
 import org.example.ORM.Repository;
 import org.example.SQLconnection.SqlConfig;
 import org.example.exampleClasses.Product;
 import org.example.exampleClasses.Shop;
 import org.example.exampleClasses.User;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Client {
-    private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
+    private static Logger logger = LogManager.getLogger(Client.class.getName());
     public static void main(String arg[]) {
-        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
 
         //TODO working
 //       <---------------1--------------->   //create 3 tables - user, shop, product
         Repository<User> userORM = new Repository<>(User.class, sqlConfig);
         Repository<Product> productORM = new Repository<>(Product.class, sqlConfig);
         Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
-
 
 //        boolean res;
 //        res = userORM.createTable();
@@ -88,7 +81,12 @@ public class Client {
 //        users.add(User.createUserWithoutId("shai", "levi", "shai213@gmail.com"));
 //        users.add(User.createUserWithoutId("omar", "hamdea", "omar123@gmail.com"));
 //        users.add(User.createUserWithoutId("rany", "saliman", "rany123@gmail.com"));
-//        boolean res = userORM.addAll(users);
+//        List<User> res = userORM.addAll(users);
+//
+//        for(User u : res) {
+//            System.out.println(u);
+//        }
+//
 //        logger.info("Users has been created: " + res);
 
 //        <---------------4--------------->

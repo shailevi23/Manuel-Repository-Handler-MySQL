@@ -2,10 +2,8 @@ package org.example.SQLconnection;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.example.ORM.RepoLogic;
 
 public class SqlConfig {
-
     String dbName;
     String user;
     String password;

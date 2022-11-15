@@ -763,3 +763,23 @@
 2022-11-16 00:05:48,280 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
 2022-11-16 00:05:48,290 INFO    org.example.ORM.RepoLogic - Deleting single item by specific property
 2022-11-16 00:05:48,299 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 00:26:48,401 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 00:26:48,404 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-16 00:26:48,612 ERROR   org.example.SQLconnection.ConnectHandler - couldn't open connection
+2022-11-16 00:27:04,835 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-16 00:27:04,837 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-16 00:27:05,029 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-16 00:35:25,527 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-16 00:35:25,529 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-16 00:35:25,722 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-16 01:07:11,664 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
+2022-11-16 01:07:11,666 INFO    org.example.ORM.QueryLogic - creating INSERT INTO User Query
+2022-11-16 01:07:11,865 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 01:07:11,876 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM User
+2022-11-16 01:07:11,901 INFO    org.example.ORM.QueryLogic - creating INSERT INTO User Query
+2022-11-16 01:07:11,922 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 01:07:11,924 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM User
+2022-11-16 01:07:11,944 INFO    org.example.ORM.QueryLogic - creating INSERT INTO User Query
+2022-11-16 01:07:11,964 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-16 01:07:11,966 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM User
+2022-11-16 01:07:11,984 INFO    org.example.client.Client - Users has been created: [User{id=1, firstName='shai', lastName='levi', email='shai213@gmail.com'}, User{id=2, firstName='omar', lastName='hamdea', email='omar123@gmail.com'}, User{id=3, firstName='rany', lastName='saliman', email='rany123@gmail.com'}]
