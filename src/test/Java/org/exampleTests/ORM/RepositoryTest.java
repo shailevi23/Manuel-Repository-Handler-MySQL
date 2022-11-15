@@ -7,6 +7,9 @@ import org.example.exampleClasses.Shop;
 import org.example.exampleClasses.User;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RepositoryTest {
@@ -34,9 +37,56 @@ class RepositoryTest {
     @Test
     void addingUserToTable() {
         Repository<User> userORM = new Repository<>(User.class, sqlConfig);
-        User user;
-        user = userORM.add(User.createUser("rany", "saliman", "ranytest@gmail.com", 5));
-        assertEquals("rany", user.getFirstName());
+        boolean addRes;
+        addRes = userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1));
+        assertEquals(true, addRes);
+    }
+    @Test
+    void addingProductToTable() {
+        Repository<Product> productORM = new Repository<>(Product.class, sqlConfig);
+        boolean addRes;
+        addRes = productORM.add(Product.createProductWithoutId("shampoo", 25.3));
+        assertEquals(true, addRes);
+    }
+
+    @Test
+    void addingAllUsersToTable(){
+        List<User> users = new ArrayList<>();
+        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+        users.add(User.createUser("shai", "levi", "shaasdfi@gmail.com", 1));
+        users.add(User.createUser("omar", "hamdea", "omarasdf@gmail.com", 2));
+        users.add(User.createUser("rany", "saliman", "ranyfdas@gmail.com", 3));
+        assertEquals(true, userORM.addAll(users));
+    }
+
+    @Test
+    void deletingUsersTable(){
+        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+        assertEquals(true, userORM.deleteTable());
+    }
+
+    @Test
+    void deletingProductsTable(){
+        Repository<Product> productORM = new Repository<>(Product.class, sqlConfig);
+        assertEquals(true, productORM.deleteTable());
+    }
+
+    @Test
+    void deletingShopTable(){
+        Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
+        assertEquals(true, shopORM.deleteTable());
+    }
+
+    @Test
+    void selectingAllUsersInTable(){
+        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
+        List<User> users = userORM.selectAll();
+    }
+
+    @Test
+    void selectingAllProductsInTable(){
+        Repository<Product> productORM = new Repository<>(Product.class, sqlConfig);
+        List<Product> products = productORM.selectAll();
     }
 
     @Test
