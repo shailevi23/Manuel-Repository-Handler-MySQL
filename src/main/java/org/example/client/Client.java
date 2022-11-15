@@ -13,12 +13,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Client {
     private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
     public static void main(String arg[]) {
-        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
 
 //`       <---------------1--------------->   //create 3 tables - user, shop, product
         Repository<User> userORM = new Repository<>(User.class, sqlConfig);
@@ -26,9 +28,9 @@ public class Client {
         Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
 
 
-        boolean res;
-        res = userORM.createTable();
-        logger.info("Is User table has been created? " + res);
+//        boolean res;
+//        res = userORM.createTable();
+//        logger.info("Is User table has been created? " + res);
 
 //        res = productORM.createTable();
 //        logger.info("Is User table has been created? " + res);
@@ -40,8 +42,8 @@ public class Client {
 
 
 //        <---------------2--------------->   //Insert 3 users to user table
-//        User user;
-//        user = userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1));
+        User user;
+        userORM.add(User.createUser("omar", "bdad", "Addli@gmail.com", 3));
 //        logger.info("User has been created: " + user.toString());
 //        user = userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
 //        logger.info("User has been created: " + user.toString());
@@ -87,7 +89,7 @@ public class Client {
 //        <---------------5--------------->   //Select all users
 //        List<User> users = userORM.selectAll();
 //        logger.info("Users has been selected: " + users.toString());
-//
+
         //TODO - return list of items and not result set by using reflection
 //        <---------------5--------------->
 
@@ -109,8 +111,20 @@ public class Client {
 //        logger.info("User has been updated: " + updatedUser.toString());
 //        <---------------7--------------->
 
+//        Map<String, Object> fieldsToUpdate = new HashMap<>();
+//        Map<String, Object> filterFields = new HashMap<>();
+//
+//        fieldsToUpdate.put("email","stam@gmail.com");
+//        filterFields.put("firstName","omar");
 
-//        <---------------7--------------->   //Delete User Table (Truncate)
+
+//        List<User> userList = userORM.update(fieldsToUpdate, filterFields);
+//        for(User u : userList) {
+//            logger.info("User has been selected: " + u);
+//        }
+
+
+        //        <---------------7--------------->   //Delete User Table (Truncate)
 //        boolean res = userORM.deleteTable();
 //        logger.info("User table has been truncated: " + res);
 //        <---------------7--------------->

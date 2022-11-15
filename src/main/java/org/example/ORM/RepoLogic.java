@@ -20,6 +20,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class RepoLogic<T>{
 
@@ -122,8 +123,6 @@ public class RepoLogic<T>{
         int countPrimaryKeys = 0;
         int countAutoIncrement = 0;
         String primaryField = null;
-        ArrayList<String> uniqueField = new ArrayList<>();
-
 
         for(Field field : clz.getDeclaredFields()) {
             if(field.getAnnotation(PrimaryKey.class) != null){
@@ -134,16 +133,16 @@ public class RepoLogic<T>{
                 }
             }
 
-            if(field.getAnnotation(Unique.class) != null){
-                uniqueField.add(field.getName());
-            }
-
             sb.append(field.getName());
             sb.append(" ");
             sb.append(getMySQLDataType(field.getType().getSimpleName()));
 
             if(field.getAnnotation(NotNull.class) != null){
                 sb.append(" NOT NULL");
+            }
+
+            if(field.getAnnotation(Unique.class) != null){
+                sb.append(" UNIQUE");
             }
 
             if(field.getAnnotation(AutoIncrement.class) != null){
@@ -156,22 +155,10 @@ public class RepoLogic<T>{
 
             sb.append(",\n");
         }
-        sb.append("PRIMARY KEY (").append(primaryField).append(")");
-        if(uniqueField.size() == 1){
-            sb.append(",\n");
-            sb.append("UNIQUE (").append(uniqueField.get(0)).append(")");
-        }
-        else if(uniqueField.size() > 1){
-            sb.append(",\n");
-            sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
-            for (String fieldName: uniqueField) {
-                sb.append(fieldName);
-                sb.append(",");
-            }
-            sb.replace(sb.length() - 1, sb.length(), ")");
-        }
-        sb.append("\n);");
-        System.out.println(sb.toString());
+        sb.append("PRIMARY KEY (").append(primaryField).append(")\n");
+        sb.append(");");
+
+        System.out.println(sb);
         return sb.toString();
     }
 
@@ -257,6 +244,46 @@ public class RepoLogic<T>{
         }
         sb.deleteCharAt(sb.length() -1 );
         sb.append(whereString);
+        sb.append(";");
+        System.out.println(sb);
+        return sb.toString();
+    }
+
+    String createUpdateQueryByFilterLogic(Map<String, Object> fieldsToUpdate, Map<String, Object>  filtersField) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder whereString = new StringBuilder();
+
+        sb.append("UPDATE ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" SET ");
+
+        for (Map.Entry<String,Object> entry : fieldsToUpdate.entrySet()){
+            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
+                sb.append(entry.getValue());
+                sb.append(", ");
+            }
+            else {
+                sb.append("'");
+                sb.append(entry.getValue());
+                sb.append("',");
+            }
+        }
+        sb.deleteCharAt(sb.length() -1 );
+        sb.append(" WHERE ");
+
+        for (Map.Entry<String,Object> entry : filtersField.entrySet()){
+            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
+                sb.append(entry.getValue());
+                sb.append(", ");
+            }
+            else {
+                sb.append("'");
+                sb.append(entry.getValue());
+                sb.append("',");
+            }
+        }
+
+        sb.deleteCharAt(sb.length() -1 );
         sb.append(";");
         System.out.println(sb);
         return sb.toString();
