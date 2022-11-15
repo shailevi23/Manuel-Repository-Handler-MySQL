@@ -18,26 +18,24 @@ public class Client {
         SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
 
 //`       <---------------1--------------->   //create 3 tables - user, shop, product
-//        Repository<User> userORM = new Repository<>(User.class);
+        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
 //        userORM.createTable(sqlConfig);
 //
-//        Repository<Product> productORM = new Repository<>(Product.class);
+        Repository<Product> productORM = new Repository<>(Product.class, sqlConfig);
 //        productORM.createTable(sqlConfig);
 //
-//        Repository<Shop> shopORM = new Repository<>(Shop.class);
+        Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
 //        shopORM.createTable(sqlConfig);
 //        <---------------1--------------->
 
 
 
 //        <---------------2--------------->   //Insert 3 users to user table
-//        Repository<User> userORM = new Repository<>(User.class);
 //        userORM.add(User.createUser("shai", "levi", "shai@gmail.com", 1) ,sqlConfig);
 //        userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2) ,sqlConfig);
 //        userORM.add(User.createUser("rany", "saliman", "rany@gmail.com", 3) ,sqlConfig);
 
 
-//        Repository<Product> productORM = new Repository<>(Product.class);
 //        productORM.add(Product.createProduct("shampoo", 25.3, 1) ,sqlConfig);
 //        productORM.add(Product.createProduct("table", 250.6, 2) ,sqlConfig);
 //        productORM.add(Product.createProduct("pen", 12.3, 3) ,sqlConfig);
@@ -50,7 +48,6 @@ public class Client {
 
 
 //        <---------------3--------------->   //Delete users with deleteMany but use id
-//        Repository<User> userORM = new Repository<>(User.class);
 //        userORM.deleteItemsByProperty("id", 1, sqlConfig);
 //        userORM.deleteItemsByProperty("id", 2, sqlConfig);
 //        userORM.deleteItemsByProperty("id", 3, sqlConfig);
@@ -59,7 +56,6 @@ public class Client {
 
 
 //        <---------------4--------------->   //Add all users
-//        Repository<User> userORM = new Repository<>(User.class);
 //        List<User> users = new ArrayList<>();
 //        users.add(User.createUser("shai", "levi", "shai@gmail.com", 1));
 //        users.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
@@ -70,7 +66,6 @@ public class Client {
 
 
 //        <---------------5--------------->   //Select all users
-//        Repository<User> userORM = new Repository<>(User.class);
 //        ResultSet rs = userORM.selectAll(sqlConfig);
 //        System.out.println(rs);
 //
@@ -80,21 +75,25 @@ public class Client {
 
 
 //        <---------------6--------------->   //select by Id
-        //TODO - not working
-        Repository<User> userORM = new Repository<>(User.class, sqlConfig);
-        List<User> userList = userORM.selectById(1);
-        for(User u : userList) {
-            System.out.println(u);
-        }
+//        List<User> userList = userORM.selectById(1);
+//        for(User u : userList) {
+//            System.out.println(u);
+//        }
 
-        //        <---------------6--------------->
+//        <---------------6--------------->
 
 
 
 //        <---------------7--------------->   //Delete User Table (Truncate)
-//        Repository<User> userORM = new Repository<>(User.class);
 //        userORM.deleteTable(sqlConfig);
 //        <---------------7--------------->
+
+
+//        <---------------7--------------->   //Update User
+        User user = User.createUser("omar", "hm", "omar@gmail.com", 2);
+        User updatedUser = userORM.update(user);
+        System.out.println(updatedUser);
+        //        <---------------7--------------->
 
     }
 }

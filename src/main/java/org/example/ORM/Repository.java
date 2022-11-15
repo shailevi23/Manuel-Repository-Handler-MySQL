@@ -54,7 +54,6 @@ public class Repository<T> {
         }
     }
 
-
     //TODO - not working
     public List<T> selectById(int id){
         return executeAndReturn(repoLogic.createSelectByFieldQuery("id", id));
@@ -95,6 +94,12 @@ public class Repository<T> {
         }
         return result;
     }
+
+    public T update(T obj) {
+        execute(repoLogic.createUpdateQueryLogic(obj));
+        return executeAndReturn(repoLogic.findObj(obj)).get(0);
+    }
+
 
 
 
