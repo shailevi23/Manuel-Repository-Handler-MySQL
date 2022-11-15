@@ -26,9 +26,9 @@ public class Client {
         Repository<Shop> shopORM = new Repository<>(Shop.class, sqlConfig);
 
 
-//        boolean res;
-//        res = userORM.createTable();
-//        logger.info("Is User table has been created? " + res);
+        boolean res;
+        res = userORM.createTable();
+        logger.info("Is User table has been created? " + res);
 
 //        res = productORM.createTable();
 //        logger.info("Is User table has been created? " + res);

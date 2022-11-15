@@ -11,9 +11,7 @@ public class Product {
     @NotNull
     @PrimaryKey
     private int id;
-    @AutoIncrement
     @NotNull
-    @PrimaryKey
     private String name;
     @NotNull
     private Double price;

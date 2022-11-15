@@ -3,7 +3,9 @@ package org.example.ORM;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.NotNull;
 import org.example.Anottations.PrimaryKey;
+import org.example.Anottations.Unique;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 import org.example.exampleClasses.Shop;
@@ -16,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RepoLogic<T>{
@@ -116,30 +119,59 @@ public class RepoLogic<T>{
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" (\n");
 
-        int CountPrimaryKeys = 0;
-        int CountAutoIncrement = 0;
+        int countPrimaryKeys = 0;
+        int countAutoIncrement = 0;
+        String primaryField = null;
+        ArrayList<String> uniqueField = new ArrayList<>();
+
 
         for(Field field : clz.getDeclaredFields()) {
             if(field.getAnnotation(PrimaryKey.class) != null){
-                CountPrimaryKeys += 1;
-                if(CountPrimaryKeys > 1){
+                countPrimaryKeys += 1;
+                primaryField = field.getName();
+                if(countPrimaryKeys > 1){
                     throw new IllegalArgumentException("Cant Have 2 Primary Keys values in table");
                 }
             }
 
-            if(field.getAnnotation(AutoIncrement.class) != null){
-                CountAutoIncrement += 1;
-                if(CountAutoIncrement > 1){
-                    throw new IllegalArgumentException("Cant Have 2 Auto Increment values in table");
-                }
+            if(field.getAnnotation(Unique.class) != null){
+                uniqueField.add(field.getName());
             }
 
             sb.append(field.getName());
             sb.append(" ");
             sb.append(getMySQLDataType(field.getType().getSimpleName()));
+
+            if(field.getAnnotation(NotNull.class) != null){
+                sb.append(" NOT NULL");
+            }
+
+            if(field.getAnnotation(AutoIncrement.class) != null){
+                sb.append(" AUTO_INCREMENT");
+                countAutoIncrement += 1;
+                if(countAutoIncrement > 1){
+                    throw new IllegalArgumentException("Cant Have 2 Auto Increment values in table");
+                }
+            }
+
             sb.append(",\n");
         }
-        sb.replace(sb.toString().length() - 2, sb.toString().length(), "\n);");
+        sb.append("PRIMARY KEY (").append(primaryField).append(")");
+        if(uniqueField.size() == 1){
+            sb.append(",\n");
+            sb.append("UNIQUE (").append(uniqueField.get(0)).append(")");
+        }
+        else if(uniqueField.size() > 1){
+            sb.append(",\n");
+            sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
+            for (String fieldName: uniqueField) {
+                sb.append(fieldName);
+                sb.append(",");
+            }
+            sb.replace(sb.length() - 1, sb.length(), ")");
+        }
+        sb.append("\n);");
+        System.out.println(sb.toString());
         return sb.toString();
     }
 
