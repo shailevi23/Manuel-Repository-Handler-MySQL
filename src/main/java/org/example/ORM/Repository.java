@@ -14,6 +14,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -41,9 +42,10 @@ public class Repository<T> {
         return executeBoolean(repoLogic.deleteTableQueryLogic());
     }
 
-    public void deleteItemsByProperty(Object property, Object value) {
+    public void deleteItemsByProperty(String property, Object value) {
         execute(repoLogic.deleteManyItemsByAnyPropertyQueryLogic(property, value));
     }
+
 
     //TODO
 //    public void deleteSingleItemByAnyProperty(Object property){
@@ -69,7 +71,7 @@ public class Repository<T> {
 
     //TODO - not working
     public List<T> selectById(int id){
-        return executeAndReturn(repoLogic.createSelectByFieldQuery("id", id));
+        return executeAndReturn(repoLogic.selectByIdQuery("id", id));
 
     }
 
@@ -139,9 +141,10 @@ public class Repository<T> {
         }
     }
 
-    public T update(T obj) {
+    public T update(Object obj) {
         execute(repoLogic.createUpdateQueryLogic(obj));
-        return executeAndReturn(repoLogic.findObj(obj)).get(0);
+        List<T> list = executeAndReturn(repoLogic.findObj(obj));
+        return list.get(list.size() - 1);
     }
 
     public List<T> update(Map<String, Object> fieldsToUpdate, Map<String, Object>  filtersField) {
@@ -151,27 +154,12 @@ public class Repository<T> {
         return null;
     }
 
-//    public List<T> updateByProperty(String filedName, String value) {
-//        executeAndReturn(repoLogic.createSelectByFieldQuery(filedName, value));
-//
-//    }
-
-
-
-
-
-    //use Annotations when reading from db
-
-//for (Field field : usr.getClass().getDeclaredFields()) {
-//        DBField dbField = field.getAnnotation(DBField.class);
-//        System.out.println("field name: " + dbField.name());
-//
-//        // changed the access to public
-//        field.setAccessible(true);
-//        Object value = field.get(usr);
-//        System.out.println("field value: " + value);
-//
-//        System.out.println("field type: " + dbField.type());
-//        System.out.println("is primary: " + dbField.isPrimaryKey());
+    public List<T> updateByProperty(String filedName, Object fieldValue, String filterFieldName, Object filterValue) {
+        execute(repoLogic.createUpdateSinglePropertyQueryLogic(filedName, fieldValue, filterFieldName, filterValue));
+        Map<String,Object> currMap = new HashMap<>();
+        currMap.put(filedName, fieldValue);
+        currMap.put(filterFieldName,filterValue);
+        return executeAndReturn(repoLogic.selectByManyFiltersQuery(currMap));
+    }
 
 }

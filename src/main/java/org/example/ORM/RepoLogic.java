@@ -1,6 +1,7 @@
 package org.example.ORM;
 
 import com.google.gson.Gson;
+import jdk.jshell.execution.Util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.example.Anottations.AutoIncrement;
@@ -25,7 +26,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-public class RepoLogic<T>{
+public class RepoLogic<T> {
 
     private final Class<T> clz;
 
@@ -44,7 +45,7 @@ public class RepoLogic<T>{
     public String createSelectAllQueryLogicReflection() {
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " Query");
         StringBuilder sb = new StringBuilder();
-        for(Field field : clz.getDeclaredFields()) {
+        for (Field field : clz.getDeclaredFields()) {
             sb.append(field.getName());
             sb.append(" ");
             sb.append(getMySQLDataType(field.getType().getSimpleName()));
@@ -56,7 +57,7 @@ public class RepoLogic<T>{
     }
 
 
-    public String createSelectByFieldQuery(String field, Integer value) {
+    public String selectByIdQuery(String field, Integer value) {
         logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + field + " = " + value);
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT * FROM ");
@@ -68,18 +69,47 @@ public class RepoLogic<T>{
         return sb.toString();
     }
 
-    public String findObj(T object) {
-        logger.info("creating SELECT * FROM " + clz.getSimpleName());
+    public String selectByManyFiltersQuery(Map<String, Object> filters) {
+        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE ");
         StringBuilder sb = new StringBuilder();
+        Gson gson = new Gson();
         sb.append("SELECT * FROM ");
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" WHERE ");
 
+        for (Map.Entry<String, Object> entry : filters.entrySet()) {
+            sb.append(entry.getKey());
+            sb.append(" = ");
+            if (Utils.map.containsKey(entry.getValue().getClass())) {
+                sb.append(entry.getValue());
+                sb.append(" AND ");
+            } else if (entry.getValue().getClass().equals(String.class)) {
+                sb.append("'");
+                sb.append(entry.getValue());
+                sb.append("' AND ");
+            } else {
+                sb.append("'");
+                sb.append(gson.toJson(entry.getValue()));
+                sb.append("' AND ");
+            }
+        }
+        sb.replace(sb.length() - 4, sb.length(), ";");
+        System.out.println(sb);
+        return sb.toString();
+    }
 
-        for(Field field : object.getClass().getDeclaredFields()) {
+    public String findObj(Object object) {
+        logger.info("creating SELECT * FROM " + clz.getSimpleName());
+        StringBuilder sb = new StringBuilder();
+        Gson gson = new Gson();
+        sb.append("SELECT * FROM ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ");
+
+        for (Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if(!field.isAnnotationPresent(AutoIncrement.class)) {
+                if (!field.isAnnotationPresent(AutoIncrement.class)) {
                     sb.append(field.getName());
                     sb.append(" = ");
                     if (Utils.map.containsKey(field.getType())) {
@@ -90,12 +120,17 @@ public class RepoLogic<T>{
                         sb.append(field.get(object));
                         sb.append("' AND ");
                     }
+                    else{
+                        sb.append("'");
+                        sb.append(gson.toJson(field.get(object)));
+                        sb.append("' AND ");
+                    }
                 }
-            } catch(IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
-        sb.replace(sb.length() - 5, sb.length(),";" );
+        sb.replace(sb.length() - 5, sb.length(), ";");
 
         System.out.println(sb);
         return sb.toString();
@@ -118,19 +153,17 @@ public class RepoLogic<T>{
         return sb.toString();
     }
 
-    void checkInstanceOfFieldsAndAppendObjectToJson(T object, StringBuilder sb){
+    void checkInstanceOfFieldsAndAppendObjectToJson(T object, StringBuilder sb) {
         Gson gson = new Gson();
-        for(Field field : object.getClass().getDeclaredFields()) {
+        for (Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if(field.getAnnotation(AutoIncrement.class) != null){
+                if (field.getAnnotation(AutoIncrement.class) != null) {
                     sb.append("NULL,");
-                }
-                else if(Utils.map.containsKey(field.getType())) {
+                } else if (Utils.map.containsKey(field.getType())) {
                     sb.append(field.get(object));
                     sb.append(",");
-                }
-                else if(field.get(object) instanceof String) {
+                } else if (field.get(object) instanceof String) {
                     sb.append("'");
                     sb.append(field.get(object));
                     sb.append("',");
@@ -139,7 +172,7 @@ public class RepoLogic<T>{
                     sb.append(gson.toJson(field.get(object)));
                     sb.append("',");
                 }
-            } catch(IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -155,7 +188,7 @@ public class RepoLogic<T>{
 
         AnnotationsHandler annotationHandler = new AnnotationsHandler(0, 0, null);
 
-        for(Field field : clz.getDeclaredFields()) {
+        for (Field field : clz.getDeclaredFields()) {
             sb.append(field.getName());
             sb.append(" ");
             sb.append(getMySQLDataType(field.getType().getSimpleName()));
@@ -163,14 +196,13 @@ public class RepoLogic<T>{
             sb.append(",\n");
         }
         sb.append("PRIMARY KEY (").append(annotationHandler.getPrimaryField()).append(")");
-        if(annotationHandler.getUniqueField().size() == 1){
+        if (annotationHandler.getUniqueField().size() == 1) {
             sb.append(",\n");
             sb.append("UNIQUE (").append(annotationHandler.getUniqueField().get(0)).append(")");
-        }
-        else if(annotationHandler.getUniqueField().size() > 1){
+        } else if (annotationHandler.getUniqueField().size() > 1) {
             sb.append(",\n");
             sb.append("CONSTRAINT UC_").append(clz.getSimpleName()).append(" UNIQUE (");
-            for (String fieldName: annotationHandler.getUniqueField()) {
+            for (String fieldName : annotationHandler.getUniqueField()) {
                 sb.append(fieldName);
                 sb.append(",");
             }
@@ -181,35 +213,35 @@ public class RepoLogic<T>{
         return sb.toString();
     }
 
-    private void annotationHandle(Field field, StringBuilder sb ,AnnotationsHandler annotationsHandler) {
-        if(field.getAnnotation(PrimaryKey.class) != null){
+    private void annotationHandle(Field field, StringBuilder sb, AnnotationsHandler annotationsHandler) {
+        if (field.getAnnotation(PrimaryKey.class) != null) {
             annotationsHandler.setCountPrimaryKeys(annotationsHandler.getCountPrimaryKeys() + 1);
             annotationsHandler.setPrimaryField(field.getName());
-            if(annotationsHandler.getCountPrimaryKeys() > 1){
+            if (annotationsHandler.getCountPrimaryKeys() > 1) {
                 throw new IllegalArgumentException(annotationsHandler.messagePrimaryKey());
             }
         }
 
-        if(field.isAnnotationPresent(Unique.class)){
+        if (field.isAnnotationPresent(Unique.class)) {
             annotationsHandler.getUniqueField().add(field.getName());
         }
 
 
-        if(field.isAnnotationPresent(NotNull.class)){
+        if (field.isAnnotationPresent(NotNull.class)) {
             sb.append(" NOT NULL");
         }
 
-        if(field.isAnnotationPresent(AutoIncrement.class)){
+        if (field.isAnnotationPresent(AutoIncrement.class)) {
             sb.append(" AUTO_INCREMENT");
             annotationsHandler.setCountAutoIncrement(annotationsHandler.getCountAutoIncrement() + 1);
-            if(annotationsHandler.getCountAutoIncrement() > 1){
+            if (annotationsHandler.getCountAutoIncrement() > 1) {
                 throw new IllegalArgumentException(annotationsHandler.messageAutoIncrement());
             }
         }
     }
 
     //<----------------------------------DELETE---------------------------------->
-    String deleteTableQueryLogic(){
+    String deleteTableQueryLogic() {
         StringBuilder sb = new StringBuilder();
         logger.info("Truncating table " + clz.getSimpleName());
         sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
@@ -217,119 +249,107 @@ public class RepoLogic<T>{
     }
 
 
-    public void deleteSingleItemByAnyPropertyLogic(Object property){
+    public void deleteSingleItemByAnyPropertyLogic(Object property) {
         //TODO
     }
 
-
-    String deleteManyItemsByAnyPropertyQueryLogic(Object property, Object value){
+    String deleteManyItemsByAnyPropertyQueryLogic(String property, Object value) {
         StringBuilder sb = new StringBuilder();
+        Gson gson = new Gson();
         logger.info("Deleting many items by specific property");
         sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ").append(property.toString()).append("=");
-        if(value.getClass().getSimpleName().equals("Integer")){
-            sb.append(value.toString());
-            return sb.toString();
+        sb.append(" WHERE ").append(property).append("=");
+        if (Utils.map.containsKey(value.getClass())) {
+            sb.append(value);
+        } else if (value.getClass().equals(String.class)) {
+            sb.append("'").append(value).append("'");
+        } else {
+            sb.append("'").append(gson.toJson(value)).append("'");
         }
-        if(value.getClass().getSimpleName().equals("int")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-        if(value.getClass().getSimpleName().equals("Double")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-        if(value.getClass().getSimpleName().equals("double")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-        if(value.getClass().getSimpleName().equals("float")){
-            sb.append(value.toString());
-            return sb.toString();
-        }
-
-        sb.append("'").append(value.toString()).append("'");
         System.out.println(sb.toString());
         return sb.toString();
     }
 
 
-    String createUpdateQueryLogic(T object) {
+    String createUpdateQueryLogic(Object object) {
         StringBuilder sb = new StringBuilder();
         StringBuilder whereString = new StringBuilder();
+        Gson gson = new Gson();
 
         sb.append("UPDATE ");
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" SET ");
 
-        for(Field field : object.getClass().getDeclaredFields()) {
+        for (Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                String fieldName = field.getName();
-                if(fieldName.equals("id")) {
-                    whereString.append(" WHERE id = ").append(field.get(object));
+                if (field.isAnnotationPresent(PrimaryKey.class)) {
+                    whereString.append(" WHERE ").append(field.getName());
+                    whereString.append(" = ").append(field.get(object));
                     continue;
-                } else {
-
-                    sb.append(fieldName);
-                    sb.append(" = ");
                 }
 
-                if(field.get(object) instanceof Integer) {
+                sb.append(field.getName());
+                sb.append(" = ");
+
+                if (Utils.map.containsKey(field.getType())) {
                     sb.append(field.get(object));
-                    sb.append(", ");
-                }
-                else {
+                    sb.append(" , ");
+                } else if (field.getType().equals(String.class)) {
                     sb.append("'");
                     sb.append(field.get(object));
-                    sb.append("',");
+                    sb.append("' , ");
+                } else {
+                    sb.append("'");
+                    sb.append(gson.toJson(field.get(object)));
+                    sb.append("' , ");
                 }
-            } catch(IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
-        sb.deleteCharAt(sb.length() -1 );
-        sb.append(whereString);
+
+        sb.replace(sb.length() - 3, sb.length(), whereString.toString());
         sb.append(";");
         System.out.println(sb);
         return sb.toString();
     }
 
-    String createUpdateQueryByFilterLogic(Map<String, Object> fieldsToUpdate, Map<String, Object>  filtersField) {
+    String createUpdateSinglePropertyQueryLogic(String filedName, Object fieldValue, String filterFieldName, Object filterValue) {
         StringBuilder sb = new StringBuilder();
-        StringBuilder whereString = new StringBuilder();
-
+        Gson gson = new Gson();
         sb.append("UPDATE ");
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" SET ");
+        sb.append(filedName).append(" = ");
 
-        for (Map.Entry<String,Object> entry : fieldsToUpdate.entrySet()){
-            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
-                sb.append(entry.getValue());
-                sb.append(", ");
-            }
-            else {
-                sb.append("'");
-                sb.append(entry.getValue());
-                sb.append("',");
-            }
+        if (Utils.map.containsKey(fieldValue.getClass())) {
+            sb.append(fieldValue);
+        } else if (fieldValue.getClass().equals(String.class)) {
+            sb.append("'");
+            sb.append(fieldValue);
+            sb.append("'");
+        } else {
+            sb.append("'");
+            sb.append(gson.toJson(fieldValue));
+            sb.append("'");
         }
-        sb.deleteCharAt(sb.length() -1 );
+
         sb.append(" WHERE ");
+        sb.append(filterFieldName).append(" = ");
 
-        for (Map.Entry<String,Object> entry : filtersField.entrySet()){
-            if(entry.getKey().equals("Intger") || entry.getKey().equals("int")) {
-                sb.append(entry.getValue());
-                sb.append(", ");
-            }
-            else {
-                sb.append("'");
-                sb.append(entry.getValue());
-                sb.append("',");
-            }
+        if (Utils.map.containsKey(filterValue.getClass())) {
+            sb.append(filterValue);
+        } else if (filterValue.getClass().equals(String.class)) {
+            sb.append("'");
+            sb.append(filterValue);
+            sb.append("'");
+        } else {
+            sb.append("'");
+            sb.append(gson.toJson(filterValue));
+            sb.append("'");
         }
 
-        sb.deleteCharAt(sb.length() -1 );
         sb.append(";");
         System.out.println(sb);
         return sb.toString();
@@ -337,7 +357,7 @@ public class RepoLogic<T>{
 
     //<----------------------------------HELPERS---------------------------------->
     private String getMySQLDataType(String javaType) {
-        switch(javaType) {
+        switch (javaType) {
             case "int":
             case "Integer":
                 return "int(11)";

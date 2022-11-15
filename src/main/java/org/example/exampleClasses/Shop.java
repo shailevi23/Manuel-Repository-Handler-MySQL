@@ -79,7 +79,8 @@ public class Shop {
     @Override
     public String toString() {
         return "Shop{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", productList=" + productList +
                 '}';
     }

@@ -70,10 +70,15 @@ public class Client {
 //        <---------------2--------------->
 
 
-
+        //TODO working
 //        <---------------3--------------->   //Delete users with deleteMany but use id
-        userORM.deleteItemsByProperty("id", 1);
-        userORM.deleteItemsByProperty("id", 2);
+//         ArrayList<Product> prodList = new ArrayList<>();
+//        prodList.add(Product.createProductWithoutId("new1", 2.0));
+//        prodList.add(Product.createProductWithoutId("new2", 19.3));
+//        prodList.add(Product.createProductWithoutId("new3", 10.3));
+//        shopORM.deleteItemsByProperty("productList", prodList);
+
+//        userORM.deleteItemsByProperty("id", 2);
 //        <---------------3--------------->
 
 
@@ -99,34 +104,48 @@ public class Client {
 //        <---------------5--------------->
 
 
-
+        //TODO working
 //        <---------------6--------------->   //select by Id
 //        List<User> userList = userORM.selectById(1);
 //        for(User u : userList) {
 //            logger.info("User has been selected: " + u);
 //        }
-
+//
+//        List<Product> prod = productORM.selectById(9);
+//        for(Product u : prod) {
+//            logger.info("User has been selected: " + u);
+//        }
 //        <---------------6--------------->
 
 
-
-//        <---------------7--------------->   //Update User
-//        User user = User.createUser("omar", "hm", "omar@gmail.com", 2);
-//        User updatedUser = userORM.update(user);
+        //TODO working
+//        <---------------7--------------->   //Update Entire Entity
+//        User userAdd = userORM.add(User.createUserWithoutId("haland", "thebest", "haland@gmail.com"));
+//        userAdd.setLastName("hamdea");
+//        User updatedUser = userORM.update(userAdd);
 //        logger.info("User has been updated: " + updatedUser.toString());
+
+//        ArrayList<Product> prodList = new ArrayList<>();
+//        prodList.add(Product.createProductWithoutId("new1", 2.0));
+//        prodList.add(Product.createProductWithoutId("new2", 19.3));
+//        prodList.add(Product.createProductWithoutId("new3", 10.3));
+//        Shop shop = shopORM.add(Shop.createShopWithoutId("supername", prodList));
+//        prodList.add(Product.createProductWithoutId("new4", 15.3));
+//        shop.setProductList(prodList);
+//        shopORM.update(shop);
 //        <---------------7--------------->
 
-//        Map<String, Object> fieldsToUpdate = new HashMap<>();
-//        Map<String, Object> filterFields = new HashMap<>();
-//
-//        fieldsToUpdate.put("email","stam@gmail.com");
-//        filterFields.put("firstName","omar");
+        Map<String, Object> fieldsToUpdate = new HashMap<>();
+        Map<String, Object> filterFields = new HashMap<>();
+
+        fieldsToUpdate.put("email","stam@gmail.com");
+        filterFields.put("firstName","omar");
 
 
-//        List<User> userList = userORM.update(fieldsToUpdate, filterFields);
-//        for(User u : userList) {
-//            logger.info("User has been selected: " + u);
-//        }
+        List<User> userList = userORM.update(fieldsToUpdate, filterFields);
+        for(User u : userList) {
+            logger.info("User has been selected: " + u);
+        }
 
 
 //        <---------------7--------------->   //Delete User Table (Truncate)
@@ -134,5 +153,10 @@ public class Client {
 //        logger.info("User table has been truncated: " + res);
 //        <---------------7--------------->
 
+
+//        List<User> users = userORM.updateByProperty("firstName", "oldShai", "lastName", "levi");
+//        for(User u : users) {
+//            System.out.println(u.toString());
+//        }
     }
 }

@@ -554,3 +554,173 @@
 2022-11-15 21:06:59,912 INFO    org.example.ORM.Repository - Connection created for summery_project
 2022-11-15 21:06:59,942 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
 2022-11-15 21:07:00,037 INFO    org.example.ORM.RepoLogic - User has been created: User{id=5, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-15 21:24:34,109 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:24:37,762 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
+2022-11-15 21:24:42,548 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 21:24:59,881 INFO    org.example.ORM.RepoLogic - Deleting many items by specific property
+2022-11-15 21:24:59,956 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 21:33:43,149 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:33:43,153 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE id = 1
+2022-11-15 21:33:43,492 INFO    org.example.ORM.RepoLogic - User has been selected: User{id=1, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-15 21:34:20,475 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:34:20,479 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE id = 1
+2022-11-15 21:34:20,812 INFO    org.example.ORM.RepoLogic - User has been selected: User{id=1, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-15 21:34:20,812 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product WHERE id = 1
+2022-11-15 21:34:20,827 INFO    org.example.ORM.RepoLogic - User has been selected: Product{name='shampoo', price=25.3}
+2022-11-15 21:35:10,748 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:35:10,754 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE id = 1
+2022-11-15 21:35:11,084 INFO    org.example.ORM.RepoLogic - User has been selected: User{id=1, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-15 21:35:11,084 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product WHERE id = 1
+2022-11-15 21:35:11,100 INFO    org.example.ORM.RepoLogic - User has been selected: Product{id=1, name='shampoo', price=25.3}
+2022-11-15 21:35:27,448 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:35:27,454 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE id = 1
+2022-11-15 21:35:27,837 INFO    org.example.ORM.RepoLogic - User has been selected: User{id=1, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-15 21:35:27,837 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Product WHERE id = 9
+2022-11-15 21:39:07,923 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:39:08,287 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 21:39:08,293 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 21:39:08,336 INFO    org.example.ORM.RepoLogic - User has been updated: User{id=1, firstName='shai', lastName='levi', email='ajhsf@gmail.com'}
+2022-11-15 21:42:00,329 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:42:00,335 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 21:42:00,715 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 21:42:00,726 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 21:42:00,754 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 21:42:00,754 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 21:45:20,122 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 21:45:20,127 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 21:45:20,451 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 21:45:20,461 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 21:45:20,487 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 21:45:20,490 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 21:45:20,505 INFO    org.example.ORM.RepoLogic - User has been updated: User{id=7, firstName='omar', lastName='hm', email='omar@gmail.com'}
+2022-11-15 22:28:26,047 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 22:28:26,361 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:28:26,371 ERROR   org.example.ORM.Repository - Unknown column 'levi' in 'where clause'
+2022-11-15 22:30:55,270 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 22:30:55,580 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:30:55,589 ERROR   org.example.ORM.Repository - Unknown column 'newShai' in 'field list'
+2022-11-15 22:31:21,291 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 22:31:21,604 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:31:21,615 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE 
+2022-11-15 22:37:31,407 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 22:37:31,739 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:37:31,751 ERROR   org.example.ORM.Repository - Data truncation: Truncated incorrect DOUBLE value: 'newShai'
+2022-11-15 22:37:52,752 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 22:37:53,074 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:37:53,085 ERROR   org.example.ORM.Repository - Data truncation: Truncated incorrect DOUBLE value: 'oldShai'
+2022-11-15 22:38:31,275 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 22:38:31,596 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:38:31,607 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE 
+2022-11-15 22:58:35,225 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 22:58:35,229 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 22:58:35,556 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:58:35,567 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 22:58:35,598 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 22:58:35,608 ERROR   org.example.ORM.Repository - Data truncation: Truncated incorrect DOUBLE value: 'assaf'
+2022-11-15 23:01:48,710 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:01:48,720 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:01:49,078 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:01:49,088 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:05:19,827 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:05:19,895 ERROR   org.example.ORM.Repository - Data truncation: Truncated incorrect DOUBLE value: 'assaf'
+2022-11-15 23:05:32,268 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:05:32,280 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:05:32,640 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:05:32,650 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:05:37,722 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:05:42,387 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:05:42,396 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:05:42,741 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:05:42,752 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:05:50,595 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:05:54,428 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:05:54,436 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:05:54,784 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:05:54,795 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:06:00,282 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:06:02,824 ERROR   org.example.ORM.Repository - Data truncation: Truncated incorrect DOUBLE value: 'assaf'
+2022-11-15 23:10:40,606 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:10:40,611 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:10:40,932 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:10:40,943 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:10:40,968 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:10:40,976 ERROR   org.example.ORM.Repository - Data truncation: Truncated incorrect DOUBLE value: 'haland'
+2022-11-15 23:11:48,719 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:11:48,729 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:11:49,070 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:11:49,080 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:16:00,578 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:16:03,304 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:16:03,309 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:16:03,638 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:16:03,647 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:16:03,673 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:16:03,680 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:16:03,696 INFO    org.example.ORM.RepoLogic - User has been updated: User{id=15, firstName='haland', lastName='hamdea', email='haland@gmail.com'}
+2022-11-15 23:16:03,705 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:16:03,706 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User WHERE 
+2022-11-15 23:16:24,771 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:16:24,776 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:16:25,096 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:16:25,106 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:16:25,132 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:16:25,136 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:16:25,151 INFO    org.example.ORM.RepoLogic - User has been updated: User{id=15, firstName='haland', lastName='hamdea', email='haland@gmail.com'}
+2022-11-15 23:19:15,717 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:19:16,045 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:19:16,055 ERROR   org.example.ORM.Repository - Unknown column 'serialVersionUID' in 'field list'
+2022-11-15 23:19:40,855 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:19:40,860 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:19:41,179 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:19:41,189 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:19:41,214 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:19:41,218 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:19:41,233 INFO    org.example.ORM.RepoLogic - User has been updated: User{id=15, firstName='haland', lastName='hamdea', email='haland@gmail.com'}
+2022-11-15 23:21:24,584 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:21:24,588 INFO    org.example.ORM.RepoLogic - creating INSERT INTO User Query
+2022-11-15 23:21:24,910 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:21:24,922 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:21:24,948 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:21:24,952 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM User
+2022-11-15 23:21:24,968 INFO    org.example.ORM.RepoLogic - User has been updated: User{id=18, firstName='haland', lastName='hamdea', email='haland@gmail.com'}
+2022-11-15 23:23:54,656 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:23:54,660 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:23:54,987 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:23:54,997 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:23:55,013 ERROR   org.example.ORM.Repository - Unknown column 'productLi' in 'where clause'
+2022-11-15 23:25:22,173 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:25:22,184 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:25:22,543 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:25:22,556 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:25:22,572 ERROR   org.example.ORM.Repository - Unknown column 'productLi' in 'where clause'
+2022-11-15 23:26:16,373 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:26:16,385 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:26:16,741 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:26:16,753 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:26:16,768 ERROR   org.example.ORM.Repository - Unknown column 'productLi' in 'where clause'
+2022-11-15 23:26:46,206 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:26:46,215 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:26:46,583 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:26:46,592 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:26:46,608 ERROR   org.example.ORM.Repository - Unknown column 'productLi' in 'where clause'
+2022-11-15 23:27:01,609 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:27:05,828 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:27:07,071 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:27:07,092 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:27:07,187 ERROR   org.example.ORM.Repository - Unknown column 'productLi' in 'where clause'
+2022-11-15 23:27:28,768 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:27:28,783 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:27:29,156 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:27:39,323 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:27:44,384 ERROR   org.example.ORM.Repository - Unknown column 'productLi' in 'where clause'
+2022-11-15 23:28:31,718 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:28:31,730 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:28:32,087 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:28:34,800 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:28:49,869 ERROR   org.example.ORM.Repository - Unknown column 'productLi' in 'where clause'
+2022-11-15 23:29:57,144 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 23:29:57,149 INFO    org.example.ORM.RepoLogic - creating INSERT INTO Shop Query
+2022-11-15 23:29:57,485 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:29:57,497 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
+2022-11-15 23:29:57,527 INFO    org.example.ORM.Repository - Connection created for summery_project
+2022-11-15 23:29:57,530 INFO    org.example.ORM.RepoLogic - creating SELECT * FROM Shop
