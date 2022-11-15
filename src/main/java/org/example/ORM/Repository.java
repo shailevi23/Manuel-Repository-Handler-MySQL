@@ -28,8 +28,8 @@ public class Repository<T> {
         repoLogic = new RepoLogic<>(clz);
     }
 
-    public void createTable() {
-        execute(repoLogic.createTableQueryLogic());
+    public boolean createTable() {
+        return executeBoolean(repoLogic.createTableQueryLogic());
     }
 
     public void deleteTable() {
@@ -49,8 +49,9 @@ public class Repository<T> {
         return executeAndReturn(repoLogic.createSelectAllQueryLogic());
     }
 
-    public void add(T obj) {
-        execute(repoLogic.createAddQueryLogic(obj));
+    public T add(T obj) {
+         execute(repoLogic.createAddQueryLogic(obj));
+         return executeAndReturn(repoLogic.findObj(obj)).get(0);
     }
 
     public void addAll(List<T> objects) {
@@ -59,7 +60,6 @@ public class Repository<T> {
         }
     }
 
-
     //TODO - not working
     public List<T> selectById(int id){
         return executeAndReturn(repoLogic.createSelectByFieldQuery("id", id));
@@ -67,7 +67,6 @@ public class Repository<T> {
     }
 
     private void execute(String query) {
-
         try(Connection c = ConnectHandler.connect(this.sqlConfig)){
             logger.info("Connection created for " + sqlConfig.getDbName());
             Statement statement = c.createStatement();
@@ -75,6 +74,16 @@ public class Repository<T> {
 
         } catch(SQLException e) {
             logger.error("Connection failed");
+            throw new RuntimeException("Connection failed",e);
+        }
+    }
+
+    private boolean executeBoolean(String query) {
+        try(Connection c = ConnectHandler.connect(this.sqlConfig)){
+            Statement statement = c.createStatement();
+            statement.execute(query);
+            return true;
+        } catch(SQLException e) {
             throw new RuntimeException("Connection failed",e);
         }
     }
@@ -102,6 +111,12 @@ public class Repository<T> {
         }
         return result;
     }
+
+    public T update(T obj) {
+        execute(repoLogic.createUpdateQueryLogic(obj));
+        return executeAndReturn(repoLogic.findObj(obj)).get(0);
+    }
+
 
 
 

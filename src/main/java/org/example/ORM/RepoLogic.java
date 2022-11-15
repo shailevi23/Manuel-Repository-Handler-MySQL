@@ -27,12 +27,12 @@ public class RepoLogic<T>{
 
     //<----------------------------------READ---------------------------------->
     public String createSelectAllQueryLogic() {
-        logger.info("creating SELECT * FROM " + clz.getName() + " Query");
+        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " Query");
         return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
     }
 
     public String createSelectByFieldQuery(String field, Integer value) {
-        logger.info("creating SELECT * FROM " + clz.getName() + " WHERE " + field + " = " + value);
+        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + field + " = " + value);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("SELECT * FROM ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
@@ -43,13 +43,45 @@ public class RepoLogic<T>{
         return stringBuilder.toString();
     }
 
+    public String findObj(T object) {
+        logger.info("creating SELECT * FROM " + clz.getSimpleName());
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT * FROM ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" WHERE ");
+
+
+        for(Field field : object.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                sb.append(field.getName());
+                sb.append(" = ");
+                if(field.get(object) instanceof Integer) {
+                    sb.append(field.get(object));
+                    sb.append(" AND ");
+                }
+                else {
+                    sb.append("'");
+                    sb.append(field.get(object));
+                    sb.append("' AND ");
+                }
+            } catch(IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        sb.replace(sb.length() - 5, sb.length(),";" );
+
+        System.out.println(sb);
+        return sb.toString();
+    }
+
 
     //<----------------------------------ADD---------------------------------->
     String createAddQueryLogic(T object) {
         StringBuilder sb = new StringBuilder();
-        logger.info("creating INSERT INTO " + clz.getName() + " Query");
+        logger.info("creating INSERT INTO " + clz.getSimpleName() + " Query");
         sb.append("INSERT INTO ");
-        sb.append(clz.getSimpleName());
+        sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" VALUES (");
 
         for(Field field : object.getClass().getDeclaredFields()) {
@@ -134,6 +166,48 @@ public class RepoLogic<T>{
 
         sb.append("'").append(value.toString()).append("'");
         System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+
+    String createUpdateQueryLogic(T object) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder whereString = new StringBuilder();
+
+        sb.append("UPDATE ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" SET ");
+
+        for(Field field : object.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            try {
+                String fieldName = field.getName();
+                if(fieldName.equals("id")) {
+                    whereString.append(" WHERE id = ").append(field.get(object));
+                    continue;
+                } else {
+
+                    sb.append(fieldName);
+                    sb.append(" = ");
+                }
+
+                if(field.get(object) instanceof Integer) {
+                    sb.append(field.get(object));
+                    sb.append(", ");
+                }
+                else {
+                    sb.append("'");
+                    sb.append(field.get(object));
+                    sb.append("',");
+                }
+            } catch(IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        sb.deleteCharAt(sb.length() -1 );
+        sb.append(whereString);
+        sb.append(";");
+        System.out.println(sb);
         return sb.toString();
     }
 
