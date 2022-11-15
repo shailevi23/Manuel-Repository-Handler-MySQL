@@ -1,7 +1,10 @@
 package org.example.ORM;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
+import org.example.exampleClasses.Shop;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -17,16 +20,19 @@ public class RepoLogic<T>{
 
     private final Class<T> clz;
 
+    private static Logger logger = LogManager.getLogger(RepoLogic.class.getName());
     public RepoLogic(Class<T> clz) {
         this.clz = clz;
     }
 
     //<----------------------------------READ---------------------------------->
     public String createSelectAllQueryLogic() {
+        logger.info("creating SELECT * FROM " + clz + " Query");
         return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
     }
 
     public String createSelectByFieldQuery(String field, Integer value) {
+        logger.info("creating SELECT * FROM " + clz + " WHERE " + field + " = " + value);
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("SELECT * FROM ");
         stringBuilder.append(clz.getSimpleName().toLowerCase());
@@ -41,7 +47,7 @@ public class RepoLogic<T>{
     //<----------------------------------ADD---------------------------------->
     String createAddQueryLogic(T object) {
         StringBuilder sb = new StringBuilder();
-
+        logger.info("creating INSERT INTO " + clz + " Query");
         sb.append("INSERT INTO ");
         sb.append(clz.getSimpleName());
         sb.append(" VALUES (");
