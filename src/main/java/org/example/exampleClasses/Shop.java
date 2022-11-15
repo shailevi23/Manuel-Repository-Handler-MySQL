@@ -19,7 +19,7 @@ public class Shop {
 
 
 
-    private Shop(){
+    public Shop(){
 
     }
     public static Shop createShop(String name, List<Product> productList, int id) {

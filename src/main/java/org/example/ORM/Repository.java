@@ -2,6 +2,7 @@ package org.example.ORM;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.Anottations.AutoIncrement;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 
@@ -51,17 +52,16 @@ public class Repository<T> {
         return executeAndReturn(repoLogic.createSelectAllQueryLogic());
     }
 
-    public T add(T obj) {
-         execute(repoLogic.createAddQueryLogic(obj));
-         return executeAndReturn(repoLogic.findObj(obj)).get(0);
+    public boolean add(T obj) {
+        execute(repoLogic.createAddQueryLogic(obj));
+        return true;
     }
 
-    public List<T> addAll(List<T> objects) {
-        List<T> resList= new ArrayList<>();
+    public boolean addAll(List<T> objects) {
         for(T obj : objects) {
-            resList.add(add(obj));
+            add(obj);
         }
-        return resList;
+        return true;
     }
 
     //TODO - not working
@@ -72,11 +72,10 @@ public class Repository<T> {
 
     private void execute(String query) {
         try(Connection c = ConnectHandler.connect(this.sqlConfig)){
-            logger.info("Connection created for " + sqlConfig.getDbName());
+            logger.info("Connection created for " + this.sqlConfig.getDbName());
             Statement statement = c.createStatement();
             statement.execute(query);
-
-        } catch(SQLException e) {
+        }catch(SQLException e) {
             logger.error(e.getMessage());
             throw new RuntimeException("Connection failed",e);
         }
@@ -104,8 +103,13 @@ public class Repository<T> {
                 T item = constructor.newInstance();
                 Field[]  declaredFields = clz.getDeclaredFields();
                 for(Field field : declaredFields){
-                    field.setAccessible(true);
-                    field.set(item, rs.getObject(field.getName()));
+                    if(field.getAnnotation(AutoIncrement.class) != null){
+
+                    }
+                    else{
+                        field.setAccessible(true);
+                        field.set(item, rs.getObject(field.getName()));
+                    }
                 }
                 result.add(item);
             }
