@@ -8,9 +8,12 @@ import org.example.Anottations.PrimaryKey;
 public class Product {
 
     @AutoIncrement
+    @NotNull
     @PrimaryKey
     private int id;
+    @AutoIncrement
     @NotNull
+    @PrimaryKey
     private String name;
     @NotNull
     private Double price;

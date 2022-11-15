@@ -161,3 +161,10 @@
 2022-11-15 14:04:14,773 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
 2022-11-15 14:04:14,778 INFO    org.example.ORM.RepoLogic - Truncating table User
 2022-11-15 14:04:15,093 INFO    org.example.ORM.RepoLogic - User table has been truncated: true
+2022-11-15 14:17:11,868 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:17:11,880 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:20:19,623 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:20:19,633 INFO    org.example.ORM.RepoLogic - Creating table for User
+2022-11-15 14:20:34,691 INFO    org.example.ORM.RepoLogic - Is User table has been created? true
+2022-11-15 14:23:18,379 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-15 14:23:18,392 INFO    org.example.ORM.RepoLogic - Creating table for Product

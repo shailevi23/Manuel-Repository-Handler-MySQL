@@ -29,7 +29,7 @@ public class Client {
 //        boolean res;
 //        res = userORM.createTable();
 //        logger.info("Is User table has been created? " + res);
-//
+
 //        res = productORM.createTable();
 //        logger.info("Is User table has been created? " + res);
 //
@@ -111,8 +111,8 @@ public class Client {
 
 
 //        <---------------7--------------->   //Delete User Table (Truncate)
-        boolean res = userORM.deleteTable();
-        logger.info("User table has been truncated: " + res);
+//        boolean res = userORM.deleteTable();
+//        logger.info("User table has been truncated: " + res);
 //        <---------------7--------------->
 
     }

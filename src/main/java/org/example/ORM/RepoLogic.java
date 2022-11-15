@@ -2,6 +2,8 @@ package org.example.ORM;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.example.Anottations.AutoIncrement;
+import org.example.Anottations.PrimaryKey;
 import org.example.SQLconnection.ConnectHandler;
 import org.example.SQLconnection.SqlConfig;
 import org.example.exampleClasses.Shop;
@@ -108,20 +110,37 @@ public class RepoLogic<T>{
 
     //<----------------------------------CREATE TABLE---------------------------------->
     String createTableQueryLogic() {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         logger.info("Creating table for " + clz.getSimpleName());
-        stringBuilder.append("CREATE TABLE ");
-        stringBuilder.append(clz.getSimpleName().toLowerCase());
-        stringBuilder.append(" (\n");
+        sb.append("CREATE TABLE ");
+        sb.append(clz.getSimpleName().toLowerCase());
+        sb.append(" (\n");
+
+        int CountPrimaryKeys = 0;
+        int CountAutoIncrement = 0;
 
         for(Field field : clz.getDeclaredFields()) {
-            stringBuilder.append(field.getName());
-            stringBuilder.append(" ");
-            stringBuilder.append(getMySQLDataType(field.getType().getSimpleName()));
-            stringBuilder.append(",\n");
+            if(field.getAnnotation(PrimaryKey.class) != null){
+                CountPrimaryKeys += 1;
+                if(CountPrimaryKeys > 1){
+                    throw new IllegalArgumentException("Cant Have 2 Primary Keys values in table");
+                }
+            }
+
+            if(field.getAnnotation(AutoIncrement.class) != null){
+                CountAutoIncrement += 1;
+                if(CountAutoIncrement > 1){
+                    throw new IllegalArgumentException("Cant Have 2 Auto Increment values in table");
+                }
+            }
+
+            sb.append(field.getName());
+            sb.append(" ");
+            sb.append(getMySQLDataType(field.getType().getSimpleName()));
+            sb.append(",\n");
         }
-        stringBuilder.replace(stringBuilder.toString().length() - 2, stringBuilder.toString().length(), "\n);");
-        return stringBuilder.toString();
+        sb.replace(sb.toString().length() - 2, sb.toString().length(), "\n);");
+        return sb.toString();
     }
 
     //<----------------------------------DELETE---------------------------------->
