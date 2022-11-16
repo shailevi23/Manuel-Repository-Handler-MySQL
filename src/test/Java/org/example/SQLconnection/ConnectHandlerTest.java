@@ -1,8 +1,6 @@
-package org.exampleTests.SQLconnection;
+package org.example.SQLconnection;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ConnectHandlerTest {
 

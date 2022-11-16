@@ -14,7 +14,7 @@ import java.util.List;
 public class Client {
     private static Logger logger = LogManager.getLogger(Client.class.getName());
     public static void main(String arg[]) {
-        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "omar135790864");
+        SqlConfig sqlConfig = new SqlConfig("summery_project", "root", "root");
 
         //TODO working
 //       <---------------1--------------->   //create 3 tables - user, shop, product

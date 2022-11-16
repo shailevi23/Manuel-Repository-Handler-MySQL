@@ -1,6 +1,5 @@
-package org.exampleTests.exampleClasses;
+package org.example.exampleClasses;
 
-import org.example.exampleClasses.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,19 +11,13 @@ class UserTest {
 
     @BeforeEach
     void createProduct() {
-        user = new User(1, "firstname", "lastname");
+        user = User.createUserWithoutId("firstname", "lastname", "sha@gmail.com");
     }
 
     @Test
     void setId_idIsValid_isEqual() {
         user.setId(5);
         assertEquals(user.getId(), 5, "Excepted equal 5");
-    }
-
-
-    @Test
-    void setId_idIsNegative_throwsException() {
-        assertThrows(IllegalArgumentException.class, () -> user.setId(-1), "Expected IllegalArgumentException and something else happened");
     }
 
     @Test
@@ -58,5 +51,10 @@ class UserTest {
     @Test
     void setLastName_LastNameIsEmpty_throwsException() {
         assertThrows(IllegalArgumentException.class, () -> user.setLastName(""), "Expected IllegalArgumentException and something else happened");
+    }
+
+    @Test
+    void createUser_isNotNull_isEquals(){
+        assertNotNull(User.createUser("first", "last", "email@gmail.com", 1));
     }
 }

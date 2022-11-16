@@ -1,6 +1,5 @@
-package org.exampleTests.exampleClasses;
+package org.example.exampleClasses;
 
-import org.example.exampleClasses.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,9 +10,9 @@ class ProductTest {
     Product product;
 
     @BeforeEach
-//    void createProduct() {
-//        product = new Product("name", 2.0);
-//    }
+    void createProduct() {
+        product = Product.createProductWithoutId("name", 2.0);
+    }
 
     @Test
     void setName_nameIsValid_isEquals() {
@@ -40,5 +39,10 @@ class ProductTest {
     @Test
     void setPrice_priceIsNegative_throwsException() {
         assertThrows(IllegalArgumentException.class, () -> product.setPrice(-1.0), "Expected IllegalArgumentException and something else happened");
+    }
+
+    @Test
+    void createProduct_isNotNull_isEquals(){
+        assertNotNull(Product.createProduct("first", 2.5, 1));
     }
 }

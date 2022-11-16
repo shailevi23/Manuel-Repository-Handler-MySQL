@@ -1123,3 +1123,75 @@
 2022-11-16 09:59:09,023 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password omar135790864
 2022-11-16 09:59:09,214 INFO    org.example.ORM.ExecuteLogic - Connection created for summery_project
 2022-11-16 09:59:09,220 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user WHERE 
+2022-11-16 10:13:28,930 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:29,045 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:29,050 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:29,052 INFO    org.example.ORM.QueryLogic - creating TRUNCATE TABLE userQuery
+2022-11-16 10:13:29,843 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user Query
+2022-11-16 10:13:29,910 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:29,915 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:29,919 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:29,923 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:29,924 INFO    org.example.ORM.QueryLogic - creating INSERT INTO user VALUES  Query
+2022-11-16 10:13:29,971 INFO    org.example.ORM.ExecuteLogic - Connection created for summery_project
+2022-11-16 10:13:29,983 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user WHERE 
+2022-11-16 10:13:30,010 INFO    org.example.ORM.QueryLogic - creating INSERT INTO user VALUES  Query
+2022-11-16 10:13:30,032 INFO    org.example.ORM.ExecuteLogic - Connection created for summery_project
+2022-11-16 10:13:30,038 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user WHERE 
+2022-11-16 10:13:30,061 INFO    org.example.ORM.QueryLogic - creating INSERT INTO user VALUES  Query
+2022-11-16 10:13:30,077 INFO    org.example.ORM.ExecuteLogic - Connection created for summery_project
+2022-11-16 10:13:30,083 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user WHERE 
+2022-11-16 10:13:30,111 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,112 INFO    org.example.ORM.QueryLogic - creating TRUNCATE TABLE productQuery
+2022-11-16 10:13:30,176 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM product Query
+2022-11-16 10:13:30,209 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,211 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,213 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,217 INFO    org.example.ORM.QueryLogic - Creating CREATE TABLE user Query
+2022-11-16 10:13:30,277 ERROR   org.example.ORM.ExecuteLogic - Table 'user' already exists
+2022-11-16 10:13:30,282 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,284 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,284 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user Query
+2022-11-16 10:13:30,323 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,325 INFO    org.example.ORM.QueryLogic - Creating CREATE TABLE product Query
+2022-11-16 10:13:30,362 ERROR   org.example.ORM.ExecuteLogic - Table 'product' already exists
+2022-11-16 10:13:30,367 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,371 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:13:30,373 INFO    org.example.ORM.QueryLogic - Creating CREATE TABLE shop Query
+2022-11-16 10:13:30,406 ERROR   org.example.ORM.ExecuteLogic - Table 'shop' already exists
+2022-11-16 10:14:05,576 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:05,663 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:05,668 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:05,669 INFO    org.example.ORM.QueryLogic - creating TRUNCATE TABLE userQuery
+2022-11-16 10:14:06,577 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user Query
+2022-11-16 10:14:06,640 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,643 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,646 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,650 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,653 INFO    org.example.ORM.QueryLogic - creating INSERT INTO user VALUES  Query
+2022-11-16 10:14:06,697 INFO    org.example.ORM.ExecuteLogic - Connection created for summery_project
+2022-11-16 10:14:06,709 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user WHERE 
+2022-11-16 10:14:06,735 INFO    org.example.ORM.QueryLogic - creating INSERT INTO user VALUES  Query
+2022-11-16 10:14:06,762 INFO    org.example.ORM.ExecuteLogic - Connection created for summery_project
+2022-11-16 10:14:06,771 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user WHERE 
+2022-11-16 10:14:06,800 INFO    org.example.ORM.QueryLogic - creating INSERT INTO user VALUES  Query
+2022-11-16 10:14:06,827 INFO    org.example.ORM.ExecuteLogic - Connection created for summery_project
+2022-11-16 10:14:06,836 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user WHERE 
+2022-11-16 10:14:06,870 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,871 INFO    org.example.ORM.QueryLogic - creating TRUNCATE TABLE productQuery
+2022-11-16 10:14:06,938 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM product Query
+2022-11-16 10:14:06,973 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,977 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,980 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:06,985 INFO    org.example.ORM.QueryLogic - Creating CREATE TABLE user Query
+2022-11-16 10:14:07,033 ERROR   org.example.ORM.ExecuteLogic - Table 'user' already exists
+2022-11-16 10:14:07,036 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:07,038 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:07,039 INFO    org.example.ORM.QueryLogic - creating SELECT * FROM user Query
+2022-11-16 10:14:07,071 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:07,072 INFO    org.example.ORM.QueryLogic - Creating CREATE TABLE product Query
+2022-11-16 10:14:07,104 ERROR   org.example.ORM.ExecuteLogic - Table 'product' already exists
+2022-11-16 10:14:07,108 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:07,114 INFO    org.example.SQLconnection.SqlConfig - SQL configuration was set for database - summery_projectfor the user root and password root
+2022-11-16 10:14:07,115 INFO    org.example.ORM.QueryLogic - Creating CREATE TABLE shop Query
+2022-11-16 10:14:07,148 ERROR   org.example.ORM.ExecuteLogic - Table 'shop' already exists

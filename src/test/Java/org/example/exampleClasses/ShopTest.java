@@ -1,12 +1,9 @@
-package org.exampleTests.exampleClasses;
+package org.example.exampleClasses;
 
-import org.example.exampleClasses.Product;
-import org.example.exampleClasses.Shop;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,9 +12,11 @@ class ShopTest {
     Shop shop;
 
     @BeforeEach
-//    void createProduct() {
-//        shop = new Shop("name", List.of(new Product("name", 2.0)));
-//    }
+    void createProduct() {
+        ArrayList<Product> prodList = new ArrayList<>();
+        prodList.add(Product.createProductWithoutId("name", 2.0));
+        shop = Shop.createShopWithoutId("name", prodList);
+    }
 
 
     @Test
@@ -38,13 +37,23 @@ class ShopTest {
 
     @Test
     void setProductList_productListAreValid_isEquals() {
-//        Product product = new Product("name name", 2.0);
-//        shop.setProductList(List.of(product, product, product));
-//        assertEquals(shop.getProductList(), List.of(product, product, product));
+        Product product = Product.createProductWithoutId("name name", 2.0);
+        ArrayList<Product> prodList = shop.getProductList();
+        prodList.add(product);
+        shop.setProductList(prodList);
+        assertEquals(shop.getProductList(), prodList);
     }
 
     @Test
     void setProductList_productListIsNull_throwsException() {
         assertThrows(NullPointerException.class, () -> shop.setProductList(null), "Expected NullPointerException and something else happened");
+    }
+
+    @Test
+    void createShop_isNotNull_isEquals(){
+        Product product = Product.createProductWithoutId("name name", 2.0);
+        ArrayList<Product> prodList = shop.getProductList();
+        prodList.add(product);
+        assertNotNull(Shop.createShop("first", prodList, 1));
     }
 }
