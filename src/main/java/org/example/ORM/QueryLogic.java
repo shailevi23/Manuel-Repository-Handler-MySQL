@@ -18,90 +18,69 @@ public class QueryLogic<T> {
 
     private static Logger logger = LogManager.getLogger(QueryLogic.class.getName());
     private final Class<T> clz;
+    private final Gson gson = new Gson();
+    private StringBuilder sb = new StringBuilder();
+
 
     public QueryLogic(Class<T> clz) {
         this.clz = clz;
     }
 
+
     String selectAllQueryLogic() {
-        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " Query");
-        return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + ";";
+        logger.info("creating " + prefixSelectQuery() + " Query");
+        return prefixSelectQuery() + ";";
     }
 
-     String selectByIdQuery(String fieldName, Integer value) {
-        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE " + fieldName + " = " + value);
-        StringBuilder sb = new StringBuilder();
-        sb.append("SELECT * FROM ");
-        sb.append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ").append(fieldName);
+
+    String selectByIdQuery(String fieldName, Integer value) {
+        logger.info("creating " + selectAllQueryLogic() + " WHERE " + fieldName + " = " + value);
+
+        sb.append(prefixSelectQueryPlusWHERE());
+        sb.append(fieldName);
         sb.append("= ").append(value.toString());
         sb.append(";");
         return sb.toString();
     }
 
-     String selectByManyFiltersQuery(String filedName, Object fieldValue, String filterFieldName, Object filterValue) {
 
-         Map<String,Object> currMap = new HashMap<>();
-         currMap.put(filedName, fieldValue);
-         currMap.put(filterFieldName,filterValue);
+    String selectByManyFiltersQuery(String filedName, Object fieldValue, String filterFieldName, Object filterValue) {
+
+        Map<String, Object> currMap = new HashMap<>();
+        currMap.put(filedName, fieldValue);
+        currMap.put(filterFieldName, filterValue);
 
 
-        logger.info("creating SELECT * FROM " + clz.getSimpleName() + " WHERE ");
-        StringBuilder sb = new StringBuilder();
-        Gson gson = new Gson();
-        sb.append("SELECT * FROM ");
-        sb.append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ");
+        logger.info("creating " + prefixSelectQueryPlusWHERE());
+        sb.delete(0, sb.length());
 
-        for (Map.Entry<String, Object> entry : currMap.entrySet()) {
+        sb.append(prefixSelectQueryPlusWHERE());
+
+        for(Map.Entry<String, Object> entry : currMap.entrySet()) {
             sb.append(entry.getKey());
             sb.append(" = ");
-            if (Utils.map.containsKey(entry.getValue().getClass())) {
-                sb.append(entry.getValue());
-                sb.append(" AND ");
-            } else if (entry.getValue().getClass().equals(String.class)) {
-                sb.append("'");
-                sb.append(entry.getValue());
-                sb.append("' AND ");
-            } else {
-                sb.append("'");
-                sb.append(gson.toJson(entry.getValue()));
-                sb.append("' AND ");
-            }
+            sb.append(valueMapChecker(entry.getValue(), " AND "));
         }
         sb.replace(sb.length() - 4, sb.length(), ";");
         return sb.toString();
     }
 
-     String findObjQuery(Object object) {
-        logger.info("creating SELECT * FROM " + clz.getSimpleName());
-        StringBuilder sb = new StringBuilder();
-        Gson gson = new Gson();
-        sb.append("SELECT * FROM ");
-        sb.append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ");
 
-        for (Field field : object.getClass().getDeclaredFields()) {
+    String findObjQuery(Object object) {
+        logger.info("creating " + prefixSelectQueryPlusWHERE());
+        sb.delete(0, sb.length());
+
+        sb.append(prefixSelectQueryPlusWHERE());
+
+        for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if (!field.isAnnotationPresent(AutoIncrement.class)) {
+                if(! field.isAnnotationPresent(AutoIncrement.class)) {
                     sb.append(field.getName());
                     sb.append(" = ");
-                    if (Utils.map.containsKey(field.getType())) {
-                        sb.append(field.get(object));
-                        sb.append(" AND ");
-                    } else if (field.get(object) instanceof String) {
-                        sb.append("'");
-                        sb.append(field.get(object));
-                        sb.append("' AND ");
-                    }
-                    else{
-                        sb.append("'");
-                        sb.append(gson.toJson(field.get(object)));
-                        sb.append("' AND ");
-                    }
+                    sb.append(valueMapChecker(field.get(object), " AND "));
                 }
-            } catch (IllegalAccessException e) {
+            } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -112,11 +91,11 @@ public class QueryLogic<T> {
 
 
     String insertObjectQuery(T object) {
-        StringBuilder sb = new StringBuilder();
-        logger.info("creating INSERT INTO " + clz.getSimpleName() + " Query");
-        sb.append("INSERT INTO ");
-        sb.append(clz.getSimpleName().toLowerCase());
-        sb.append(" VALUES (");
+        sb.delete(0, sb.length());
+
+        logger.info("creating " + prefixInsertQuery() + " Query");
+        sb.append(prefixInsertQuery());
+        sb.append("(");
 
         reflectionHandlerHelper(object, sb);
 
@@ -127,15 +106,15 @@ public class QueryLogic<T> {
 
 
     String createTableQuery() {
-        StringBuilder sb = new StringBuilder();
-        logger.info("Creating table for " + clz.getSimpleName());
-        sb.append("CREATE TABLE ");
-        sb.append(clz.getSimpleName().toLowerCase());
+        sb.delete(0, sb.length());
+        logger.info("Creating " + prefixCreateTableQuery() + " Query");
+
+        sb.append(prefixCreateTableQuery());
         sb.append(" (\n");
 
         AnnotationsHandler annotationHandler = new AnnotationsHandler(0, 0, null);
 
-        for (Field field : clz.getDeclaredFields()) {
+        for(Field field : clz.getDeclaredFields()) {
             sb.append(field.getName());
             sb.append(" ");
             sb.append(getMySQLDataType(field.getType().getSimpleName()));
@@ -149,42 +128,29 @@ public class QueryLogic<T> {
     }
 
 
-    //<----------------------------------DELETE---------------------------------->
     String truncateTableQuery() {
-        StringBuilder sb = new StringBuilder();
-        logger.info("Truncating table " + clz.getSimpleName());
-        sb.append("TRUNCATE TABLE ").append(clz.getSimpleName().toLowerCase()).append(";\n");
+        sb.delete(0, sb.length());
+        logger.info("creating " + prefixTruncateTableQuery() + "Query");
+
+        sb.append(prefixTruncateTableQuery()).append(";\n");
         return sb.toString();
     }
 
 
-     String deleteSingleByAnyPropertyQuery(Object obj) {
-        StringBuilder sb = new StringBuilder();
-        Gson gson = new Gson();
-        logger.info("Deleting single item by specific property");
-        sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ");
+    String deleteSingleByAnyPropertyQuery(Object obj) {
+        sb.delete(0, sb.length());
+        logger.info("creating" + prefixDeleteQuery() + "Query");
 
-        for (Field field : obj.getClass().getDeclaredFields()) {
+        sb.append(prefixDeleteQuery());
+
+        for(Field field : obj.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
                 sb.append(field.getName());
                 sb.append(" = ");
+                sb.append(valueMapChecker(field.get(obj), " AND "));
 
-                if (Utils.map.containsKey(field.getType())) {
-                    sb.append(field.get(obj));
-                    sb.append(" AND ");
-                } else if (field.getType().equals(String.class)) {
-                    sb.append("'");
-                    sb.append(field.get(obj));
-                    sb.append("' AND ");
-                } else {
-                    sb.append("'");
-                    sb.append(gson.toJson(field.get(obj)));
-                    sb.append("' AND ");
-                }
-
-            }catch (IllegalAccessException e) {
+            } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -193,36 +159,31 @@ public class QueryLogic<T> {
         return sb.toString();
     }
 
+
     String deleteManyByAnyPropertyQuery(String property, Object value) {
-        StringBuilder sb = new StringBuilder();
-        Gson gson = new Gson();
+        sb.delete(0, sb.length());
         logger.info("Deleting many items by specific property");
-        sb.append("DELETE FROM ").append(clz.getSimpleName().toLowerCase());
-        sb.append(" WHERE ").append(property).append("=");
-        if (Utils.map.containsKey(value.getClass())) {
-            sb.append(value);
-        } else if (value.getClass().equals(String.class)) {
-            sb.append("'").append(value).append("'");
-        } else {
-            sb.append("'").append(gson.toJson(value)).append("'");
-        }
+
+        sb.append(prefixDeleteQuery());
+        sb.append(property).append("=");
+        sb.append(valueMapChecker(value, null));
+
         return sb.toString();
     }
 
 
     String updateEntireObjectQuery(Object object) {
-        StringBuilder sb = new StringBuilder();
+        sb.delete(0, sb.length());
         StringBuilder whereString = new StringBuilder();
-        Gson gson = new Gson();
 
         sb.append("UPDATE ");
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" SET ");
 
-        for (Field field : object.getClass().getDeclaredFields()) {
+        for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if (field.isAnnotationPresent(PrimaryKey.class)) {
+                if(field.isAnnotationPresent(PrimaryKey.class)) {
                     whereString.append(" WHERE ").append(field.getName());
                     whereString.append(" = ").append(field.get(object));
                     continue;
@@ -230,20 +191,8 @@ public class QueryLogic<T> {
 
                 sb.append(field.getName());
                 sb.append(" = ");
-
-                if (Utils.map.containsKey(field.getType())) {
-                    sb.append(field.get(object));
-                    sb.append(" , ");
-                } else if (field.getType().equals(String.class)) {
-                    sb.append("'");
-                    sb.append(field.get(object));
-                    sb.append("' , ");
-                } else {
-                    sb.append("'");
-                    sb.append(gson.toJson(field.get(object)));
-                    sb.append("' , ");
-                }
-            } catch (IllegalAccessException e) {
+                sb.append(valueMapChecker(field.get(object), " , "));
+            } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
@@ -253,50 +202,29 @@ public class QueryLogic<T> {
         return sb.toString();
     }
 
+
     String updateSinglePropertyQuery(String filedName, Object fieldValue, String filterFieldName, Object filterValue) {
-        StringBuilder sb = new StringBuilder();
-        Gson gson = new Gson();
+        sb.delete(0, sb.length());
+
         sb.append("UPDATE ");
         sb.append(clz.getSimpleName().toLowerCase());
         sb.append(" SET ");
         sb.append(filedName).append(" = ");
 
-        if (Utils.map.containsKey(fieldValue.getClass())) {
-            sb.append(fieldValue);
-        } else if (fieldValue.getClass().equals(String.class)) {
-            sb.append("'");
-            sb.append(fieldValue);
-            sb.append("'");
-        } else {
-            sb.append("'");
-            sb.append(gson.toJson(fieldValue));
-            sb.append("'");
-        }
 
+        sb.append(valueMapChecker(fieldValue, null));
         sb.append(" WHERE ");
         sb.append(filterFieldName).append(" = ");
-
-        if (Utils.map.containsKey(filterValue.getClass())) {
-            sb.append(filterValue);
-        } else if (filterValue.getClass().equals(String.class)) {
-            sb.append("'");
-            sb.append(filterValue);
-            sb.append("'");
-        } else {
-            sb.append("'");
-            sb.append(gson.toJson(filterValue));
-            sb.append("'");
-        }
-
+        sb.append(valueMapChecker(filterValue, null));
         sb.append(";");
+
         return sb.toString();
     }
 
 
-
     //<----------------------------------HELPERS---------------------------------->
     private String getMySQLDataType(String javaType) {
-        switch (javaType) {
+        switch(javaType) {
             case "int":
             case "Integer":
                 return "int(11)";
@@ -319,56 +247,106 @@ public class QueryLogic<T> {
         }
     }
 
+
     private void reflectionHandlerHelper(T object, StringBuilder sb) {
-        Gson gson = new Gson();
-        for (Field field : object.getClass().getDeclaredFields()) {
+        for(Field field : object.getClass().getDeclaredFields()) {
             field.setAccessible(true);
             try {
-                if (field.isAnnotationPresent(AutoIncrement.class)) {
+                if(field.isAnnotationPresent(AutoIncrement.class)) {
                     sb.append("NULL,");
-                } else if (Utils.map.containsKey(field.getType())) {
-                    sb.append(field.get(object));
-                    sb.append(",");
-                } else if (field.get(object) instanceof String) {
-                    sb.append("'");
-                    sb.append(field.get(object));
-                    sb.append("',");
-                } else {
-                    sb.append("'");
-                    sb.append(gson.toJson(field.get(object)));
-                    sb.append("',");
                 }
-            } catch (IllegalAccessException e) {
+                else {
+                    sb.append(valueMapChecker(field.get(object), ","));
+                }
+            } catch(IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
+
     private void annotationHandlerHelper(Field field, StringBuilder sb, AnnotationsHandler annotationsHandler) {
-        if (field.getAnnotation(PrimaryKey.class) != null) {
+        if(field.getAnnotation(PrimaryKey.class) != null) {
             annotationsHandler.setCountPrimaryKeys(annotationsHandler.getCountPrimaryKeys() + 1);
             annotationsHandler.setPrimaryField(field.getName());
-            if (annotationsHandler.getCountPrimaryKeys() > 1) {
+            if(annotationsHandler.getCountPrimaryKeys() > 1) {
                 throw new IllegalArgumentException(annotationsHandler.messagePrimaryKey());
             }
         }
 
-        if (field.isAnnotationPresent(NotNull.class)) {
+        if(field.isAnnotationPresent(NotNull.class)) {
             sb.append(" NOT NULL");
         }
 
-        if (field.isAnnotationPresent(Unique.class)) {
+        if(field.isAnnotationPresent(Unique.class)) {
             sb.append(" UNIQUE");
         }
 
-        if (field.isAnnotationPresent(AutoIncrement.class)) {
+        if(field.isAnnotationPresent(AutoIncrement.class)) {
             sb.append(" AUTO_INCREMENT");
             annotationsHandler.setCountAutoIncrement(annotationsHandler.getCountAutoIncrement() + 1);
-            if (annotationsHandler.getCountAutoIncrement() > 1) {
+            if(annotationsHandler.getCountAutoIncrement() > 1) {
                 throw new IllegalArgumentException(annotationsHandler.messageAutoIncrement());
             }
         }
     }
 
+
+    private String valueMapChecker(Object value, String bettwen) {
+        StringBuilder sb = new StringBuilder();
+
+        if(Utils.map.containsKey(value.getClass())) {
+            sb.append(value);
+        }
+        else if(value.getClass().equals(String.class)) {
+            sb.append("'");
+            sb.append(value);
+            sb.append("'");
+        }
+        else {
+            sb.append("'");
+            sb.append(gson.toJson(value));
+            sb.append("'");
+        }
+        if(bettwen != null) {
+            sb.append(bettwen);
+        }
+        return sb.toString();
+    }
+
+
+    private String prefixSelectQuery() {
+        return "SELECT * FROM " + clz.getSimpleName().toLowerCase();
+    }
+
+
+    private String prefixSelectQueryPlusWHERE() {
+        return "SELECT * FROM " + clz.getSimpleName().toLowerCase() + " WHERE ";
+    }
+
+
+    private String prefixInsertQuery() {
+        return "INSERT INTO " + clz.getSimpleName().toLowerCase() + " VALUES ";
+    }
+
+
+    private String prefixCreateTableQuery() {
+        return "CREATE TABLE " + clz.getSimpleName().toLowerCase();
+    }
+
+
+    private String prefixTruncateTableQuery() {
+        return "TRUNCATE TABLE " + clz.getSimpleName().toLowerCase();
+    }
+
+
+    private String prefixDeleteQuery() {
+        return "DELETE FROM " + clz.getSimpleName().toLowerCase() + " WHERE ";
+    }
+
+
+    private String prefixUpdateQuery() {
+        return "UPDATE " + clz.getSimpleName().toLowerCase() + " SET ";
+    }
 
 }

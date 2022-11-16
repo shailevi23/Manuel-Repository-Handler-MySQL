@@ -37,7 +37,7 @@ public class Client {
         //TODO working
 //        <---------------2--------------->   //Insert 3 users to user table
 //        User user;
-//        user = userORM.add(User.createUserWithoutId("shai", "levi", "ajhsf@gmail.com"));
+//        user = userORM.add(User.createUserWithoutId("mdfss", "assmfdsa", "asadsmfasd@gmail.com"));
 //        logger.info("User has been created: " + user.toString());
 //        user = userORM.add(User.createUser("omar", "hamdea", "omar@gmail.com", 2));
 //        logger.info("User has been created: " + user.toString());
@@ -74,6 +74,12 @@ public class Client {
 //        userORM.deleteItemsByProperty("id", 2);
 //        <---------------3--------------->
 
+//        <---------------3.5------------->   //Delete user
+//        User user;
+//        user = userORM.add(User.createUserWithoutId("mdsss", "asssfdsa", "assasmfasd@gmail.com"));
+//        userORM.deleteEntireObject(user);
+//        <---------------3.5------------->
+
 
         //TODO working
 //        <---------------4--------------->   //Add all users
@@ -95,6 +101,9 @@ public class Client {
         //TODO working
 //        <---------------5--------------->   //Select all users
 //        List<User> users = userORM.selectAll();
+//        for(User u : users) {
+//            System.out.println(u);
+//        }
 //        logger.info("Users has been selected: " + users.toString());
 
 //        List<Shop> shop = shopORM.selectAll();
@@ -138,15 +147,15 @@ public class Client {
 
         //TODO working
 //        <---------------7--------------->
-//        List<User> users = userORM.updateByProperty("firstName", "oldShai", "lastName", "levi");
+//        List<User> users = userORM.updateByProperty("firstName", "hmdea", "lastName", "hamdea");
 //        for(User u : users) {
-//         System.out.println(u.toString());
-//        <---------------7--------------->
+//            System.out.println(u.toString());
 //        }
+//        <---------------7--------------->
 
         //TODO working
 //        <---------------8--------------->   //Delete User Table (Truncate)
-//        boolean res = userORM.deleteTable();
+//        boolean res = userORM.truncateTable();
 //        logger.info("User table has been truncated: " + res);
 //        <---------------8--------------->
 
